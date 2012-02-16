@@ -37,6 +37,9 @@
  */
 
 #import "EOSFTPServerUser.h"
+#import "NSString+EOSFTPServer.h"
+
+NSString * const EOSFTPServerUserException = @"EOSFTPServerUserException";
 
 @implementation EOSFTPServerUser
 
@@ -46,6 +49,11 @@
 {
     if( ( self = [ self init ] ) )
     {
+        if( name == nil || name.length == 0 )
+        {
+            @throw [ NSException exceptionWithName: EOSFTPServerUserException reason: @"No username provided" userInfo: nil ];
+        }
+        
         _name = [ name copy ];
     }
     
@@ -56,6 +64,11 @@
 {
     if( ( self = [ self init ] ) )
     {
+        if( name == nil || name.length == 0 )
+        {
+            @throw [ NSException exceptionWithName: EOSFTPServerUserException reason: @"No username provided" userInfo: nil ];
+        }
+        
         _name     = [ name copy ];
         _password = [ password copy ];
     }
@@ -67,6 +80,11 @@
 {
     if( ( self = [ self init ] ) )
     {
+        if( name == nil || name.length == 0 )
+        {
+            @throw [ NSException exceptionWithName: EOSFTPServerUserException reason: @"No username provided" userInfo: nil ];
+        }
+        
         _name        = [ name copy ];
         _md5Password = [ md5Password copy ];
     }
@@ -81,6 +99,44 @@
     [ _md5Password release ];
     
     [ super dealloc ];
+}
+
+- ( BOOL )isEqual: ( id )object
+{
+    EOSFTPServerUser * user;
+    
+    if( [ object isKindOfClass: [ EOSFTPServerUser class ] ] )
+    {
+        return NO;
+    }
+    
+    user = ( EOSFTPServerUser * )object;
+    
+    if( [ _name isEqualToString: user.name ] == NO )
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- ( NSUInteger )hash
+{
+    NSString * credidentials;
+    NSString * password;
+    
+    if( _md5Password != nil )
+    {
+        password = _md5Password;
+    }
+    else
+    {
+        password = [ _password md5Hash ];
+    }
+    
+    credidentials = [ NSString stringWithFormat: @"%@:%@", _name, password ];
+    
+    return [ credidentials crc32 ];
 }
 
 - ( NSString * )password

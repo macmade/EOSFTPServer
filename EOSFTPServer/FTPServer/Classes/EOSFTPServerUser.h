@@ -38,6 +38,8 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSString * const EOSFTPServerUserException;
+
 @interface EOSFTPServerUser: NSObject
 {
 @protected
