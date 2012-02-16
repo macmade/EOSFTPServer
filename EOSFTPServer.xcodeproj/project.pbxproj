@@ -37,6 +37,14 @@
 		05A7F9AA14ED14110074653C /* NSString+EOSFTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A7F9A814ED14110074653C /* NSString+EOSFTPServer.m */; };
 		05E2E59514EDC08F00DBAE62 /* EOSFTPServer-Functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E2E59314EDC08F00DBAE62 /* EOSFTPServer-Functions.h */; };
 		05E2E59614EDC08F00DBAE62 /* EOSFTPServer-Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E2E59414EDC08F00DBAE62 /* EOSFTPServer-Functions.m */; };
+		05F13ECE14EDCCE4003CDAAB /* EOSSocketReadPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F13ECC14EDCCE4003CDAAB /* EOSSocketReadPacket.h */; };
+		05F13ECF14EDCCE4003CDAAB /* EOSSocketReadPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13ECD14EDCCE4003CDAAB /* EOSSocketReadPacket.m */; };
+		05F13ED314EDCCF9003CDAAB /* EOSSocketWritePacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F13ED114EDCCF9003CDAAB /* EOSSocketWritePacket.h */; };
+		05F13ED414EDCCF9003CDAAB /* EOSSocketWritePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13ED214EDCCF9003CDAAB /* EOSSocketWritePacket.m */; };
+		05F13ED714EDCD0D003CDAAB /* EOSSocketReadPacket+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F13ED514EDCD0D003CDAAB /* EOSSocketReadPacket+Private.h */; };
+		05F13ED814EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13ED614EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m */; };
+		05F13EDB14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F13ED914EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h */; };
+		05F13EDC14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13EDA14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +80,14 @@
 		05A7F9A814ED14110074653C /* NSString+EOSFTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EOSFTPServer.m"; sourceTree = "<group>"; };
 		05E2E59314EDC08F00DBAE62 /* EOSFTPServer-Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServer-Functions.h"; sourceTree = "<group>"; };
 		05E2E59414EDC08F00DBAE62 /* EOSFTPServer-Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServer-Functions.m"; sourceTree = "<group>"; };
+		05F13ECC14EDCCE4003CDAAB /* EOSSocketReadPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EOSSocketReadPacket.h; sourceTree = "<group>"; };
+		05F13ECD14EDCCE4003CDAAB /* EOSSocketReadPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EOSSocketReadPacket.m; sourceTree = "<group>"; };
+		05F13ED114EDCCF9003CDAAB /* EOSSocketWritePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EOSSocketWritePacket.h; sourceTree = "<group>"; };
+		05F13ED214EDCCF9003CDAAB /* EOSSocketWritePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EOSSocketWritePacket.m; sourceTree = "<group>"; };
+		05F13ED514EDCD0D003CDAAB /* EOSSocketReadPacket+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSSocketReadPacket+Private.h"; sourceTree = "<group>"; };
+		05F13ED614EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSSocketReadPacket+Private.m"; sourceTree = "<group>"; };
+		05F13ED914EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSSocketWritePacket+Private.h"; sourceTree = "<group>"; };
+		05F13EDA14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSSocketWritePacket+Private.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +182,14 @@
 				05779ED414EC6635006C5D55 /* EOSSocket.h */,
 				05779ED514EC6635006C5D55 /* EOSSocket.m */,
 				05779EFE14EC6A96006C5D55 /* EOSSocketDelegate.h */,
+				05F13ED514EDCD0D003CDAAB /* EOSSocketReadPacket+Private.h */,
+				05F13ED614EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m */,
+				05F13ECC14EDCCE4003CDAAB /* EOSSocketReadPacket.h */,
+				05F13ECD14EDCCE4003CDAAB /* EOSSocketReadPacket.m */,
+				05F13ED914EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h */,
+				05F13EDA14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m */,
+				05F13ED114EDCCF9003CDAAB /* EOSSocketWritePacket.h */,
+				05F13ED214EDCCF9003CDAAB /* EOSSocketWritePacket.m */,
 				05779F0214EC6D11006C5D55 /* NSData+EOSFTPServer.h */,
 				05779F0314EC6D11006C5D55 /* NSData+EOSFTPServer.m */,
 				05A7F9A714ED14110074653C /* NSString+EOSFTPServer.h */,
@@ -211,6 +235,10 @@
 				05A7F9A514ED138E0074653C /* EOSFTPServerUser+Private.h in Headers */,
 				05A7F9A914ED14110074653C /* NSString+EOSFTPServer.h in Headers */,
 				05E2E59514EDC08F00DBAE62 /* EOSFTPServer-Functions.h in Headers */,
+				05F13ECE14EDCCE4003CDAAB /* EOSSocketReadPacket.h in Headers */,
+				05F13ED314EDCCF9003CDAAB /* EOSSocketWritePacket.h in Headers */,
+				05F13ED714EDCD0D003CDAAB /* EOSSocketReadPacket+Private.h in Headers */,
+				05F13EDB14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +306,10 @@
 				05A7F9A614ED138E0074653C /* EOSFTPServerUser+Private.m in Sources */,
 				05A7F9AA14ED14110074653C /* NSString+EOSFTPServer.m in Sources */,
 				05E2E59614EDC08F00DBAE62 /* EOSFTPServer-Functions.m in Sources */,
+				05F13ECF14EDCCE4003CDAAB /* EOSSocketReadPacket.m in Sources */,
+				05F13ED414EDCCF9003CDAAB /* EOSSocketWritePacket.m in Sources */,
+				05F13ED814EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m in Sources */,
+				05F13EDC14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
