@@ -69,5 +69,6 @@
 - ( void )unsetIPv6Source;
 - ( void )close;
 - ( void )closeWithError: ( NSError * )error;
+- ( BOOL )openStreams: ( NSError ** )error;
 
 @end

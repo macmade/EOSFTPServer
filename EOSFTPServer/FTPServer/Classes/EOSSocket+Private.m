@@ -294,7 +294,7 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
     _ipv6Socket = NULL;
     status      = YES;
     
-    if( status == YES && [ self createStreamsFromNative: nativeSocket error: &error ] == NO )
+    if( status == YES && [ self createStreamsFromNativeSocketHandle: nativeSocket error: &error ] == NO )
     {
         status = NO;
     }
@@ -304,7 +304,7 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
         status = NO;
     }
     
-    if( status == YES && [ self openStreamsAndReturnError: &error ] == NO )
+    if( status == YES && [ self openStreams: &error ] == NO )
     {
         status = NO;
     }
@@ -607,7 +607,7 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
 {
     if( _ipv4Source != NULL )
     {
-        CFRunLoopRemoveSource( _runLoop, _ipv4Source, kCFRunLoopDefaultMode) ;
+        CFRunLoopRemoveSource( _runLoop, _ipv4Source, kCFRunLoopDefaultMode ) ;
         CFRelease( _ipv4Source );
         
         _ipv4Source = NULL;
@@ -669,6 +669,35 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
     }
     
     [ self close ];
+}
+
+- ( BOOL )openStreams: ( NSError ** )error
+{
+    BOOL status;
+    
+    if( error != NULL )
+    {
+        *( error ) = nil;
+    }
+    
+    status = YES;
+    
+    if( status == YES && CFReadStreamOpen( _readStream ) == false )
+    {
+        status = NO;
+    }
+    
+    if( status == YES && CFWriteStreamOpen( _writeStream ) == false )
+    {
+        status = NO;
+    }
+    
+    if( status == NO && error != NULL )
+    {
+        *( error ) = [ self streamError ];
+    }
+    
+    return status;
 }
 
 @end
