@@ -50,6 +50,25 @@
 
 @implementation EOSSocketWritePacket
 
+@synthesize data            = _data;
+@synthesize bytesWritten    = _bytesWritten;
+@synthesize timeout         = _timeout;
 
+- ( id )initWithData: ( NSData * )data timeout: ( NSTimeInterval )timeout
+{
+    if( ( self = [ self init ] ) )
+    {
+        _data    = [ data retain ];
+        _timeout = t;
+    }
+    
+    return self;
+}
+
+- ( void )dealloc
+{
+    [ _data release ];
+     [super dealloc ];
+}
 
 @end

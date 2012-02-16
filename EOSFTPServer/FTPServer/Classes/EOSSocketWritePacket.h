@@ -52,13 +52,19 @@
 {
 @protected
     
-    
+	NSData        * _data;
+	NSUInteger      _bytesWritten;
+	NSTimeInterval  _timeout;
     
 @private
     
     id _EOSSocketReadPacket_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
+@property( atomic, readonly          ) NSData       * data;
+@property( atomic, readwrite, assign ) NSUInteger     bytesWritten;
+@property( atomic, readonly          ) NSTimeInterval timeout;
 
+- ( id )initWithData: ( NSData * )data timeout: ( NSTimeInterval )timeout;
 
 @end
