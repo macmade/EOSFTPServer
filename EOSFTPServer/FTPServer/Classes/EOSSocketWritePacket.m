@@ -68,7 +68,7 @@
 - ( void )dealloc
 {
     [ _data release ];
-     [super dealloc ];
+    [ super dealloc ];
 }
 
 @end
