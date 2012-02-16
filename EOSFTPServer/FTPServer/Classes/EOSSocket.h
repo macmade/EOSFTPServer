@@ -56,6 +56,7 @@
 
 #endif
 
+FOUNDATION_EXPORT NSString * const EOSSocketErrorDomain;
 FOUNDATION_EXPORT NSString * const EOSSocketException;
 
 typedef enum

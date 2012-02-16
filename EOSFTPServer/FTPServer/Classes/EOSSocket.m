@@ -52,7 +52,8 @@
 #import "EOSSocket.h"
 #import "EOSSocket+Private.h"
 
-NSString * const EOSSocketException = @"EOSSocketException";
+NSString * const EOSSocketErrorDomain = @"EOSSocketError";
+NSString * const EOSSocketException   = @"EOSSocketException";
 
 static NSLock * __lock = nil;
 
@@ -221,7 +222,7 @@ static NSLock * __lock = nil;
         {
             if( error != NULL && *( error ) == nil )
             {
-                *( error ) = [ NSError errorWithDomain: @"EOSSocketError" code: EOSSocketErrorCFSocket userInfo: nil ];
+                *( error ) = [ NSError errorWithDomain: EOSSocketErrorDomain code: EOSSocketErrorCFSocket userInfo: nil ];
             }
             
             if( _ipv4Socket != NULL )
@@ -255,7 +256,7 @@ static NSLock * __lock = nil;
         {
             if( error != NULL && *( error ) == nil )
             {
-                *( error ) = [ NSError errorWithDomain: @"EOSSocketError" code: EOSSocketErrorCFSocket userInfo: nil ];
+                *( error ) = [ NSError errorWithDomain: EOSSocketErrorDomain code: EOSSocketErrorCFSocket userInfo: nil ];
             }
             
             if( _ipv4Socket != NULL )

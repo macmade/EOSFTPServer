@@ -114,7 +114,7 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
     
     if( socket == NULL && error != NULL )
     {
-        *( error ) = [ NSError errorWithDomain: @"EOSSocketError" code: EOSSocketErrorCFSocket userInfo: nil ];
+        *( error ) = [ NSError errorWithDomain: EOSSocketErrorDomain code: EOSSocketErrorCFSocket userInfo: nil ];
     }
     
     return socket;
@@ -698,6 +698,29 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
     }
     
     return status;
+}
+
+- ( BOOL )configureStreams: ( NSError ** )error
+{
+    if( error != NULL )
+    {
+        *( error ) = nil;
+    }
+    
+    if( [ _delegate respondsToSelector: @selector( socketShouldConnect: ) ] )
+    {
+        if( [ _delegate socketShouldConnect: self ] == NO )
+        {
+            if( error != NULL )
+            {
+                *( error ) = [ NSError errorWithDomain: EOSSocketErrorDomain code: EOSSocketErrorCancel userInfo: nil ];
+            }
+            
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 @end

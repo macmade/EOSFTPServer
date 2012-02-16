@@ -70,5 +70,6 @@
 - ( void )close;
 - ( void )closeWithError: ( NSError * )error;
 - ( BOOL )openStreams: ( NSError ** )error;
+- ( BOOL )configureStreams: ( NSError ** )error;
 
 @end
