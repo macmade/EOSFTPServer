@@ -39,6 +39,8 @@
 #import <Foundation/Foundation.h>
 #import "EOSFTPServerDelegate.h"
 
+FOUNDATION_EXPORT NSString * const EOSFTPServerException;
+
 typedef NSUInteger       EOSFTPServerReplyCode;
 typedef NSString * const EOSFTPServerCommand;
 

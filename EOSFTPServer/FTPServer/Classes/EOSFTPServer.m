@@ -39,6 +39,8 @@
 #import "EOSFTPServer.h"
 #import "EOSFTPServerUser.h"
 
+NSString * const EOSFTPServerException = @"EOSFTPServerException";
+
 EOSFTPServerCommand EOSFTPServerCommandUSER = @"USER";
 EOSFTPServerCommand EOSFTPServerCommandPASS = @"PASS";
 EOSFTPServerCommand EOSFTPServerCommandACT  = @"ACT";
@@ -100,6 +102,11 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 {
     if( ( self = [ super init ] ) )
     {
+        if( getuid() != 0 && port <= 1024 )
+        {
+            @throw [ NSException exceptionWithName: EOSFTPServerException reason: [ NSString stringWithFormat: @"Port number %u requires root privileges", port ] userInfo: nil ];
+        }
+        
         _port           = port;
         _name           = @"EOSFTPServer";
         _versionString  = @"0.1.0-alpha";
