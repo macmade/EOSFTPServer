@@ -418,6 +418,11 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
 {
     Boolean status;
     
+    if( error != NULL )
+    {
+        *( error ) = nil;
+    }
+    
     _runLoop = ( runLoop == nil ) ? CFRunLoopGetCurrent() : [ runLoop getCFRunLoop ];
     
     status = CFReadStreamSetClient
@@ -430,12 +435,11 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
     
     if( !status )
     {
-        NSError *err = [self getStreamError];
+        if( error != NULL )
+        {
+            *( error ) = [ self streamError ];
+        }
         
-        NSLog (@"AsyncSocket %p couldn't attach read stream to run-loop,", self);
-        NSLog (@"Error: %@", err);
-        
-        if (errPtr) *errPtr = err;
         return NO;
     }
     
@@ -451,17 +455,16 @@ static void __CFWriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEven
         _writeStream,
          kCFStreamEventCanAcceptBytes | kCFStreamEventErrorOccurred | kCFStreamEventEndEncountered | kCFStreamEventOpenCompleted,
          ( CFWriteStreamClientCallBack )( &__CFWriteStreamClientCallBack ),
-         ( CFStreamClientContext * )( &theContext )
+         ( CFStreamClientContext * )( &_socketContext )
     );
     
     if( !status )
     {
-        NSError *err = [self getStreamError];
+        if( error != NULL )
+        {
+            *( error ) = [ self streamError ];
+        }
         
-        NSLog (@"AsyncSocket %p couldn't attach write stream to run-loop,", self);
-        NSLog (@"Error: %@", err);
-        
-        if (errPtr) *errPtr = err;
         return NO;
         
     }

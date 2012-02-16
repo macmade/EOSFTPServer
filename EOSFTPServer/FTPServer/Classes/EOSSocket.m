@@ -371,7 +371,7 @@ static NSLock * __lock = nil;
 {
     @synchronized( self )
     {
-        return NO;
+        return _ipv4Socket != NULL;
     }
 }
 
@@ -379,7 +379,7 @@ static NSLock * __lock = nil;
 {
     @synchronized( self )
     {
-        return NO;
+        return _ipv6Socket != NULL;
     }
 }
 
