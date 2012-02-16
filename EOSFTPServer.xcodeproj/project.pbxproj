@@ -35,6 +35,8 @@
 		05A7F9A614ED138E0074653C /* EOSFTPServerUser+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A7F9A414ED138D0074653C /* EOSFTPServerUser+Private.m */; };
 		05A7F9A914ED14110074653C /* NSString+EOSFTPServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 05A7F9A714ED14110074653C /* NSString+EOSFTPServer.h */; };
 		05A7F9AA14ED14110074653C /* NSString+EOSFTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A7F9A814ED14110074653C /* NSString+EOSFTPServer.m */; };
+		05E2E59514EDC08F00DBAE62 /* EOSFTPServer-Functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E2E59314EDC08F00DBAE62 /* EOSFTPServer-Functions.h */; };
+		05E2E59614EDC08F00DBAE62 /* EOSFTPServer-Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E2E59414EDC08F00DBAE62 /* EOSFTPServer-Functions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		05A7F9A414ED138D0074653C /* EOSFTPServerUser+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerUser+Private.m"; sourceTree = "<group>"; };
 		05A7F9A714ED14110074653C /* NSString+EOSFTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EOSFTPServer.h"; sourceTree = "<group>"; };
 		05A7F9A814ED14110074653C /* NSString+EOSFTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EOSFTPServer.m"; sourceTree = "<group>"; };
+		05E2E59314EDC08F00DBAE62 /* EOSFTPServer-Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServer-Functions.h"; sourceTree = "<group>"; };
+		05E2E59414EDC08F00DBAE62 /* EOSFTPServer-Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServer-Functions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,8 @@
 		05779ECB14EC65B1006C5D55 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				05E2E59314EDC08F00DBAE62 /* EOSFTPServer-Functions.h */,
+				05E2E59414EDC08F00DBAE62 /* EOSFTPServer-Functions.m */,
 				05779EE014EC6673006C5D55 /* EOSFTPServer+Private.h */,
 				05779EE114EC6673006C5D55 /* EOSFTPServer+Private.m */,
 				05779ED014EC6628006C5D55 /* EOSFTPServer.h */,
@@ -204,6 +210,7 @@
 				05A7F9A114ED137B0074653C /* EOSFTPServerUser.h in Headers */,
 				05A7F9A514ED138E0074653C /* EOSFTPServerUser+Private.h in Headers */,
 				05A7F9A914ED14110074653C /* NSString+EOSFTPServer.h in Headers */,
+				05E2E59514EDC08F00DBAE62 /* EOSFTPServer-Functions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +277,7 @@
 				05A7F9A214ED137B0074653C /* EOSFTPServerUser.m in Sources */,
 				05A7F9A614ED138E0074653C /* EOSFTPServerUser+Private.m in Sources */,
 				05A7F9AA14ED14110074653C /* NSString+EOSFTPServer.m in Sources */,
+				05E2E59614EDC08F00DBAE62 /* EOSFTPServer-Functions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
