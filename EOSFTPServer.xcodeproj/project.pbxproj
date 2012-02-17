@@ -45,6 +45,17 @@
 		05F13ED814EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13ED614EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m */; };
 		05F13EDB14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F13ED914EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h */; };
 		05F13EDC14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13EDA14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m */; };
+		05F13EE414EDD20F003CDAAB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F13EE314EDD20F003CDAAB /* Cocoa.framework */; };
+		05F13F0414EDD23C003CDAAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F13F0314EDD23C003CDAAB /* UIKit.framework */; };
+		05F13F0514EDD23C003CDAAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05779EBE14EC655F006C5D55 /* Foundation.framework */; };
+		05F13F0714EDD23C003CDAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F13F0614EDD23C003CDAAB /* CoreGraphics.framework */; };
+		05F13F2214EDD39D003CDAAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F1E14EDD39D003CDAAB /* main.m */; };
+		05F13F2F14EDD3AE003CDAAB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F13F2814EDD3AE003CDAAB /* MainMenu.xib */; };
+		05F13F3114EDD3AE003CDAAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F2C14EDD3AE003CDAAB /* main.m */; };
+		05F13F3214EDD3DD003CDAAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05F13F1A14EDD39D003CDAAB /* InfoPlist.strings */; };
+		05F13F3314EDD3E5003CDAAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05F13F2614EDD3AE003CDAAB /* InfoPlist.strings */; };
+		05F13F3D14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F3C14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m */; };
+		05F13F4114EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F4014EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +99,24 @@
 		05F13ED614EDCD0D003CDAAB /* EOSSocketReadPacket+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSSocketReadPacket+Private.m"; sourceTree = "<group>"; };
 		05F13ED914EDCD1E003CDAAB /* EOSSocketWritePacket+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSSocketWritePacket+Private.h"; sourceTree = "<group>"; };
 		05F13EDA14EDCD1E003CDAAB /* EOSSocketWritePacket+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSSocketWritePacket+Private.m"; sourceTree = "<group>"; };
+		05F13EE114EDD20F003CDAAB /* EOSFTPServerDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOSFTPServerDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05F13EE314EDD20F003CDAAB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		05F13F0114EDD23C003CDAAB /* EOSFTPServerMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOSFTPServerMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05F13F0314EDD23C003CDAAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		05F13F0614EDD23C003CDAAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		05F13F1B14EDD39D003CDAAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		05F13F1C14EDD39D003CDAAB /* EOSFTPServerMobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "EOSFTPServerMobile-Info.plist"; sourceTree = "<group>"; };
+		05F13F1D14EDD39D003CDAAB /* EOSFTPServerMobile-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerMobile-Prefix.pch"; sourceTree = "<group>"; };
+		05F13F1E14EDD39D003CDAAB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05F13F2714EDD3AE003CDAAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		05F13F2914EDD3AE003CDAAB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = MainMenu.xib; sourceTree = "<group>"; };
+		05F13F2A14EDD3AE003CDAAB /* EOSFTPServerDesktop-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "EOSFTPServerDesktop-Info.plist"; sourceTree = "<group>"; };
+		05F13F2B14EDD3AE003CDAAB /* EOSFTPServerDesktop-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerDesktop-Prefix.pch"; sourceTree = "<group>"; };
+		05F13F2C14EDD3AE003CDAAB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05F13F3B14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EOSFTPServerDesktopApplicationDelegate.h; sourceTree = "<group>"; };
+		05F13F3C14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EOSFTPServerDesktopApplicationDelegate.m; sourceTree = "<group>"; };
+		05F13F3F14EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EOSFTPServerMobileApplicationDelegate.h; sourceTree = "<group>"; };
+		05F13F4014EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EOSFTPServerMobileApplicationDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +125,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				05779EF214EC6A37006C5D55 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05F13EDE14EDD20F003CDAAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05F13EE414EDD20F003CDAAB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05F13EFE14EDD23C003CDAAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05F13F0414EDD23C003CDAAB /* UIKit.framework in Frameworks */,
+				05F13F0514EDD23C003CDAAB /* Foundation.framework in Frameworks */,
+				05F13F0714EDD23C003CDAAB /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				05779EB614EC655E006C5D55 /* libEOSFTPServer.a */,
+				05F13EE114EDD20F003CDAAB /* EOSFTPServerDesktop.app */,
+				05F13F0114EDD23C003CDAAB /* EOSFTPServerMobile.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				05779EBE14EC655F006C5D55 /* Foundation.framework */,
+				05F13EE314EDD20F003CDAAB /* Cocoa.framework */,
+				05F13F0314EDD23C003CDAAB /* UIKit.framework */,
+				05F13F0614EDD23C003CDAAB /* CoreGraphics.framework */,
 				05779EBB14EC655F006C5D55 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -201,6 +253,11 @@
 		05779ECD14EC65B1006C5D55 /* iOS Demo */ = {
 			isa = PBXGroup;
 			children = (
+				05F13F3E14EDD54E003CDAAB /* Classes */,
+				05F13F1914EDD39D003CDAAB /* en.lproj */,
+				05F13F1C14EDD39D003CDAAB /* EOSFTPServerMobile-Info.plist */,
+				05F13F1D14EDD39D003CDAAB /* EOSFTPServerMobile-Prefix.pch */,
+				05F13F1E14EDD39D003CDAAB /* main.m */,
 			);
 			path = "iOS Demo";
 			sourceTree = "<group>";
@@ -208,8 +265,48 @@
 		05779ECE14EC65B1006C5D55 /* Mac Demo */ = {
 			isa = PBXGroup;
 			children = (
+				05F13F3A14EDD52C003CDAAB /* Classes */,
+				05F13F2514EDD3AE003CDAAB /* en.lproj */,
+				05F13F2A14EDD3AE003CDAAB /* EOSFTPServerDesktop-Info.plist */,
+				05F13F2B14EDD3AE003CDAAB /* EOSFTPServerDesktop-Prefix.pch */,
+				05F13F2C14EDD3AE003CDAAB /* main.m */,
 			);
 			path = "Mac Demo";
+			sourceTree = "<group>";
+		};
+		05F13F1914EDD39D003CDAAB /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				05F13F1A14EDD39D003CDAAB /* InfoPlist.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		05F13F2514EDD3AE003CDAAB /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				05F13F2614EDD3AE003CDAAB /* InfoPlist.strings */,
+				05F13F2814EDD3AE003CDAAB /* MainMenu.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		05F13F3A14EDD52C003CDAAB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				05F13F3B14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.h */,
+				05F13F3C14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		05F13F3E14EDD54E003CDAAB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				05F13F3F14EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.h */,
+				05F13F4014EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +359,40 @@
 			productReference = 05779EB614EC655E006C5D55 /* libEOSFTPServer.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		05F13EE014EDD20F003CDAAB /* EOSFTPServerDesktop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05F13EFA14EDD210003CDAAB /* Build configuration list for PBXNativeTarget "EOSFTPServerDesktop" */;
+			buildPhases = (
+				05F13EDD14EDD20F003CDAAB /* Sources */,
+				05F13EDE14EDD20F003CDAAB /* Frameworks */,
+				05F13EDF14EDD20F003CDAAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EOSFTPServerDesktop;
+			productName = EOSFTPServerDesktop;
+			productReference = 05F13EE114EDD20F003CDAAB /* EOSFTPServerDesktop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		05F13F0014EDD23C003CDAAB /* EOSFTPServerMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05F13F1414EDD23C003CDAAB /* Build configuration list for PBXNativeTarget "EOSFTPServerMobile" */;
+			buildPhases = (
+				05F13EFD14EDD23C003CDAAB /* Sources */,
+				05F13EFE14EDD23C003CDAAB /* Frameworks */,
+				05F13EFF14EDD23C003CDAAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EOSFTPServerMobile;
+			productName = EOSFTPServerMobile;
+			productReference = 05F13F0114EDD23C003CDAAB /* EOSFTPServerMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -284,9 +415,31 @@
 			projectRoot = "";
 			targets = (
 				05779EB514EC655E006C5D55 /* EOSFTPServer */,
+				05F13EE014EDD20F003CDAAB /* EOSFTPServerDesktop */,
+				05F13F0014EDD23C003CDAAB /* EOSFTPServerMobile */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05F13EDF14EDD20F003CDAAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05F13F2F14EDD3AE003CDAAB /* MainMenu.xib in Resources */,
+				05F13F3314EDD3E5003CDAAB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05F13EFF14EDD23C003CDAAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05F13F3214EDD3DD003CDAAB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		05779EB214EC655E006C5D55 /* Sources */ = {
@@ -313,7 +466,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05F13EDD14EDD20F003CDAAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05F13F3114EDD3AE003CDAAB /* main.m in Sources */,
+				05F13F3D14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05F13EFD14EDD23C003CDAAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05F13F2214EDD39D003CDAAB /* main.m in Sources */,
+				05F13F4114EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		05F13F1A14EDD39D003CDAAB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05F13F1B14EDD39D003CDAAB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		05F13F2614EDD3AE003CDAAB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05F13F2714EDD3AE003CDAAB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		05F13F2814EDD3AE003CDAAB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05F13F2914EDD3AE003CDAAB /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		05779EC514EC655F006C5D55 /* Debug */ = {
@@ -457,6 +655,70 @@
 			};
 			name = Release;
 		};
+		05F13EFB14EDD210003CDAAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Prefix.pch";
+				INFOPLIST_FILE = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		05F13EFC14EDD210003CDAAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Prefix.pch";
+				INFOPLIST_FILE = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		05F13F1514EDD23C003CDAAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EOSFTPServer/iOS Demo/EOSFTPServerMobile-Prefix.pch";
+				INFOPLIST_FILE = "EOSFTPServer/iOS Demo/EOSFTPServerMobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		05F13F1614EDD23C003CDAAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EOSFTPServer/iOS Demo/EOSFTPServerMobile-Prefix.pch";
+				INFOPLIST_FILE = "EOSFTPServer/iOS Demo/EOSFTPServerMobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -474,6 +736,24 @@
 			buildConfigurations = (
 				05779EC814EC655F006C5D55 /* Debug */,
 				05779EC914EC655F006C5D55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05F13EFA14EDD210003CDAAB /* Build configuration list for PBXNativeTarget "EOSFTPServerDesktop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05F13EFB14EDD210003CDAAB /* Debug */,
+				05F13EFC14EDD210003CDAAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05F13F1414EDD23C003CDAAB /* Build configuration list for PBXNativeTarget "EOSFTPServerMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05F13F1514EDD23C003CDAAB /* Debug */,
+				05F13F1614EDD23C003CDAAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

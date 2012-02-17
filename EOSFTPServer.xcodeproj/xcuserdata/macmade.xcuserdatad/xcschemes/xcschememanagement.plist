@@ -9,10 +9,30 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>EOSFTPServerDesktop.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>EOSFTPServerMobile.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>05779EB514EC655E006C5D55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>05F13EE014EDD20F003CDAAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>05F13F0014EDD23C003CDAAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
