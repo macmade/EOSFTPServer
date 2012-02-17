@@ -701,6 +701,4 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     return nil;
 }
 
-
-
 @end
