@@ -125,6 +125,7 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 - ( BOOL )start;
 - ( BOOL )stop;
 - ( void )addUser: ( FTPServerUser * )user;
+- ( BOOL )userIsConnected: ( FTPServerUser * )user;
 - ( NSString * )helpForCommand: ( NSString * )command;
 - ( NSString * )messageForReplyCode: ( EOSFTPServerReplyCode )code;
 

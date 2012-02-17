@@ -60,7 +60,7 @@
     if( ( self = [ self init ] ) )
     {
         _data    = [ data retain ];
-        _timeout = t;
+        _timeout = timeout;
     }
     
     return self;

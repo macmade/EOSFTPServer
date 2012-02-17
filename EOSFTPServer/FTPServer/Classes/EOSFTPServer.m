@@ -168,10 +168,35 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 
 - ( void )addUser: ( FTPServerUser * )user
 {
+    EOSFTPServerUser * u;
+    
     @synchronized( self )
     {
+        for( u in _users )
+        {
+            if( [ user isEqual: u ] == YES )
+            {
+                return;
+            }
+        }
+        
         [ _users addObject: user ];
     }
+}
+
+- ( BOOL )userIsConnected: ( FTPServerUser * )user
+{
+    EOSFTPServerUser * u;
+    
+    for( u in _users )
+    {
+        if( [ user isEqual: u ] == YES )
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - ( NSArray * )connectedUsers
