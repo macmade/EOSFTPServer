@@ -56,7 +56,26 @@
 		05F13F3314EDD3E5003CDAAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05F13F2614EDD3AE003CDAAB /* InfoPlist.strings */; };
 		05F13F3D14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F3C14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m */; };
 		05F13F4114EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F4014EDD54E003CDAAB /* EOSFTPServerMobileApplicationDelegate.m */; };
+		05F13F4414EDD76A003CDAAB /* libEOSFTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05779EB614EC655E006C5D55 /* libEOSFTPServer.a */; };
+		05F13F4714EDD770003CDAAB /* libEOSFTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05779EB614EC655E006C5D55 /* libEOSFTPServer.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05F13F4214EDD766003CDAAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05779EAD14EC655E006C5D55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05779EB514EC655E006C5D55;
+			remoteInfo = EOSFTPServer;
+		};
+		05F13F4514EDD76E003CDAAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05779EAD14EC655E006C5D55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05779EB514EC655E006C5D55;
+			remoteInfo = EOSFTPServer;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		05779EB614EC655E006C5D55 /* libEOSFTPServer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEOSFTPServer.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F13F4414EDD76A003CDAAB /* libEOSFTPServer.a in Frameworks */,
 				05F13EE414EDD20F003CDAAB /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F13F4714EDD770003CDAAB /* libEOSFTPServer.a in Frameworks */,
 				05F13F0414EDD23C003CDAAB /* UIKit.framework in Frameworks */,
 				05F13F0514EDD23C003CDAAB /* Foundation.framework in Frameworks */,
 				05F13F0714EDD23C003CDAAB /* CoreGraphics.framework in Frameworks */,
@@ -370,6 +391,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				05F13F4314EDD766003CDAAB /* PBXTargetDependency */,
 			);
 			name = EOSFTPServerDesktop;
 			productName = EOSFTPServerDesktop;
@@ -387,6 +409,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				05F13F4614EDD76E003CDAAB /* PBXTargetDependency */,
 			);
 			name = EOSFTPServerMobile;
 			productName = EOSFTPServerMobile;
@@ -485,6 +508,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05F13F4314EDD766003CDAAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05779EB514EC655E006C5D55 /* EOSFTPServer */;
+			targetProxy = 05F13F4214EDD766003CDAAB /* PBXContainerItemProxy */;
+		};
+		05F13F4614EDD76E003CDAAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05779EB514EC655E006C5D55 /* EOSFTPServer */;
+			targetProxy = 05F13F4514EDD76E003CDAAB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		05F13F1A14EDD39D003CDAAB /* InfoPlist.strings */ = {
