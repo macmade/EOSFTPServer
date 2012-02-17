@@ -30,25 +30,27 @@
 /* $Id$ */
 
 /*!
- * @header          ...
+ * @file            ...
  * @author          Jean-David Gadina <macmade@eosgarden>
  * @copyright       (c) 2012, eosgarden
  * @abstract        ...
  */
 
-@class EOSFTPServerDesktopMainWindowController;
+#import "EOSFTPServerDesktopMainWindowController.h"
 
-@interface EOSFTPServerDesktopApplicationDelegate: NSObject < NSApplicationDelegate >
+@implementation EOSFTPServerDesktopMainWindowController
+
+- ( id )init
 {
-@protected
+    if( ( self = [ self initWithWindowNibName: @"MainWindow" owner: self ] ) )
+    {}
     
-    EOSFTPServerDesktopMainWindowController * _mainController;
-    
-@private
-    
-    id _EOSFTPServerDesktopApplicationDelegate_Reserved[ 5 ] __attribute__( ( unused ) );
+    return self;
 }
 
-@property( atomic, readonly ) EOSFTPServerDesktopMainWindowController * mainController;
+- ( void )windowDidLoad
+{
+    [ super windowDidLoad ];
+}
 
 @end

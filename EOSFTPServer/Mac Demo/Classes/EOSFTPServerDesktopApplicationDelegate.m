@@ -37,10 +37,11 @@
  */
 
 #import "EOSFTPServerDesktopApplicationDelegate.h"
+#import "EOSFTPServerDesktopMainWindowController.h"
 
 @implementation EOSFTPServerDesktopApplicationDelegate
 
-@synthesize window = _window;
+@synthesize mainController = _mainController;
 
 - ( void )dealloc
 {
@@ -50,6 +51,20 @@
 - ( void )applicationDidFinishLaunching: ( NSNotification * )notification
 {
     ( void )notification;
+    
+    _mainController = [ EOSFTPServerDesktopMainWindowController new ];
+    
+    [ _mainController.window center ];
+    [ _mainController showWindow: nil ];
+}
+
+- ( void )applicationWillTerminate: ( NSNotification * )notification
+{
+    ( void )notification;
+    
+    [ _mainController release ];
+    
+    _mainController = nil;
 }
 
 @end

@@ -36,19 +36,17 @@
  * @abstract        ...
  */
 
-@class EOSFTPServerDesktopMainWindowController;
-
-@interface EOSFTPServerDesktopApplicationDelegate: NSObject < NSApplicationDelegate >
+@interface EOSFTPServerDesktopMainWindowController: NSWindowController
 {
 @protected
     
-    EOSFTPServerDesktopMainWindowController * _mainController;
+    
     
 @private
     
-    id _EOSFTPServerDesktopApplicationDelegate_Reserved[ 5 ] __attribute__( ( unused ) );
+    id _EOSFTPServerDesktopMainWindowController_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
-@property( atomic, readonly ) EOSFTPServerDesktopMainWindowController * mainController;
+
 
 @end
