@@ -81,21 +81,25 @@ typedef enum
 }
 EOSSocketFlags;
 
+@class EOSSocketReadPacket;
+@class EOSSocketWritePacket;
+
 @interface EOSSocket: NSObject
 {
 @protected
     
-    CFSocketRef         _ipv4Socket;
-    CFSocketRef         _ipv6Socket;
-    CFReadStreamRef     _readStream;
-    CFWriteStreamRef    _writeStream;
-    CFRunLoopSourceRef  _ipv4Source;
-    CFRunLoopSourceRef  _ipv6Source;
-    CFRunLoopRef        _runLoop;
-    CFSocketContext     _socketContext;
-    Byte                _flags;
-    
-    id < EOSSocketDelegate > _delegate;
+    CFSocketRef                 _ipv4Socket;
+    CFSocketRef                 _ipv6Socket;
+    CFReadStreamRef             _readStream;
+    CFWriteStreamRef            _writeStream;
+    CFRunLoopSourceRef          _ipv4Source;
+    CFRunLoopSourceRef          _ipv6Source;
+    CFRunLoopRef                _runLoop;
+    CFSocketContext             _socketContext;
+    Byte                        _flags;
+    EOSSocketReadPacket       * _readPacket;
+    EOSSocketWritePacket      * _writePacket;
+    id < EOSSocketDelegate >    _delegate;
     
 @private
     

@@ -47,6 +47,7 @@
  ******************************************************************************/
 
 #import "EOSSocketReadPacket.h"
+#import "EOSSocketReadPacket+Private.h"
 
 @implementation EOSSocketReadPacket
 

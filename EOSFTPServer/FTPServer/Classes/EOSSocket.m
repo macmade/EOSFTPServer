@@ -51,6 +51,8 @@
 #import <netdb.h>
 #import "EOSSocket.h"
 #import "EOSSocket+Private.h"
+#import "EOSSocketReadPacket.h"
+#import "EOSSocketWritePacket.h"
 
 NSString * const EOSSocketErrorDomain = @"EOSSocketError";
 NSString * const EOSSocketException   = @"EOSSocketException";

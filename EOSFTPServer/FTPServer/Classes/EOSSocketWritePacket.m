@@ -47,6 +47,7 @@
  ******************************************************************************/
 
 #import "EOSSocketWritePacket.h"
+#import "EOSSocketWritePacket+Private.h"
 
 @implementation EOSSocketWritePacket
 

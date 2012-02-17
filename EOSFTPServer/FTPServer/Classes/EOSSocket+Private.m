@@ -47,6 +47,8 @@
  ******************************************************************************/
 
 #import "EOSSocket+Private.h"
+#import "EOSSocketReadPacket.h"
+#import "EOSSocketWritePacket.h"
 
 static void __CFSocketCallBack( CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void * data, void * info );
 static void __CFReadStreamClientCallBack( CFReadStreamRef stream, CFStreamEventType type, void * info );
