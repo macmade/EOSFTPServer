@@ -49,8 +49,117 @@
 #import "EOSSocketReadPacket.h"
 #import "EOSSocketReadPacket+Private.h"
 
+NSString * const EOSSocketReadPacketException = @"EOSSocketReadPacketException";
+
 @implementation EOSSocketReadPacket
 
+@synthesize buffer                  = _buffer;
+@synthesize bytesRead               = _bytesRead;
+@synthesize maxLength               = _maxLength;
+@synthesize timeout                 = _timeout;
+@synthesize readAllAvailableData    = _readAllAvailableData;
+@synthesize terminator              = _terminator;
 
+- ( id )initWithData: ( NSMutableData * )data timeout:( NSTimeInterval )timeout maxLength:( NSUInteger )maxLength readAllAvailable:( BOOL )readAll terminator:( NSData * )terminator
+{
+    if( ( self = [ super init ] ) )
+    {
+        _buffer                 = [ data retain ];
+        _timeout                = timeout;
+        _readAllAvailableData   = readAll;
+        _terminator             = [ terminator copy ];
+        _bytesRead              = 0;
+        _maxLength              = maxLength;
+    }
+    
+    return self;
+}
+
+- ( void )dealloc
+{
+    [ _buffer       release ];
+    [ _terminator   release ];
+    
+    [ super dealloc ];
+}
+
+- ( NSUInteger )lengthOfDataToTerminator
+{
+    const char * buffer;
+    NSUInteger   length;
+    NSInteger    i;
+    NSInteger    j;
+    
+    if( _terminator == nil )
+    {
+        @throw [ NSException exceptionWithName: EOSSocketReadPacketException reason: @"No terminator is set" userInfo: nil ];
+    }
+    
+    length  = [ _terminator length ];
+    i       = MAX( 0, ( NSInteger )( _bytesRead - [ _terminator length ] + 1 ) );
+    j       = MIN( [ _terminator length ] - 1, _bytesRead );
+    
+    while( ( NSUInteger )i < _bytesRead )
+    {
+        buffer = ( ( const char * )[ _buffer bytes ] ) + i;
+        
+        if( memcmp( buffer, [ _terminator bytes ], ( NSUInteger )j ) == 0 )
+        {
+            length = [ _terminator length ] - ( NSUInteger )j;
+            break;
+        }
+        
+        i++;
+        j--;
+    }
+    
+    if( _maxLength > 0 )
+    {
+        return MIN( length, ( _maxLength - _bytesRead ) );
+    }
+    else
+    {
+        return length;
+    }
+}
+
+- ( NSUInteger )lengthOfPreBufferedDataToTerminator
+{
+    if( _maxLength > 0 )
+    {
+        return MIN( EOS_SOCKET_READ_PACKET_READALL_CHUNK_SIZE, ( _maxLength - _bytesRead ) );
+    }
+    else
+    {
+        return EOS_SOCKET_READ_PACKET_READALL_CHUNK_SIZE;
+    }
+}
+
+- ( NSInteger )searchForTerminatorAfterPreBuffering: ( NSUInteger )numberOfBytes
+{
+    const char * buffer;
+    NSInteger    i;
+    
+    if( _terminator == nil )
+    {
+        @throw [ NSException exceptionWithName: EOSSocketReadPacketException reason: @"No terminator is set" userInfo: nil ];
+    }
+    
+    i = MAX( 0, ( NSInteger )( _bytesRead - numberOfBytes - [ _terminator length ] + 1 ) );
+    
+    while( ( NSUInteger )i + [ _terminator length ] <= _bytesRead )
+    {
+        buffer = ( ( const char * )[ _buffer bytes ] ) + i;
+        
+        if( memcmp( _buffer, [ _terminator bytes ], [ _terminator length ] ) == 0 )
+        {
+            return  ( NSInteger )_bytesRead - ( i + ( NSInteger )[ _terminator length ] );
+        }
+        
+        i++;
+    }
+    
+    return -1;
+}
 
 @end

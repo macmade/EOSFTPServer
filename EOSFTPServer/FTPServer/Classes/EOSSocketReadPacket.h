@@ -48,17 +48,70 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSString * const EOSSocketReadPacketException;
+
+#define EOS_SOCKET_READ_PACKET_READALL_CHUNK_SIZE   256
+
 @interface EOSSocketReadPacket: NSObject
 {
 @protected
     
-    
+    NSMutableData * _buffer;
+    NSUInteger      _bytesRead;
+    NSUInteger      _maxLength;
+    NSTimeInterval  _timeout;
+    BOOL            _readAllAvailableData;
+    NSData        * _terminator;
     
 @private
     
     id _EOSSocketReadPacket_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
+@property( atomic, readonly          ) NSMutableData * buffer;
+@property( atomic, readwrite, assign ) NSUInteger      bytesRead;
+@property( atomic, readonly          ) NSUInteger      maxLength;
+@property( atomic, readonly          ) NSTimeInterval  timeout;
+@property( atomic, readonly          ) BOOL            readAllAvailableData;
+@property( atomic, readonly          ) NSData        * terminator;
 
+- ( id )initWithData: ( NSMutableData * )data timeout:( NSTimeInterval )timeout maxLength:( NSUInteger )maxLength readAllAvailable:( BOOL )readAll terminator:( NSData * )terminator;
+
+/*!
+ * @method          ...
+ * @abstract        ...
+ * @return          ...
+ * @description     For read packets with a set terminator, returns the safe
+ *                  length of data that can be read without going over a
+ *                  terminator, or the maximum length.
+ *                  It is assumed the terminator has not already been read.
+ */
+- ( NSUInteger )lengthOfDataToTerminator;
+
+/*!
+ * @method          ...
+ * @abstract        ...
+ * @return          ...
+ * @description     Assuming pre-buffering is enabled, returns the amount of
+ *                  data that can be read without going over the maximum
+ *                  length.
+ */
+- ( NSUInteger )lengthOfPreBufferedDataToTerminator;
+
+/*!
+ * @method          ...
+ * @abstract        ...
+ * @return          ...
+ * @description     For read packets with a set terminator, scans the packet
+ *                  buffer for the terminator.
+ *                  It is assumed the terminator had not been fully read prior
+ *                  to the new bytes.
+ *                  If the terminator is found, the number of excess bytes
+ *                  after the terminator is returned.
+ *                  If the terminator is not found, this method will return -1.
+ *                  A return value of zero means the terminator was found at
+ *                  the very end.
+ */
+- ( NSInteger )searchForTerminatorAfterPreBuffering: ( NSUInteger )numberOfBytes;
 
 @end
