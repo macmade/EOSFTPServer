@@ -40,13 +40,27 @@
 {
 @protected
     
-    
+    NSTableView * _tableView;
+    NSButton    * _startButton;
+    NSButton    * _stopButton;
+    NSButton    * _allowAnonymous;
+    NSTextField * _serverPort;
     
 @private
     
     id _EOSFTPServerDesktopMainWindowController_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
+@property( nonatomic, readwrite, retain ) IBOutlet NSTableView * tableView;
+@property( nonatomic, readwrite, retain ) IBOutlet NSButton    * startButton;
+@property( nonatomic, readwrite, retain ) IBOutlet NSButton    * stopButton;
+@property( nonatomic, readwrite, retain ) IBOutlet NSButton    * allowAnonymous;
+@property( nonatomic, readwrite, retain ) IBOutlet NSTextField * serverPort;
 
+- ( IBAction )addUser: ( id )sender;
+- ( IBAction )deleteUser: ( id )sender;
+- ( IBAction )start: ( id )sender;
+- ( IBAction )stop: ( id )sender;
+- ( IBAction )allowAnonymous: ( id )sender;
 
 @end

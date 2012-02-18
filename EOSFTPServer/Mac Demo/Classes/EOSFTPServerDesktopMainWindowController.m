@@ -40,6 +40,12 @@
 
 @implementation EOSFTPServerDesktopMainWindowController
 
+@synthesize tableView       = _tableView;
+@synthesize startButton     = _startButton;
+@synthesize stopButton      = _stopButton;
+@synthesize allowAnonymous  = _allowAnonymous;
+@synthesize serverPort      = _serverPort;
+
 - ( id )init
 {
     if( ( self = [ self initWithWindowNibName: @"MainWindow" owner: self ] ) )
@@ -48,9 +54,40 @@
     return self;
 }
 
+- ( void )dealloc
+{
+    
+    [ super dealloc ];
+}
+
 - ( void )windowDidLoad
 {
     [ super windowDidLoad ];
+}
+
+- ( IBAction )addUser: ( id )sender
+{
+    ( void )sender;
+}
+
+- ( IBAction )deleteUser: ( id )sender
+{
+    ( void )sender;
+}
+
+- ( IBAction )start: ( id )sender
+{
+    ( void )sender;
+}
+
+- ( IBAction )stop: ( id )sender
+{
+    ( void )sender;
+}
+
+- ( IBAction )allowAnonymous: ( id )sender
+{
+    ( void )sender;
 }
 
 @end
