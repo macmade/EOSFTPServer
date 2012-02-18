@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "05F13F0014EDD23C003CDAAB"
-               BuildableName = "EOSFTPServerMobile.app"
-               BlueprintName = "EOSFTPServerMobile"
+               BlueprintIdentifier = "05E4459A14F03343005A9A73"
+               BuildableName = "libAsyncSocket.a"
+               BlueprintName = "AsyncSocket"
                ReferencedContainer = "container:EOSFTPServer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,15 +28,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "05F13F0014EDD23C003CDAAB"
-            BuildableName = "EOSFTPServerMobile.app"
-            BlueprintName = "EOSFTPServerMobile"
-            ReferencedContainer = "container:EOSFTPServer.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -47,15 +38,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "05F13F0014EDD23C003CDAAB"
-            BuildableName = "EOSFTPServerMobile.app"
-            BlueprintName = "EOSFTPServerMobile"
-            ReferencedContainer = "container:EOSFTPServer.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -65,15 +47,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "05F13F0014EDD23C003CDAAB"
-            BuildableName = "EOSFTPServerMobile.app"
-            BlueprintName = "EOSFTPServerMobile"
-            ReferencedContainer = "container:EOSFTPServer.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>EOSFTPServer.xcscheme</key>
+		<key>AsyncSocket.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>EOSFTPServerDesktop.xcscheme</key>
+		<key>EOSFTPServer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>EOSFTPServerMobile.xcscheme</key>
+		<key>EOSFTPServerDesktop.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
@@ -23,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>05779EB514EC655E006C5D55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>05E4459A14F03343005A9A73</key>
 		<dict>
 			<key>primary</key>
 			<true/>
