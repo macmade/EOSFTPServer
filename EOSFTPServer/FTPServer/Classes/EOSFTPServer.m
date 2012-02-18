@@ -38,6 +38,7 @@
 
 #import "EOSFTPServer.h"
 #import "EOSFTPServerUser.h"
+#import "NSString+EOSFTPServer.h"
 
 NSString * const EOSFTPServerException = @"EOSFTPServerException";
 
@@ -166,7 +167,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     }
 }
 
-- ( void )addUser: ( FTPServerUser * )user
+- ( void )addUser: ( EOSFTPServerUser * )user
 {
     EOSFTPServerUser * u;
     
@@ -184,7 +185,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     }
 }
 
-- ( BOOL )userIsConnected: ( FTPServerUser * )user
+- ( BOOL )userIsConnected: ( EOSFTPServerUser * )user
 {
     EOSFTPServerUser * u;
     
@@ -193,6 +194,61 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         if( [ user isEqual: u ] == YES )
         {
             return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- ( BOOL )userCanLogin: ( NSString * )username
+{
+    EOSFTPServerUser * u;
+    
+    for( u in _users )
+    {
+        if( [ u.name isEqualToString: username ] )
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- ( BOOL )authenticateUser: ( EOSFTPServerUser * )user
+{
+    NSString         * md5Password;
+    EOSFTPServerUser * u;
+    
+    if( user.md5Password.length != 0 )
+    {
+        md5Password = user.md5Password;
+    }
+    else if( user.password.length != 0 )
+    {
+        md5Password = [ user.password md5Hash ];
+    }
+    else
+    {
+        md5Password = nil;
+    }
+    
+    for( u in _users )
+    {
+        if( [ u.name isEqualToString: user.name ] )
+        {
+            if( u.md5Password.length == 0 && u.password.length == 0 && md5Password.length == 0 )
+            {
+                return YES;
+            }
+            else if( u.md5Password.length > 0 && [ u.md5Password isEqualToString: md5Password ] == YES )
+            {
+                return YES;
+            }
+            else if( u.password.length > 0 && [ [ u.password md5Hash ] isEqualToString: md5Password ] )
+            {
+                return YES;
+            }
         }
     }
     

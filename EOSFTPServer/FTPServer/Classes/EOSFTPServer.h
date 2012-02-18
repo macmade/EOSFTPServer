@@ -81,7 +81,7 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandSTAT;
 FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandHELP;
 FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 
-@class FTPServerUser;
+@class EOSFTPServerUser;
 
 @interface EOSFTPServer: NSObject
 {
@@ -124,8 +124,10 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 - ( id )initWithPort: ( NSUInteger )port;
 - ( BOOL )start;
 - ( BOOL )stop;
-- ( void )addUser: ( FTPServerUser * )user;
-- ( BOOL )userIsConnected: ( FTPServerUser * )user;
+- ( void )addUser: ( EOSFTPServerUser * )user;
+- ( BOOL )userIsConnected: ( EOSFTPServerUser * )user;
+- ( BOOL )userCanLogin: ( NSString * )username;
+- ( BOOL )authenticateUser: ( EOSFTPServerUser * )user;
 - ( NSString * )helpForCommand: ( NSString * )command;
 - ( NSString * )messageForReplyCode: ( EOSFTPServerReplyCode )code;
 
