@@ -3,7 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Users</key>
-	<array/>
+	<dict>
+		<key>macmade</key>
+		<string>97829dfe7e57683443d029af26316b1f</string>
+	</dict>
 	<key>AllowAnonymous</key>
 	<true/>
 </dict>
