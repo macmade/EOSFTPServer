@@ -42,6 +42,9 @@
 		05E445AB14F033E5005A9A73 /* libAsyncSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E4459B14F03343005A9A73 /* libAsyncSocket.a */; };
 		05E445AC14F033E5005A9A73 /* libEOSFTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05779EB614EC655E006C5D55 /* libEOSFTPServer.a */; };
 		05E445B214F03477005A9A73 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05E445B114F03477005A9A73 /* Defaults.plist */; };
+		05E445B414F038CE005A9A73 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05E445B314F038C6005A9A73 /* Localizable.strings */; };
+		05E445B714F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E445B614F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m */; };
+		05E445BA14F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E445B914F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m */; };
 		05F13EE414EDD20F003CDAAB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F13EE314EDD20F003CDAAB /* Cocoa.framework */; };
 		05F13F2F14EDD3AE003CDAAB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F13F2814EDD3AE003CDAAB /* MainMenu.xib */; };
 		05F13F3114EDD3AE003CDAAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F2C14EDD3AE003CDAAB /* main.m */; };
@@ -107,6 +110,11 @@
 		05E4459E14F03343005A9A73 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		05E4459F14F03343005A9A73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05E445B114F03477005A9A73 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		05E445B314F038C6005A9A73 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		05E445B514F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.h"; sourceTree = "<group>"; };
+		05E445B614F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m"; sourceTree = "<group>"; };
+		05E445B814F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h"; sourceTree = "<group>"; };
+		05E445B914F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m"; sourceTree = "<group>"; };
 		05F13EE114EDD20F003CDAAB /* EOSFTPServerDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOSFTPServerDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F13EE314EDD20F003CDAAB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05F13F2714EDD3AE003CDAAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -253,6 +261,7 @@
 				05F13F2B14EDD3AE003CDAAB /* EOSFTPServerDesktop-Prefix.pch */,
 				05F13F2C14EDD3AE003CDAAB /* main.m */,
 				05E445B114F03477005A9A73 /* Defaults.plist */,
+				05E445B314F038C6005A9A73 /* Localizable.strings */,
 			);
 			path = "Mac Demo";
 			sourceTree = "<group>";
@@ -281,6 +290,10 @@
 			children = (
 				05F13F3B14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.h */,
 				05F13F3C14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m */,
+				05E445B514F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.h */,
+				05E445B614F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m */,
+				05E445B814F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h */,
+				05E445B914F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m */,
 				05F13F4814EDDB70003CDAAB /* EOSFTPServerDesktopMainWindowController.h */,
 				05F13F4914EDDB70003CDAAB /* EOSFTPServerDesktopMainWindowController.m */,
 			);
@@ -413,6 +426,7 @@
 				05F13F3314EDD3E5003CDAAB /* InfoPlist.strings in Resources */,
 				05F13F4D14EDDB8F003CDAAB /* MainWindow.xib in Resources */,
 				05E445B214F03477005A9A73 /* Defaults.plist in Resources */,
+				05E445B414F038CE005A9A73 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +468,8 @@
 				05F13F3114EDD3AE003CDAAB /* main.m in Sources */,
 				05F13F3D14EDD52C003CDAAB /* EOSFTPServerDesktopApplicationDelegate.m in Sources */,
 				05F13F4A14EDDB70003CDAAB /* EOSFTPServerDesktopMainWindowController.m in Sources */,
+				05E445B714F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m in Sources */,
+				05E445BA14F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
