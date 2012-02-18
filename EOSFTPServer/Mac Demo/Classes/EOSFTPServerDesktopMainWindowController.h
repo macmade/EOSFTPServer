@@ -36,15 +36,18 @@
  * @abstract        ...
  */
 
+@class EOSFTPServer;
+
 @interface EOSFTPServerDesktopMainWindowController: NSWindowController
 {
 @protected
     
-    NSTableView * _tableView;
-    NSButton    * _startButton;
-    NSButton    * _stopButton;
-    NSButton    * _allowAnonymous;
-    NSTextField * _serverPort;
+    NSTableView  * _tableView;
+    NSButton     * _startButton;
+    NSButton     * _stopButton;
+    NSButton     * _allowAnonymous;
+    NSTextField  * _serverPort;
+    EOSFTPServer * _server;
     
 @private
     

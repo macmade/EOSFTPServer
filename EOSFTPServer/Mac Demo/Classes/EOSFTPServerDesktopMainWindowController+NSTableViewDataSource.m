@@ -36,75 +36,10 @@
  * @abstract        ...
  */
 
-#import "EOSFTPServerDesktopMainWindowController.h"
 #import "EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.h"
-#import "EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h"
-#import "EOSFTPServer.h"
 
-@implementation EOSFTPServerDesktopMainWindowController
+@implementation EOSFTPServerDesktopMainWindowController( NSTableViewDataSource )
 
-@synthesize tableView       = _tableView;
-@synthesize startButton     = _startButton;
-@synthesize stopButton      = _stopButton;
-@synthesize allowAnonymous  = _allowAnonymous;
-@synthesize serverPort      = _serverPort;
 
-- ( id )init
-{
-    if( ( self = [ self initWithWindowNibName: @"MainWindow" owner: self ] ) )
-    {
-        _server = [ [ EOSFTPServer alloc ] initWithPort: 2121 ];
-    }
-    
-    return self;
-}
-
-- ( void )dealloc
-{
-    [ _tableView        release ];
-    [ _startButton      release ];
-    [ _stopButton       release ];
-    [ _allowAnonymous   release ];
-    [ _serverPort       release ];
-    [ _server           release ];
-    
-    [ super dealloc ];
-}
-
-- ( void )windowDidLoad
-{
-    [ super windowDidLoad ];
-    
-    [ _serverPort     setStringValue:  [ NSString stringWithFormat: NSLocalizedString( @"ServerPort", nil ), _server.port ] ];
-    [ _allowAnonymous setIntegerValue: [ [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"AllowAnonymous" ] integerValue ] ];
-
-    _tableView.dataSource = self;
-    _tableView.delegate   = self;
-}
-
-- ( IBAction )addUser: ( id )sender
-{
-    ( void )sender;
-}
-
-- ( IBAction )deleteUser: ( id )sender
-{
-    ( void )sender;
-}
-
-- ( IBAction )start: ( id )sender
-{
-    ( void )sender;
-}
-
-- ( IBAction )stop: ( id )sender
-{
-    ( void )sender;
-}
-
-- ( IBAction )allowAnonymous: ( id )sender
-{
-    ( void )sender;
-}
 
 @end
