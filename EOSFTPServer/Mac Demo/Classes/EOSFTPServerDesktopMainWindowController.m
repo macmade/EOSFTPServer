@@ -53,7 +53,9 @@
 {
     if( ( self = [ self initWithWindowNibName: @"MainWindow" owner: self ] ) )
     {
-        _server = [ [ EOSFTPServer alloc ] initWithPort: 2121 ];
+        _server               = [ [ EOSFTPServer alloc ] initWithPort: 2121 ];
+        _server.chroot        = YES;
+        _server.rootDirectory = NSHomeDirectory();
     }
     
     return self;
