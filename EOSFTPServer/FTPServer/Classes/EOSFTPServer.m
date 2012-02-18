@@ -167,6 +167,24 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     }
 }
 
+- ( BOOL )restart
+{
+    @synchronized( self )
+    {
+        if( _running == NO )
+        {
+            return [ self start ];
+        }
+        
+        if( [ self stop ] == NO )
+        {
+            return NO;
+        }
+        
+        return [ self start ];
+    }
+}
+
 - ( void )addUser: ( EOSFTPServerUser * )user
 {
     EOSFTPServerUser * u;

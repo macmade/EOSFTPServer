@@ -124,6 +124,7 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 - ( id )initWithPort: ( NSUInteger )port;
 - ( BOOL )start;
 - ( BOOL )stop;
+- ( BOOL )restart;
 - ( void )addUser: ( EOSFTPServerUser * )user;
 - ( BOOL )userIsConnected: ( EOSFTPServerUser * )user;
 - ( BOOL )userCanLogin: ( NSString * )username;
