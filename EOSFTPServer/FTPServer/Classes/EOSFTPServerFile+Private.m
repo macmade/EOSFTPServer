@@ -197,8 +197,15 @@
     
     for( i = 0; i < 3; i++ )
     {
-        humanPerms  = [ [ NSString stringWithFormat: @"%@%@%@ ", ( perms & 4 ) ? @"r" : @"-", ( perms & 2 ) ? @"w" : @"-", ( perms & 1 ) ? @"x" : @"-" ] stringByAppendingString: humanPerms ];
-        perms       = perms >> 3;
+        humanPerms  = [ [ NSString stringWithFormat:
+                            @"%@%@%@ ",
+                            ( perms & 4 ) ? @"r" : @"-",
+                            ( perms & 2 ) ? @"w" : @"-",
+                            ( perms & 1 ) ? @"x" : @"-"
+                         ] stringByAppendingString: humanPerms
+                      ];
+        
+        perms = perms >> 3;
     }
     
     _humanReadablePermissions = [ [ NSString alloc ] initWithString: humanPerms ];
