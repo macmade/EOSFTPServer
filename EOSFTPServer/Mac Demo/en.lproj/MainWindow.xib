@@ -63,6 +63,7 @@
 							<string key="NSFrame">{{400, 12}, {200, 32}}</string>
 							<reference key="NSSuperview" ref="468443973"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="520780596">
@@ -200,6 +201,7 @@
 															</object>
 															<array class="NSMutableArray" key="NSTableColumns">
 																<object class="NSTableColumn" id="930263646">
+																	<string key="NSIdentifier">icon</string>
 																	<double key="NSWidth">32</double>
 																	<double key="NSMinWidth">32</double>
 																	<double key="NSMaxWidth">32</double>
@@ -241,6 +243,7 @@
 																	<reference key="NSTableView" ref="852992192"/>
 																</object>
 																<object class="NSTableColumn" id="406338702">
+																	<string key="NSIdentifier">name</string>
 																	<double key="NSWidth">567.74609375</double>
 																	<double key="NSMinWidth">40</double>
 																	<double key="NSMaxWidth">1000</double>
@@ -279,6 +282,7 @@
 																	<reference key="NSTableView" ref="852992192"/>
 																</object>
 																<object class="NSTableColumn" id="641042927">
+																	<string key="NSIdentifier">online</string>
 																	<double key="NSWidth">100</double>
 																	<double key="NSMinWidth">100</double>
 																	<double key="NSMaxWidth">100</double>
@@ -1111,7 +1115,6 @@
 						<int key="objectID">28</int>
 						<reference key="object" ref="738806718"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="208236752"/>
 							<object class="IBNSLayoutConstraint" id="665663144">
 								<reference key="firstItem" ref="208236752"/>
 								<int key="firstAttribute">5</int>
@@ -1176,6 +1179,7 @@
 								<int key="contentType">3</int>
 								<reference key="containingView" ref="738806718"/>
 							</object>
+							<reference ref="208236752"/>
 						</array>
 						<reference key="parent" ref="468443973"/>
 					</object>

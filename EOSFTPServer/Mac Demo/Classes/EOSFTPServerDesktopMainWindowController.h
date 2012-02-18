@@ -42,12 +42,13 @@
 {
 @protected
     
-    NSTableView  * _tableView;
-    NSButton     * _startButton;
-    NSButton     * _stopButton;
-    NSButton     * _allowAnonymous;
-    NSTextField  * _serverPort;
-    EOSFTPServer * _server;
+    NSTableView         * _tableView;
+    NSButton            * _startButton;
+    NSButton            * _stopButton;
+    NSButton            * _allowAnonymous;
+    NSTextField         * _serverPort;
+    EOSFTPServer        * _server;
+    NSMutableArray      * _users;
     
 @private
     

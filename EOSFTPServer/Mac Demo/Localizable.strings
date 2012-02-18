@@ -37,3 +37,5 @@
  */
 
 "ServerPort"        = "Server port: %u";
+"Yes"               = "Yes";
+"No"                = "No";

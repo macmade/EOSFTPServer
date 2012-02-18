@@ -37,9 +37,56 @@
  */
 
 #import "EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.h"
+#import "EOSFTPServer.h"
+#import "EOSFTPServerUser.h"
 
 @implementation EOSFTPServerDesktopMainWindowController( NSTableViewDataSource )
 
+- ( NSInteger )numberOfRowsInTableView: ( NSTableView * )tableView
+{
+    ( void )tableView;
+    
+    return ( NSInteger )_users.count;
+}
 
+- ( id )tableView: ( NSTableView * )tableView objectValueForTableColumn: ( NSTableColumn * )tableColumn row: ( NSInteger )rowIndex
+{
+    NSDictionary     * user;
+    EOSFTPServerUser * ftpUser;
+    
+    ( void )tableView;
+    ( void )rowIndex;
+    
+    if( [ tableColumn.identifier isEqualToString: @"icon" ] )
+    {
+        return [ NSImage imageNamed: NSImageNameUser ];
+    }
+    else
+    {
+        @try
+        {
+            user = [ _users objectAtIndex: ( NSUInteger )rowIndex ];
+            
+            if( [ tableColumn.identifier isEqualToString: @"name" ] )
+            {
+                return [ user objectForKey: @"Name" ];
+            }
+            else if( [ tableColumn.identifier isEqualToString: @"online" ] )
+            {
+                ftpUser = [ [EOSFTPServerUser alloc ] initWithName: [ user objectForKey: @"Name" ] md5Password: [ user objectForKey: @"Password" ] ];
+                
+                return ( [ _server userIsConnected: ftpUser ] ) ? NSLocalizedString( @"Yes", nil ) : NSLocalizedString( @"No", nil );
+            }
+        }
+        @catch( NSException * e )
+        {
+            /* Should never happen */
+            
+            ( void )e;
+        }
+    }
+    
+    return nil;
+}
 
 @end

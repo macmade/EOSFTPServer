@@ -67,6 +67,7 @@
     [ _allowAnonymous   release ];
     [ _serverPort       release ];
     [ _server           release ];
+    [ _users            release ];
     
     [ super dealloc ];
 }
@@ -75,9 +76,11 @@
 {
     [ super windowDidLoad ];
     
+    _users = [ [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"Users" ] mutableCopy ];
+    
     [ _serverPort     setStringValue:  [ NSString stringWithFormat: NSLocalizedString( @"ServerPort", nil ), _server.port ] ];
     [ _allowAnonymous setIntegerValue: [ [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"AllowAnonymous" ] integerValue ] ];
-
+    
     _tableView.dataSource = self;
     _tableView.delegate   = self;
 }
