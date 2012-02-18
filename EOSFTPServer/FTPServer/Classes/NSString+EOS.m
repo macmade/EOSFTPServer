@@ -36,7 +36,7 @@
  * @abstract        ...
  */
 
-#import "NSString+EOSFTPServer.h"
+#import "NSString+EOS.h"
 
 #define MD5_S11  7
 #define MD5_S12 12
@@ -169,7 +169,7 @@ static const unsigned int __crc_table[ 256 ] =
     0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
 };
 
-@implementation NSString( EOSFTPServer )
+@implementation NSString( EOS )
 
 - ( NSString * )URLEncodedString
 {

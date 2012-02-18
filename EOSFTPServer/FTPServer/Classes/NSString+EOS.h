@@ -30,45 +30,18 @@
 /* $Id$ */
 
 /*!
- * @file            ...
+ * @header          ...
  * @author          Jean-David Gadina <macmade@eosgarden>
  * @copyright       (c) 2012, eosgarden
  * @abstract        ...
  */
 
-#import "NSData+EOSFTPServer.h"
+#import <Foundation/Foundation.h>
 
-static uint8_t  __LF     = 0x10;
-static uint8_t  __CR     = 0x13;
-static uint8_t  __NULL   = 0x00;
-static uint16_t __LFCR   = 0x1013;
-static uint16_t __CRLF   = 0x1310;
+@interface NSString( EOS )
 
-@implementation NSData( EOSFTPServer )
-
-+ ( NSData * )LFData
-{
-	return [ NSData dataWithBytes: &__LF length: 1 ];
-}
-
-+ ( NSData * )CRData
-{
-	return [ NSData dataWithBytes: &__CR length: 1 ];
-}
-
-+ ( NSData * )LFCRData
-{
-	return [ NSData dataWithBytes: &__LFCR length: 2 ];
-}
-
-+ ( NSData * )CRLFData
-{
-	return [ NSData dataWithBytes: &__CRLF length: 2 ];
-}
-
-+ ( NSData * )NULLData
-{
-	return [ NSData dataWithBytes: &__NULL length: 1 ];
-}
+- ( NSString * )URLEncodedString;
+- ( NSUInteger )crc32;
+- ( NSString * )md5Hash;
 
 @end

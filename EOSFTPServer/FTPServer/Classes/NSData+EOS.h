@@ -38,7 +38,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSData( EOSFTPServer )
+@interface NSData( EOS )
 
 + ( NSData * )LFData;
 + ( NSData * )CRData;

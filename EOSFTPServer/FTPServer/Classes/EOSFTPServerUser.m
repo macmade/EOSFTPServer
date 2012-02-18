@@ -37,7 +37,7 @@
  */
 
 #import "EOSFTPServerUser.h"
-#import "NSString+EOSFTPServer.h"
+#import "NSString+EOS.h"
 
 NSString * const EOSFTPServerUserException = @"EOSFTPServerUserException";
 
