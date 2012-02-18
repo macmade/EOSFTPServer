@@ -145,6 +145,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         [ _startDate release ];
         
         _startDate = [ [ NSDate date ] retain ];
+        _running   = YES;
         
         return YES;
     }
@@ -162,6 +163,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         [ _startDate release ];
         
         _startDate = nil;
+        _running   = NO;
         
         return YES;
     }
