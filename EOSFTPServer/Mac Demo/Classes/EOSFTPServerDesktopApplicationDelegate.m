@@ -50,7 +50,13 @@
 
 - ( void )applicationDidFinishLaunching: ( NSNotification * )notification
 {
+    NSDictionary * defaults;
+    
     ( void )notification;
+    
+    defaults = [ NSDictionary dictionaryWithContentsOfFile: [ [ NSBundle mainBundle ] pathForResource: @"Defaults" ofType: @"plist" ] ];
+    
+    [ [ NSUserDefaults standardUserDefaults ] registerDefaults: defaults ];
     
     _mainController = [ EOSFTPServerDesktopMainWindowController new ];
     
