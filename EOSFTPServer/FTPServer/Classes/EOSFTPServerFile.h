@@ -143,9 +143,12 @@ EOSFTPServerFileFlags;
 @property( atomic, readonly ) NSString            * extension;
 @property( atomic, readonly ) NSDate              * creationDate;
 @property( atomic, readonly ) NSDate              * modificationDate;
+@property( atomic, readonly ) NSData              * data;
 
 + ( EOSFTPServerFile * )fileWithPath: ( NSString * )path;
 + ( EOSFTPServerFile * )fileWithURL: ( NSURL * )url;
++ ( EOSFTPServerFile * )newFileWithPath: ( NSString * )path data: ( NSData * )data;
++ ( EOSFTPServerFile * )newFileWithURL: ( NSURL * )url data: ( NSData * )data;
 - ( id )initWithPath: ( NSString * )path;
 - ( id )initWithURL: ( NSURL * )url;
 - ( NSFileHandle * )fileHandleForReading;
@@ -153,5 +156,7 @@ EOSFTPServerFileFlags;
 - ( NSFileHandle * )fileHandleForUpdating;
 - ( NSString * )creationDateWithFormat: ( NSString * )format;
 - ( NSString * )modificationDateWithFormat: ( NSString * )format;
+- ( BOOL )writeData: ( NSData * )data;
+- ( void )delete: ( NSError ** )error;
 
 @end

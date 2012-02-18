@@ -95,6 +95,26 @@
     return [ file autorelease ];
 }
 
++ ( EOSFTPServerFile * )newFileWithPath: ( NSString * )path data: ( NSData * )data
+{
+    if( [ [ NSFileManager defaultManager ] createFileAtPath: path contents: data attributes: nil ] )
+    {
+        return [ EOSFTPServerFile fileWithPath: path ];
+    }
+    
+    return nil;
+}
+
++ ( EOSFTPServerFile * )newFileWithURL: ( NSURL * )url data: ( NSData * )data
+{
+    if( [ [ NSFileManager defaultManager ] createFileAtPath: [ url path ] contents: data attributes: nil ] )
+    {
+        return [ EOSFTPServerFile fileWithPath: [ url path ] ];
+    }
+    
+    return nil;
+}
+
 - ( id )initWithPath: ( NSString * )path
 {
     if( ( self = [ self initWithURL: [ NSURL fileURLWithPath: path ] ] ) )
@@ -186,6 +206,32 @@
     [ formatter release ];
     
     return date;
+}
+
+- ( NSData * )data
+{
+    NSData  * data;
+    NSError * error;
+    
+    error = nil;
+    data  = [ [ NSFileManager defaultManager ] contentsAtPath: _path ];
+    
+    return data;
+}
+
+- ( BOOL )writeData: ( NSData * )data
+{
+    return [ [ NSFileManager defaultManager ] createFileAtPath: _path contents: data attributes: nil ];
+}
+
+- ( void )delete: ( NSError ** )error
+{
+    if( error != NULL )
+    {
+        *( error ) = nil;
+    }
+    
+    [ [ NSFileManager defaultManager ] removeItemAtURL: _url error: error ];
 }
 
 @end
