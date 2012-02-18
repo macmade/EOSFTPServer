@@ -36,6 +36,10 @@
  * @abstract        ...
  */
 
-"ServerPort"        = "Server port: %u";
-"Yes"               = "Yes";
-"No"                = "No";
+"ServerPort"                = "Server port: %u";
+"Yes"                       = "Yes";
+"No"                        = "No";
+"FTPRestartAlertTitle"      = "Restart required";
+"FTPRestartAlertMessage"    = "To apply your changes, the FTP server needs to be restarted. Do you want to restart the FTP server now?";
+"Restart"                   = "Restart now";
+"DontRestart"               = "Don't restart";

@@ -83,6 +83,17 @@
     
     _tableView.dataSource = self;
     _tableView.delegate   = self;
+    
+    if( _server.running == YES )
+    {
+        [ _startButton setEnabled: NO ];
+        [ _stopButton  setEnabled: YES ];
+    }
+    else
+    {
+        [ _startButton setEnabled: YES ];
+        [ _stopButton  setEnabled: NO ];
+    }
 }
 
 - ( IBAction )addUser: ( id )sender
@@ -98,16 +109,49 @@
 - ( IBAction )start: ( id )sender
 {
     ( void )sender;
+    
+    if( [ _server start ] == YES )
+    {
+        [ _startButton setEnabled: NO ];
+        [ _stopButton  setEnabled: YES ];
+    }
 }
 
 - ( IBAction )stop: ( id )sender
 {
     ( void )sender;
+    
+    if( [ _server stop ] == YES )
+    {
+        [ _startButton setEnabled: YES ];
+        [ _stopButton  setEnabled: NO ];
+    }
 }
 
 - ( IBAction )allowAnonymous: ( id )sender
 {
+    NSAlert * alert;
+    
     ( void )sender;
+    
+    [ [ NSUserDefaults standardUserDefaults ] setBool: ( BOOL )[ _allowAnonymous integerValue ] forKey: @"AllowAnonymous" ];
+    [ [ NSUserDefaults standardUserDefaults ] synchronize ];
+    
+    if( _server.running == YES )
+    {
+        alert = [ NSAlert
+                    alertWithMessageText:       NSLocalizedString( @"FTPRestartAlertTitle", nil )
+                    defaultButton:              NSLocalizedString( @"Restart", nil )
+                    alternateButton:            NSLocalizedString( @"DontRestart", nil )
+                    otherButton:                nil
+                    informativeTextWithFormat:  NSLocalizedString( @"FTPRestartAlertMessage", nil )
+                ];
+        
+        if( [ alert runModal ] == NSAlertDefaultReturn )
+        {
+            [ _server restart ];
+        }
+    }
 }
 
 @end
