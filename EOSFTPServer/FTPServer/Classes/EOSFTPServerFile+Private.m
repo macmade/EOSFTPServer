@@ -208,7 +208,7 @@
         perms = perms >> 3;
     }
     
-    _humanReadablePermissions = [ [ NSString alloc ] initWithString: humanPerms ];
+    _humanReadablePermissions = [ [ NSString alloc ] initWithString: [ humanPerms substringToIndex: humanPerms.length - 1 ] ];
     
     return YES;
 }
