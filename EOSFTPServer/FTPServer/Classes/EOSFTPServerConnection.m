@@ -135,6 +135,33 @@
     [ data release ];
 }
 
+- ( void )sendDataString: ( NSString * )dataString
+{
+    NSMutableString * message;
+    NSMutableData   * data;
+    
+    message = [ [ NSMutableString alloc ] initWithString: dataString ];
+    
+    CFStringNormalize( ( CFMutableStringRef )message, kCFStringNormalizationFormC );
+    
+    data = [ [ message dataUsingEncoding: _encoding ] mutableCopy ];
+    
+    [ message release ];
+
+    if( _dataConnection != nil )
+    {
+        EOS_FTP_DEBUG( @"Sending data" );
+        
+        [ _dataConnection writeData: data ];
+    }
+    else
+    {
+        [ _queuedData addObject:data ];
+    }
+    
+    [ data release ];
+}
+
 - ( void )close
 {
     if( _connectionSocket != nil )

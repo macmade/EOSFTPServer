@@ -984,7 +984,9 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     
     if( _chroot == YES )
     {
-        return [ absolutePath substringFromIndex: root.length ];
+        absolutePath = [ absolutePath substringFromIndex: root.length ];
+        
+        return ( [ absolutePath hasPrefix: @"/" ] == YES ) ? [ absolutePath substringFromIndex: 1 ] : absolutePath;
     }
     
     return absolutePath;

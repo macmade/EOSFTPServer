@@ -378,6 +378,7 @@
 - ( void )processCommandLIST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
     NSString * list;
+    NSArray  * lines;
     
     __CHECK_AUTH( connection );
     
@@ -385,7 +386,12 @@
     
     if( list.length > 0 )
     {
-        NSLog( @"%@", list );
+        lines = [ list componentsSeparatedByString: @"\n" ];
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 150 ] code: 150 ] ];	
+        
+        list = [ NSString stringWithFormat: @"total %lu\n%@\r\n", lines.count, list ];
+        
+        [ connection sendDataString: list ];
     }
     else
     {

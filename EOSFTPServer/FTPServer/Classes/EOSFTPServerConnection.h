@@ -77,6 +77,7 @@
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
 - ( void )sendMessage: ( NSString * )message;
+- ( void )sendDataString: ( NSString * )dataString;
 - ( void )close;
 - ( BOOL )openDataSocket: ( NSUInteger )port;
 
