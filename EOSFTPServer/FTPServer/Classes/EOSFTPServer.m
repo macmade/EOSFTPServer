@@ -795,7 +795,15 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"should include current values of all transfer parameters and\n"
                 @"the status of connections.\n";
     }
-    else if( [ command isEqualToString: EOSFTPServerCommandHELP ] )
+    else if( [ command isEqualToString: EOSFTPServerCommandNOOP ] )
+    {
+        help  = @"NOOP (NOOP)\n"
+                @"\n"
+                @"This command does not affect any parameters or previously\n"
+                @"entered commands. It specifies no action other than that the\n"
+                @"server send an OK reply.\n";
+    }
+    else if( [ command isEqualToString: EOSFTPServerCommandHELP ] || command.length == 0 )
     {
         help  = @"HELP (HELP)\n"
                 @"\n"
@@ -807,14 +815,6 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"It is suggested that HELP be allowed before entering a USER\n"
                 @"command. The server may use this reply to specify\n"
                 @"site-dependent parameters, e.g., in response to HELP SITE.\n";
-    }
-    else if( [ command isEqualToString: EOSFTPServerCommandNOOP ] )
-    {
-        help  = @"NOOP (NOOP)\n"
-                @"\n"
-                @"This command does not affect any parameters or previously\n"
-                @"entered commands. It specifies no action other than that the\n"
-                @"server send an OK reply.\n";
     }
     else
     {
