@@ -73,7 +73,7 @@
             }
             else if( [ tableColumn.identifier isEqualToString: @"online" ] )
             {
-                ftpUser = [ [EOSFTPServerUser alloc ] initWithName: [ user objectForKey: @"Name" ] md5Password: [ user objectForKey: @"Password" ] ];
+                ftpUser = [ EOSFTPServerUser userWithName: [ user objectForKey: @"Name" ] md5Password: [ user objectForKey: @"Password" ] ];
                 
                 return ( [ _server userIsConnected: ftpUser ] ) ? NSLocalizedString( @"Yes", nil ) : NSLocalizedString( @"No", nil );
             }
