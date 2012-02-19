@@ -51,7 +51,7 @@
     [ _connections addObject: connection ];
     [ connection release ];
     
-    EOS_FTP_DEBUG( @"New socket accepted on port %u", [ socket localPort ] );
+    EOS_FTP_DEBUG( @"New socket accepted on port %u", [ newSocket localPort ] );
     
     if( [ socket localPort ] == _port )
     {
