@@ -40,6 +40,14 @@
 
 @implementation EOSFTPServerDataConnection (Private)
 
-
+- ( void )writeQueuedData: ( NSArray * )queuedData
+{
+    NSMutableData * data;
+    
+    for( data in queuedData )
+    {
+        [ self writeData: data ];
+    }
+}
 
 @end

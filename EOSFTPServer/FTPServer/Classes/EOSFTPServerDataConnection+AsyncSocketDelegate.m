@@ -40,6 +40,85 @@
 
 @implementation EOSFTPServerDataConnection( AsyncSocketDelegate )
 
+- ( BOOL )onSocketWillConnect: ( AsyncSocket * )socket
+{
+    ( void )socket;
+    
+    EOS_FTP_DEBUG( @"Socket will connect on port %u", [ socket localPort ] );
+    
+    [ _dataSocket readDataWithTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: 0 ];
+    
+    return YES;
+}
 
+- ( void )onSocket: ( AsyncSocket * )socket didAcceptNewSocket: ( AsyncSocket * )newSocket
+{
+    ( void )socket;
+    ( void )newSocket;
+    
+    EOS_FTP_DEBUG( @"New socket accepted on port %u", [ newSocket localPort ] );
+}
+
+- ( void )onSocket: ( AsyncSocket * )socket didReadData: ( NSData * )data withTag: ( long )tag
+{
+    ( void )socket;
+    ( void )tag;
+    
+    EOS_FTP_DEBUG( @"Data read (tag: %li)", tag );
+    
+    [ _dataSocket readDataWithTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];	
+    [ _receivedData release ];
+    
+    _receivedData = ( NSMutableData * )[ data retain ];
+    
+    if( [ _delegate respondsToSelector: @selector( dataConnectionDidReadData: ) ] )
+    {
+        [ _delegate performSelector: @selector( dataConnectionDidReadData: ) withObject: self ];
+    }
+    
+    [ _receivedData release ];
+    
+    _connectionState = EOSFTPServerConnectionStateClientSent;
+}
+
+- ( void )onSocket: ( AsyncSocket * )socket didWriteDataWithTag: ( long )tag
+{
+    ( void )socket;
+    ( void )tag;
+    
+    EOS_FTP_DEBUG( @"Data written (tag: %li)", tag );
+    
+    if( [ _delegate respondsToSelector: @selector( dataConnectionDidWriteData: ) ] )
+    {
+        [ _delegate performSelector: @selector( dataConnectionDidWriteData: ) withObject: self ];
+    }
+    
+    [ _dataSocket readDataWithTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+}
+
+- ( void )onSocket: ( AsyncSocket * )socket willDisconnectWithError: ( NSError * )error
+{
+    ( void )socket;
+    ( void )error;
+    
+    EOS_FTP_DEBUG( @"Socket will disconnect with error: %@", error );
+    
+    if( [ _delegate respondsToSelector: @selector( dataConnectionDidFinishReading: ) ] )
+    {
+        [ _delegate performSelector: @selector( dataConnectionDidFinishReading: ) withObject: self ];
+    }
+}
+
+- ( BOOL )onReadStreamEnded: ( AsyncSocket * )socket
+{
+    ( void )socket;
+    
+    if( _connectionState == EOSFTPServerConnectionStateClientSent || _connectionState == EOSFTPServerConnectionStateClientSending )
+    {
+        return YES;
+    }
+    
+    return NO;
+}
 
 @end

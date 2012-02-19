@@ -37,34 +37,15 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "EOSFTPServerDataConnectionDelegate.h"
 
-@class AsyncSocket;
-@class EOSFTPServerConnection;
+@class EOSFTPServerDataConnection;
 
-@interface EOSFTPServerDataConnection: NSObject
-{
-@protected
-    
-    AsyncSocket                             * _dataSocket;
-    EOSFTPServerConnection                  * _ftpConnection;
-    AsyncSocket                             * _dataListeningSocket;
-    NSMutableData                           * _receivedData;
-    EOSFTPServerConnectionState               _connectionState;
-    id < EOSFTPServerDataConnectionDelegate > _delegate;
-    
-@private
-    
-    id _EOSFTPServerDataConnection_Reserved[ 5 ] __attribute__( ( unused ) );
-}
+@protocol EOSFTPServerDataConnectionDelegate < NSObject >
 
-@property( atomic, readonly          ) NSMutableData                           * receivedData;
-@property( atomic, readwrite, assign ) EOSFTPServerConnectionState               connectionState;
-@property( atomic, readwrite, assign ) id < EOSFTPServerDataConnectionDelegate > delegate;
+@optional
 
-- ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData;
-- ( void )writeString: ( NSString * )str;
-- ( void )writeData: ( NSMutableData * )data;
-- ( void )closeConnection;
+- ( void )dataConnectionDidReadData: ( EOSFTPServerDataConnection * )dataConnection;
+- ( void )dataConnectionDidWriteData: ( EOSFTPServerDataConnection * )dataConnection;
+- ( void )dataConnectionDidFinishReading: ( EOSFTPServerDataConnection * )dataConnection;
 
 @end

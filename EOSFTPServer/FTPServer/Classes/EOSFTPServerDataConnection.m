@@ -44,16 +44,66 @@
 
 @implementation EOSFTPServerDataConnection
 
+@synthesize receivedData    = _receivedData;
+@synthesize connectionState = _connectionState;
+@synthesize delegate        = _delegate;
+
 - ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData
 {
     if( ( self = [ self init ] ) )
     {
-        ( void )socket;
-        ( void )connection;
-        ( void )queuedData;
+        _dataSocket    = [ socket retain ];
+        _ftpConnection = connection;
+        
+        [ _dataSocket setDelegate: self ];
+        
+        if( [ queuedData count ] )
+        {
+            EOS_FTP_DEBUG( @"Writing queued data" );
+            
+            [ self writeQueuedData: queuedData ];
+            [ queuedData removeAllObjects ];
+        }
+        
+        [ _dataSocket readDataWithTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+        
+        _dataListeningSocket = nil;
+        _receivedData        = nil;
+        _connectionState     = EOSFTPServerConnectionStateClientQuiet;
     }
     
     return self;
+}
+
+- ( void )writeString: ( NSString * )str
+{
+    NSMutableData * data;
+    
+    EOS_FTP_DEBUG( @"Writing string" );
+    
+    data = [ [ str dataUsingEncoding: NSUTF8StringEncoding ] mutableCopy ];
+    
+    [ data appendData: [ AsyncSocket CRLFData ] ];									
+    [ _dataSocket writeData: data withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];		
+    [ _dataSocket readDataWithTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+    [ data autorelease ];
+}
+
+- ( void )writeData: ( NSMutableData * )data
+{
+    EOS_FTP_DEBUG( @"Writing data" );
+    
+    _connectionState = EOSFTPServerConnectionStateClientReceiving;
+    
+    [ _dataSocket writeData: data withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];	
+    [ _dataSocket readDataWithTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+}
+
+- ( void )closeConnection
+{
+    EOS_FTP_DEBUG( @"Closing connection" );
+    
+    [ _dataSocket disconnect ];
 }
 
 @end

@@ -40,6 +40,6 @@
 
 @interface EOSFTPServerDataConnection( Private )
 
-
+- ( void )writeQueuedData: ( NSArray * )queuedData;
 
 @end
