@@ -38,37 +38,31 @@
 
 #import "NSData+EOS.h"
 
-static uint8_t  __LF     = 0x0A;
-static uint8_t  __CR     = 0x0D;
-static uint8_t  __NULL   = 0x00;
-static uint16_t __LFCR   = 0x0A0D;
-static uint16_t __CRLF   = 0x0D0A;
-
 @implementation NSData( EOS )
 
 + ( NSData * )LFData
 {
-	return [ NSData dataWithBytes: &__LF length: 1 ];
+	return [ NSData dataWithBytes: "\x0A" length: 1 ];
 }
 
 + ( NSData * )CRData
 {
-	return [ NSData dataWithBytes: &__CR length: 1 ];
+	return [ NSData dataWithBytes: "\x0D" length: 1 ];
 }
 
 + ( NSData * )LFCRData
 {
-	return [ NSData dataWithBytes: &__LFCR length: 2 ];
+	return [ NSData dataWithBytes: "\x0A\x0D" length: 2 ];
 }
 
 + ( NSData * )CRLFData
 {
-	return [ NSData dataWithBytes: &__CRLF length: 2 ];
+	return [ NSData dataWithBytes: "\x0D\x0A" length: 2 ];
 }
 
 + ( NSData * )NULLData
 {
-	return [ NSData dataWithBytes: &__NULL length: 1 ];
+	return [ NSData dataWithBytes: "\x00" length: 1 ];
 }
 
 @end
