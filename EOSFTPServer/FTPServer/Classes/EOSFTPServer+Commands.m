@@ -45,8 +45,7 @@
                                 {                                                                                                       \
                                     EOS_FTP_DEBUG( @"Command needs authentication" );                                                   \
                                                                                                                                         \
-                                    [ __c__ sendMessage: [ self formattedMessage: [ self messageForReplyCode: 421 ] code: 421 ] ];      \
-                                    [ __c__ performSelector: @selector( close ) withObject: nil afterDelay: 1 ];                        \
+                                    [ __c__ sendMessage: [ self formattedMessage: [ self messageForReplyCode: 530 ] code: 530 ] ];      \
                                                                                                                                         \
                                     return;                                                                                             \
                                 }
