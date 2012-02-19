@@ -946,36 +946,50 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     return formattedMessage;
 }
 
-- ( NSString * )serverPath: ( NSString * )path
+- ( NSString * )absolutePathForConnection: ( EOSFTPServerConnection * )connection subPath: ( NSString * )path
 {
     NSString * root;
-    NSString * serverPath;
     
-    if( _chroot == NO )
-    {
-        return path;
-    }
-    
-    root = ( [ _rootDirectory hasSuffix: @"/" ] == YES ) ? [ _rootDirectory substringToIndex: _rootDirectory.length - 2 ] : _rootDirectory;
+    root = ( [ _rootDirectory hasSuffix: @"/" ] ) ? [ _rootDirectory substringToIndex: _rootDirectory.length - 2 ] : _rootDirectory;
     
     if( [ path hasPrefix: @"/" ] == NO )
     {
-        return [ root stringByAppendingPathComponent: path ];
+        path = [ connection.currentDirectory stringByAppendingPathComponent: path ];
     }
     
-    if( [ path hasPrefix: _rootDirectory ] == NO )
+    if( _chroot == YES )
+    {
+        if( [ path hasPrefix: root ] == NO )
+        {
+            return nil;
+        }
+    }
+    
+    return ( [ [ NSFileManager defaultManager ] fileExistsAtPath: path ] ) ? path : nil;
+}
+
+- ( NSString * )serverPathForConnection: ( EOSFTPServerConnection * )connection subPath: ( NSString * )path
+{
+    NSString * root;
+    NSString * absolutePath;
+    
+    
+    root         = ( [ _rootDirectory hasSuffix: @"/" ] ) ? [ _rootDirectory substringToIndex: _rootDirectory.length - 2 ] : _rootDirectory;
+    absolutePath = [ self absolutePathForConnection: connection subPath: path ];
+    
+    if( absolutePath == nil )
     {
         return nil;
     }
     
-    serverPath = [ path substringFromIndex: root.length ];
+    absolutePath = ( [ absolutePath hasSuffix: @"/" ] == NO ) ? [ absolutePath stringByAppendingString: @"/" ] : absolutePath;
     
-    if( serverPath.length == 0 )
+    if( _chroot == YES )
     {
-        return @"/";
+        return [ absolutePath substringFromIndex: root.length ];
     }
     
-    return serverPath;
+    return absolutePath;
 }
 
 - ( NSUInteger )getPASVDataPort

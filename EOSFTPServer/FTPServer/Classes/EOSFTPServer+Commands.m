@@ -360,9 +360,7 @@
     
     __CHECK_AUTH( connection );
     
-    ( void )args;
-    
-    dir = [ self serverPath: connection.currentDirectory ];
+    dir = [ self serverPathForConnection: connection subPath: args ];
     
     if( dir == nil )
     {
@@ -379,18 +377,25 @@
 
 - ( void )processCommandLIST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    NSString * list;
+    
     __CHECK_AUTH( connection );
     
-    ( void )connection;
-    ( void )args;
+    list = [ self directoryListingForConnection: connection path: args ];
+    
+    if( list.length > 0 )
+    {
+        NSLog( @"%@", list );
+    }
+    else
+    {
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 450 ] code: 450 ] ];
+    }
 }
 
 - ( void )processCommandNLST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    __CHECK_AUTH( connection );
-    
-    ( void )connection;
-    ( void )args;
+    [ self processCommandLIST: connection arguments: args ];
 }
 
 - ( void )processCommandSITE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
