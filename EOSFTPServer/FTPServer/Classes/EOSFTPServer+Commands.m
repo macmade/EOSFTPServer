@@ -146,8 +146,20 @@
 
 - ( void )processCommandQUIT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    ( void )connection;
+    EOS_FTP_DEBUG( @"Quitting" );
+    
     ( void )args;
+    
+    if( _quitMessage.length > 0 )
+    {
+        [ connection sendMessage: [ self formattedMessage: [ NSString stringWithFormat: @"%@\n%@", [ self messageForReplyCode: 221 ], _quitMessage ] code: 221 ] ];
+    }
+    else
+    {
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 221 ] code: 221 ] ];
+    }
+    
+    [ connection close ];
 }
 
 - ( void )processCommandPORT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
