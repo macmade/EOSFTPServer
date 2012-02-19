@@ -45,6 +45,8 @@
 
 @implementation EOSFTPServerConnection
 
+@synthesize authenticated = _authenticated;
+
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
 {
     NSString * message;

@@ -52,11 +52,14 @@
     NSUInteger                   _dataPort;
     EOSFTPServerDataConnection * _dataConnection;
     NSMutableArray             * _queuedData;
+    BOOL                         _authenticated;
     
 @private
     
     id _EOSFTPServerConnection_Reserved[ 5 ] __attribute__( ( unused ) );
 }
+
+@property( atomic, readwrite, assign ) BOOL authenticated;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
 - ( void )sendMessage: ( NSString * )message;
