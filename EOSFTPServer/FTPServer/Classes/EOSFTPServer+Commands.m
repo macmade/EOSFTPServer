@@ -45,9 +45,17 @@
 
 - ( void )processCommandUSER: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    BOOL shouldAcceptUser;
+    
+    shouldAcceptUser         = YES;
     connection.authenticated = NO;
     
-    if( [ self userCanLogin: args ] == YES )
+    if( _delegate != nil && [ _delegate respondsToSelector: @selector( ftpServer:shouldAcceptUser: ) ] )
+    {
+        shouldAcceptUser = [ _delegate ftpServer: self shouldAcceptUser: args ];
+    }
+    
+    if( shouldAcceptUser && [ self userCanLogin: args ] == YES )
     {
         connection.username = args;
         
@@ -75,6 +83,11 @@
         
         if( [ self authenticateUser: user ] == YES )
         {
+            if( _delegate != nil && [ _delegate respondsToSelector: @selector( ftpServer:userDidAuthentify: ) ] )
+            {
+                [ _delegate ftpServer: self userDidAuthentify: connection.username ];
+            }
+            
             connection.authenticated = YES;
             
             EOS_FTP_DEBUG( @"Password OK for user %@", connection.username );
@@ -83,6 +96,11 @@
         }
         else
         {
+            if( _delegate != nil && [ _delegate respondsToSelector: @selector( ftpServer:userDidFailAuthentify: ) ] )
+            {
+                [ _delegate ftpServer: self userDidFailAuthentify: connection.username ];
+            }
+            
             EOS_FTP_DEBUG( @"Invalid password for user %@", connection.username );
             
             [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 530 ] code: 530 ] ];

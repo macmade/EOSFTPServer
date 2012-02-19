@@ -47,7 +47,6 @@
 
 @optional
 
-- ( BOOL )ftpServer: ( EOSFTPServer * )server shouldAcceptNewSocket: ( AsyncSocket * )socket;
 - ( BOOL )ftpServer: ( EOSFTPServer * )server shouldAcceptUser: ( NSString * )name;
 - ( void )ftpServer: ( EOSFTPServer * )server userDidAuthentify: ( NSString * )name;
 - ( void )ftpServer: ( EOSFTPServer * )server userDidFailAuthentify: ( NSString * )name;
