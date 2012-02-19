@@ -45,7 +45,7 @@
 {
     ( void )command;
     
-    [ connection sendMessage: [ NSString stringWithFormat: @"502 %@", [ self messageForReplyCode: 502 ] ] ];
+    [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 502 ] code: 502 ] ];
 }
 
 - ( NSString * )formattedMessage: ( NSString * )message code: ( EOSFTPServerReplyCode )code

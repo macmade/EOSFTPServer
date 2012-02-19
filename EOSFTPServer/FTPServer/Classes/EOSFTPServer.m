@@ -287,6 +287,11 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 {
     EOSFTPServerUser * u;
     
+    if( [ username isEqualToString: @"anonymous" ] == YES && _allowAnonymousUsers == YES )
+    {
+        return YES;
+    }
+    
     for( u in _users )
     {
         if( [ u.name isEqualToString: username ] )

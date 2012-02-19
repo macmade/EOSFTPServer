@@ -39,13 +39,20 @@
 #import "EOSFTPServer+Commands.h"
 #import "EOSFTPServer+Private.h"
 #import "EOSFTPServerConnection.h"
+#import "EOSFTPServerUser.h"
 
 @implementation EOSFTPServer( Commands )
 
 - ( void )processCommandUSER: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    ( void )connection;
-    ( void )args;
+    if( [ self userCanLogin: args ] == YES )
+    {
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 331 ] code: 331 ] ];
+    }
+    else
+    {
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 530 ] code: 530 ] ];
+    }
 }
 
 - ( void )processCommandPASS: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
