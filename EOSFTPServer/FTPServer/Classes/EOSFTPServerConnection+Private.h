@@ -40,6 +40,6 @@
 
 @interface EOSFTPServerConnection( Private )
 
-
+- ( void )processData: ( NSData * )data;
 
 @end

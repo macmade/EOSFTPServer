@@ -36,28 +36,11 @@
  * @abstract        ...
  */
 
-#import <Foundation/Foundation.h>
+#import "EOSFTPServerDataConnection.h"
+#import "AsyncSocket.h"
 
-@class AsyncSocket;
-@class EOSFTPServer;
-@class EOSFTPServerDataConnection;
+@interface EOSFTPServerDataConnection( AsyncSocketDelegate ) < AsyncSocketDelegate >
 
-@interface EOSFTPServerConnection: NSObject
-{
-@protected
-    
-    AsyncSocket                * _connectionSocket;
-    EOSFTPServer               * _server;
-    EOSFTPServerTransferMode     _transferMode;
-    NSUInteger                   _dataPort;
-    EOSFTPServerDataConnection * _dataConnection;
-    NSMutableArray             * _queuedData;
-    
-@private
-    
-    id _EOSFTPServerConnection_Reserved[ 5 ] __attribute__( ( unused ) );
-}
 
-- ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
 
 @end

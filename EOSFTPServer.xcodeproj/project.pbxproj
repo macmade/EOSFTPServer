@@ -51,6 +51,8 @@
 		05E445B414F038CE005A9A73 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05E445B314F038C6005A9A73 /* Localizable.strings */; };
 		05E445B714F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E445B614F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m */; };
 		05E445BA14F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E445B914F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m */; };
+		05E4DC5B14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E4DC5914F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h */; };
+		05E4DC5C14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E4DC5A14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m */; };
 		05F13EE414EDD20F003CDAAB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F13EE314EDD20F003CDAAB /* Cocoa.framework */; };
 		05F13F2F14EDD3AE003CDAAB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F13F2814EDD3AE003CDAAB /* MainMenu.xib */; };
 		05F13F3114EDD3AE003CDAAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F2C14EDD3AE003CDAAB /* main.m */; };
@@ -127,6 +129,8 @@
 		05E445B614F03A0F005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.m"; sourceTree = "<group>"; };
 		05E445B814F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h"; sourceTree = "<group>"; };
 		05E445B914F03A22005A9A73 /* EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.m"; sourceTree = "<group>"; };
+		05E4DC5914F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerDataConnection+AsyncSocketDelegate.h"; sourceTree = "<group>"; };
+		05E4DC5A14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerDataConnection+AsyncSocketDelegate.m"; sourceTree = "<group>"; };
 		05F13EE114EDD20F003CDAAB /* EOSFTPServerDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOSFTPServerDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F13EE314EDD20F003CDAAB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05F13F2714EDD3AE003CDAAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 				05779ED914EC6643006C5D55 /* EOSFTPServerConnection.m */,
 				05779EE814EC66B7006C5D55 /* EOSFTPServerDataConnection+Private.h */,
 				05779EE914EC66B7006C5D55 /* EOSFTPServerDataConnection+Private.m */,
+				05E4DC5914F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h */,
+				05E4DC5A14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m */,
 				05779EDC14EC6653006C5D55 /* EOSFTPServerDataConnection.h */,
 				05779EDD14EC6653006C5D55 /* EOSFTPServerDataConnection.m */,
 				0500AC6C14EF424600923B58 /* EOSFile+Private.h */,
@@ -344,6 +350,7 @@
 				05438F2C14F1474300DA859E /* EOSFTPServer-Functions.h in Headers */,
 				05438F2E14F1474300DA859E /* EOSFTPServer-Types.h in Headers */,
 				05438F3014F1476000DA859E /* EOSFTPServer-Macros.h in Headers */,
+				05E4DC5B14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +481,7 @@
 				05438F1F14F13D2700DA859E /* EOSFTPServer+AsyncSocketDelegate.m in Sources */,
 				05438F2414F13F8D00DA859E /* EOSFTPServerConnection+AsyncSocketDelegate.m in Sources */,
 				05438F2D14F1474300DA859E /* EOSFTPServer-Functions.m in Sources */,
+				05E4DC5C14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

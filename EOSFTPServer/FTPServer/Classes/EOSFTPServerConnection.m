@@ -55,6 +55,7 @@
         _server             = [ server retain ];
         _transferMode       = EOSFTPServerTransferModePASV;
         _dataPort           = 2001;
+        _queuedData         = [ [ NSMutableArray alloc ] initWithCapacity: 100 ];
         
         [ _connectionSocket setDelegate: self ];
         
@@ -77,7 +78,9 @@
 - ( void )dealloc
 {
     [ _connectionSocket release ];
+    [ _dataConnection   release ];
     [ _server           release ];
+    [ _queuedData       release ];
     
     [ super dealloc ];
 }

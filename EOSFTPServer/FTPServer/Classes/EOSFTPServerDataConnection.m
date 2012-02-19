@@ -37,9 +37,23 @@
  */
 
 #import "EOSFTPServerDataConnection.h"
+#import "EOSFTPServerDataConnection+Private.h"
+#import "EOSFTPServerDataConnection+AsyncSocketDelegate.h"
+#import "EOSFTPServerConnection.h"
+#import "AsyncSocket.h"
 
 @implementation EOSFTPServerDataConnection
 
-
+- ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData
+{
+    if( ( self = [ self init ] ) )
+    {
+        ( void )socket;
+        ( void )connection;
+        ( void )queuedData;
+    }
+    
+    return self;
+}
 
 @end

@@ -30,34 +30,16 @@
 /* $Id$ */
 
 /*!
- * @header          ...
+ * @file            ...
  * @author          Jean-David Gadina <macmade@eosgarden>
  * @copyright       (c) 2012, eosgarden
  * @abstract        ...
  */
 
-#import <Foundation/Foundation.h>
+#import "EOSFTPServerDataConnection+AsyncSocketDelegate.h"
 
-@class AsyncSocket;
-@class EOSFTPServer;
-@class EOSFTPServerDataConnection;
+@implementation EOSFTPServerDataConnection( AsyncSocketDelegate )
 
-@interface EOSFTPServerConnection: NSObject
-{
-@protected
-    
-    AsyncSocket                * _connectionSocket;
-    EOSFTPServer               * _server;
-    EOSFTPServerTransferMode     _transferMode;
-    NSUInteger                   _dataPort;
-    EOSFTPServerDataConnection * _dataConnection;
-    NSMutableArray             * _queuedData;
-    
-@private
-    
-    id _EOSFTPServerConnection_Reserved[ 5 ] __attribute__( ( unused ) );
-}
 
-- ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
 
 @end

@@ -37,9 +37,53 @@
  */
 
 #import "EOSFTPServerConnection+AsyncSocketDelegate.h"
+#import "EOSFTPServerConnection+Private.h"
+#import "EOSFTPServerDataConnection.h"
+#import "NSData+EOS.h"
+#import "AsyncSocket.h"
 
 @implementation EOSFTPServerConnection( AsyncSocketDelegate )
 
+- ( BOOL )onSocketWillConnect: ( AsyncSocket * )socket
+{
+    EOS_FTP_DEBUG( @"Socket will connect on port %u", [ socket localPort ] );
+    
+    [ socket readDataWithTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: 0 ];
 
+    return YES;
+}
+
+- ( void )onSocket: ( AsyncSocket * )socket didAcceptNewSocket: ( AsyncSocket * )newSocket
+{
+    ( void )socket;
+    
+    EOS_FTP_DEBUG( @"New socket accepted on port %u", [ newSocket localPort ] );
+    
+    [ _dataConnection release ];
+    
+    _dataConnection = [ [ EOSFTPServerDataConnection alloc ] initWithSocket: socket connection: self queuedData: _queuedData ];	
+}
+
+- ( void )onSocket: ( AsyncSocket * )socket didReadData: ( NSData * )data withTag: ( long )tag
+{
+    ( void )socket;
+    ( void )tag;
+    
+    EOS_FTP_DEBUG( @"Data read (tag: %li)", tag );
+    
+    [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+    
+    [ self processData: data ];
+}
+
+- ( void )onSocket: ( AsyncSocket * )socket didWriteDataWithTag: ( long )tag
+{
+    ( void )socket;
+    ( void )tag;
+    
+    EOS_FTP_DEBUG( @"Data written (tag: %li)", tag );
+    
+    [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+}
 
 @end

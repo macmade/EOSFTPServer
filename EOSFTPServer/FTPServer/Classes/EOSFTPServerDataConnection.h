@@ -38,6 +38,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class AsyncSocket;
+@class EOSFTPServerConnection;
+
 @interface EOSFTPServerDataConnection: NSObject
 {
 @protected
@@ -49,5 +52,6 @@
     id _EOSFTPServerDataConnection_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
+- ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData;
 
 @end
