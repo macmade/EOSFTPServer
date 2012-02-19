@@ -57,7 +57,7 @@ NSString * const EOSFTPServerUserException = @"EOSFTPServerUserException";
 {
     EOSFTPServerUser * user;
     
-    user = [ [ EOSFTPServerUser alloc ] initWithName: name md5Password: password ];
+    user = [ [ EOSFTPServerUser alloc ] initWithName: name password: password ];
     
     return [ user autorelease ];}
 
