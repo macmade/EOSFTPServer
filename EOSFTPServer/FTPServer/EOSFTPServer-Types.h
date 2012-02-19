@@ -53,6 +53,15 @@ typedef enum
 }
 EOSFTPServerTransferMode;
 
+typedef enum
+{
+	EOSFTPServerConnectionStateClientSending   = 0x00,
+    EOSFTPServerConnectionStateClientReceiving = 0x01,
+    EOSFTPServerConnectionStateClientQuiet     = 0x02,
+    EOSFTPServerConnectionStateClientSent      = 0x03
+}
+EOSFTPServerConnectionState;
+
 #ifdef __cplusplus
 }
 #endif
