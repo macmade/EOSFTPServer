@@ -37,9 +37,33 @@
  */
 
 #import "EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h"
+#import "EOSFTPServer.h"
+#import "EOSFTPServerDataConnection.h"
 
 @implementation EOSFTPServerConnection( EOSFTPServerDataConnectionDelegate )
 
+- ( void )dataConnectionDidWriteData: ( EOSFTPServerDataConnection * )dataConnection
+{
+    ( void )dataConnection;
+    
+    EOS_FTP_DEBUG( @"Data written" );
+    
+    [ self sendMessage: [ NSString stringWithFormat: @"226 %@", [ _server messageForReplyCode: 226 ] ] ];
+    [ _dataConnection closeConnection ];
+}
 
+- ( void )dataConnectionDidReadData: ( EOSFTPServerDataConnection * )dataConnection
+{
+    ( void )dataConnection;
+    
+    EOS_FTP_DEBUG( @"Data read" );
+}
+
+- ( void )dataConnectionDidFinishReading: (  EOSFTPServerDataConnection * )dataConnection
+{
+    ( void )dataConnection;
+    
+    EOS_FTP_DEBUG( @"Data did finish reading" );
+}
 
 @end

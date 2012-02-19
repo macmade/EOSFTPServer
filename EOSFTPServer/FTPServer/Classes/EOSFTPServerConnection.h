@@ -59,5 +59,6 @@
 }
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
+- ( void )sendMessage: ( NSString * )message;
 
 @end

@@ -85,4 +85,9 @@
     [ super dealloc ];
 }
 
+- ( void )sendMessage: ( NSString * )message
+{
+    ( void )message;
+}
+
 @end
