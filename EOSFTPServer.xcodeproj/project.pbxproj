@@ -54,6 +54,8 @@
 		05E4DC5B14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E4DC5914F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h */; };
 		05E4DC5C14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E4DC5A14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m */; };
 		05E4DC5F14F15D07006A2D4E /* EOSFTPServerDataConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E4DC5E14F15D07006A2D4E /* EOSFTPServerDataConnectionDelegate.h */; };
+		05E4DC6214F15F38006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E4DC6014F15F37006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h */; };
+		05E4DC6314F15F38006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E4DC6114F15F37006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.m */; };
 		05F13EE414EDD20F003CDAAB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F13EE314EDD20F003CDAAB /* Cocoa.framework */; };
 		05F13F2F14EDD3AE003CDAAB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F13F2814EDD3AE003CDAAB /* MainMenu.xib */; };
 		05F13F3114EDD3AE003CDAAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F13F2C14EDD3AE003CDAAB /* main.m */; };
@@ -133,6 +135,8 @@
 		05E4DC5914F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerDataConnection+AsyncSocketDelegate.h"; sourceTree = "<group>"; };
 		05E4DC5A14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerDataConnection+AsyncSocketDelegate.m"; sourceTree = "<group>"; };
 		05E4DC5E14F15D07006A2D4E /* EOSFTPServerDataConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EOSFTPServerDataConnectionDelegate.h; sourceTree = "<group>"; };
+		05E4DC6014F15F37006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h"; sourceTree = "<group>"; };
+		05E4DC6114F15F37006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.m"; sourceTree = "<group>"; };
 		05F13EE114EDD20F003CDAAB /* EOSFTPServerDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOSFTPServerDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F13EE314EDD20F003CDAAB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05F13F2714EDD3AE003CDAAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 				05A7F9A014ED137B0074653C /* EOSFTPServerUser.m */,
 				05779EE414EC66A4006C5D55 /* EOSFTPServerConnection+Private.h */,
 				05779EE514EC66A4006C5D55 /* EOSFTPServerConnection+Private.m */,
+				05E4DC6014F15F37006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h */,
+				05E4DC6114F15F37006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.m */,
 				05438F2114F13F8C00DA859E /* EOSFTPServerConnection+AsyncSocketDelegate.h */,
 				05438F2214F13F8C00DA859E /* EOSFTPServerConnection+AsyncSocketDelegate.m */,
 				05779ED814EC6643006C5D55 /* EOSFTPServerConnection.h */,
@@ -355,6 +361,7 @@
 				05438F3014F1476000DA859E /* EOSFTPServer-Macros.h in Headers */,
 				05E4DC5B14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.h in Headers */,
 				05E4DC5F14F15D07006A2D4E /* EOSFTPServerDataConnectionDelegate.h in Headers */,
+				05E4DC6214F15F38006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +493,7 @@
 				05438F2414F13F8D00DA859E /* EOSFTPServerConnection+AsyncSocketDelegate.m in Sources */,
 				05438F2D14F1474300DA859E /* EOSFTPServer-Functions.m in Sources */,
 				05E4DC5C14F1532F006A2D4E /* EOSFTPServerDataConnection+AsyncSocketDelegate.m in Sources */,
+				05E4DC6314F15F38006A2D4E /* EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

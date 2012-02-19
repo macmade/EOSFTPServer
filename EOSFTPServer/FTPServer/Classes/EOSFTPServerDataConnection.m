@@ -48,12 +48,13 @@
 @synthesize connectionState = _connectionState;
 @synthesize delegate        = _delegate;
 
-- ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData
+- ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData delegate: ( id < EOSFTPServerDataConnectionDelegate > )delegate
 {
     if( ( self = [ self init ] ) )
     {
         _dataSocket    = [ socket retain ];
         _ftpConnection = connection;
+        _delegate      = delegate;
         
         [ _dataSocket setDelegate: self ];
         

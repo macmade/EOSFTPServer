@@ -62,7 +62,7 @@
 @property( atomic, readwrite, assign ) EOSFTPServerConnectionState               connectionState;
 @property( atomic, readwrite, assign ) id < EOSFTPServerDataConnectionDelegate > delegate;
 
-- ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData;
+- ( id )initWithSocket: ( AsyncSocket * )socket connection: ( EOSFTPServerConnection * )connection queuedData: ( NSMutableArray * )queuedData delegate: ( id < EOSFTPServerDataConnectionDelegate > )delegate;
 - ( void )writeString: ( NSString * )str;
 - ( void )writeData: ( NSMutableData * )data;
 - ( void )closeConnection;
