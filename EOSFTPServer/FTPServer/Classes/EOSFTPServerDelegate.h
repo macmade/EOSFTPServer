@@ -51,7 +51,5 @@
 - ( BOOL )ftpServer: ( EOSFTPServer * )server shouldAcceptUser: ( NSString * )name;
 - ( void )ftpServer: ( EOSFTPServer * )server userDidAuthentify: ( NSString * )name;
 - ( void )ftpServer: ( EOSFTPServer * )server userDidFailAuthentify: ( NSString * )name;
-- ( void )ftpServer: ( EOSFTPServer * )server connectionDidEstablish: ( EOSFTPServerConnection * )connection;
-- ( void )ftpServer: ( EOSFTPServer * )server connectionDidClose: ( EOSFTPServerConnection * )connection;
 
 @end
