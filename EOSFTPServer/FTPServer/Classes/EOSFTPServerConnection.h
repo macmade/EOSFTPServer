@@ -56,6 +56,7 @@
     NSString                            * _username;
     BOOL                                  _authenticated;
     NSStringEncoding                      _encoding;
+    EOSFTPServerConnectionType            _type;
     id < EOSFTPServerConnectionDelegate > _delegate;
     
 @private
@@ -66,6 +67,7 @@
 @property( atomic, readwrite, copy   ) NSString                            * username;
 @property( atomic, readwrite, assign ) BOOL                                  authenticated;
 @property( atomic, readwrite, assign ) NSStringEncoding                      encoding;
+@property( atomic, readwrite, assign ) EOSFTPServerConnectionType            type;
 @property( atomic, readwrite, assign ) id < EOSFTPServerConnectionDelegate > delegate;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;

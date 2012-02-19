@@ -62,6 +62,13 @@ typedef enum
 }
 EOSFTPServerConnectionState;
 
+typedef enum
+{
+	EOSFTPServerConnectionTypeASCII     = 0x00,
+    EOSFTPServerConnectionTypeEBCDIC    = 0x01
+}
+EOSFTPServerConnectionType;
+
 #ifdef __cplusplus
 }
 #endif
