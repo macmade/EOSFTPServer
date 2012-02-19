@@ -67,11 +67,11 @@
         
         if( lines.count > 0 )
         {
-            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n%@\n214 %@", code, firstLine, [ lines componentsJoinedByString: @"\n" ], lastLine ];
+            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n%@\n%u %@", code, firstLine, [ lines componentsJoinedByString: @"\n" ], code, lastLine ];
         }
         else
         {
-            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n214 %@", code, firstLine, lastLine ];
+            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n%u %@", code, firstLine, code, lastLine ];
         }
     }
     else
