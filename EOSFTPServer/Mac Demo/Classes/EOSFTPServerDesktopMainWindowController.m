@@ -94,7 +94,9 @@
     }
     
     [ _serverPort     setStringValue:  [ NSString stringWithFormat: NSLocalizedString( @"ServerPort", nil ), _server.port ] ];
-    [ _allowAnonymous setIntegerValue: [ [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"AllowAnonymous" ] integerValue ] ];
+    [ _allowAnonymous setIntegerValue: [ [ NSUserDefaults standardUserDefaults ] boolForKey: @"AllowAnonymous" ] ];
+    
+    [ _server setAllowAnonymousUsers: [ [ NSUserDefaults standardUserDefaults ] boolForKey: @"AllowAnonymous" ] ];
     
     _tableView.dataSource = self;
     _tableView.delegate   = self;
@@ -166,6 +168,7 @@
         
         if( [ alert runModal ] == NSAlertDefaultReturn )
         {
+            [ _server setAllowAnonymousUsers: ( BOOL )[ _allowAnonymous integerValue ] ];
             [ _server restart ];
         }
     }
