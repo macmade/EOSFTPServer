@@ -45,20 +45,55 @@
 
 - ( void )processCommandUSER: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    connection.authenticated = NO;
+    
     if( [ self userCanLogin: args ] == YES )
     {
+        connection.username = args;
+        
+        EOS_FTP_DEBUG( @"Username OK: %@", args );
+        
         [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 331 ] code: 331 ] ];
     }
     else
     {
+        EOS_FTP_DEBUG( @"Wrong username: %@", args );
+        
         [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 530 ] code: 530 ] ];
     }
 }
 
 - ( void )processCommandPASS: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    ( void )connection;
-    ( void )args;
+    EOSFTPServerUser * user;
+    
+    connection.authenticated = NO;
+    
+    if( connection.username != nil )
+    {
+        user = [ EOSFTPServerUser userWithName: connection.username password: args ];
+        
+        if( [ self authenticateUser: user ] == YES )
+        {
+            connection.authenticated = YES;
+            
+            EOS_FTP_DEBUG( @"Password OK for user %@", connection.username );
+            
+            [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 230 ] code: 230 ] ];
+        }
+        else
+        {
+            EOS_FTP_DEBUG( @"Invalid password for user %@", connection.username );
+            
+            [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 530 ] code: 530 ] ];
+        }
+    }
+    else
+    {
+        EOS_FTP_DEBUG( @"No username" );
+        
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 530 ] code: 530 ] ];
+    }
 }
 
 - ( void )processCommandACT:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args

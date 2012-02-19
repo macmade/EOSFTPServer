@@ -308,6 +308,11 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     NSString         * md5Password;
     EOSFTPServerUser * u;
     
+    if( [ user.name isEqualToString: @"anonymous" ] == YES && _allowAnonymousUsers == YES )
+    {
+        return YES;
+    }
+    
     if( user.md5Password.length != 0 )
     {
         md5Password = user.md5Password;
