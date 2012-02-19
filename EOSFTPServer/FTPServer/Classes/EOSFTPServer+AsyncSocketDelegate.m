@@ -46,12 +46,21 @@
 {
     EOSFTPServerConnection * connection;
     
-    ( void )socket;
-    
     connection = [ [ EOSFTPServerConnection alloc ] initWithSocket: newSocket server: self ];
     
     [ _connections addObject: connection ];
     [ connection release ];
+    
+    FTP_DEBUG( @"EOSFTPServer - didAcceptNewSocket: port: %u", [ socket localPort ] );
+    
+    if( [ socket localPort ] == _port )
+    {
+        FTP_DEBUG( @"EOSFTPServer - Connection on server port (%lu)", _port );
+    }
+    else
+    {
+        FTP_DEBUG( @"EOSFTPServer - Connection error- port %u (should be %lu)", [ socket localPort ], _port );
+    }
 }
 
 - ( void )onSocket: ( AsyncSocket * )socket didConnectToHost: ( NSString * )host port: ( UInt16 )port
@@ -59,6 +68,8 @@
     ( void )socket;
     ( void )host;
     ( void )port;
+    
+    FTP_DEBUG( @"EOSFTPServer - didConnectToHost: %@ port: %u", host, [ socket localPort ] );
 }
 
 @end

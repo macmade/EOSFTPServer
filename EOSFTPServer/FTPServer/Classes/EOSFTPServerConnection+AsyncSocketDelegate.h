@@ -37,8 +37,9 @@
  */
 
 #import "EOSFTPServerConnection.h"
+#import "AsyncSocket.h"
 
-@interface EOSFTPServerConnection( AsyncSocketDelegate )
+@interface EOSFTPServerConnection( AsyncSocketDelegate ) < AsyncSocketDelegate >
 
 
 

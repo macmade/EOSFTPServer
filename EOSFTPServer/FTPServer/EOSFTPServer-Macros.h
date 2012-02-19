@@ -46,6 +46,16 @@ extern "C" {
 #define EOS_FTP_SERVER_READ_TIMEOUT     -1
 #define EOS_FTP_SERVER_CLIENT_REQUEST   0
 
+#if defined( DEBUG ) && DEBUG == 1
+
+#define FTP_DEBUG( ... )    NSLog( __VA_ARGS__ )
+
+#else
+
+#define FTP_DEBUG( ... )
+
+#endif
+
 #ifdef __cplusplus
 }
 #endif

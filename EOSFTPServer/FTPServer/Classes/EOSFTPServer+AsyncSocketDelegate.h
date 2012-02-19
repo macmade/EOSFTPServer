@@ -37,8 +37,9 @@
  */
 
 #import "EOSFTPServer.h"
+#import "AsyncSocket.h"
 
-@interface EOSFTPServer( AsyncSocketDelegate )
+@interface EOSFTPServer( AsyncSocketDelegate ) < AsyncSocketDelegate >
 
 - ( void )onSocket: ( AsyncSocket * )socket didAcceptNewSocket: ( AsyncSocket * )newSocket;
 - ( void )onSocket: ( AsyncSocket * )socket didConnectToHost: ( NSString * )host port: ( UInt16 )port;
