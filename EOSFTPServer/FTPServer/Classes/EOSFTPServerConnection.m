@@ -70,6 +70,8 @@
         
         [ _connectionSocket writeData: [ message dataUsingEncoding: NSUTF8StringEncoding ] withTimeout: -1 tag: 0 ];
         [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+        
+        EOS_FTP_DEBUG( @"Establishing new connection" );
     }
     
     return self;
