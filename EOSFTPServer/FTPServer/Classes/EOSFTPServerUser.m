@@ -45,6 +45,31 @@ NSString * const EOSFTPServerUserException = @"EOSFTPServerUserException";
 
 @synthesize name = _name;
 
++ ( EOSFTPServerUser * )userWithName: ( NSString * )name
+{
+    EOSFTPServerUser * user;
+    
+    user = [ [ EOSFTPServerUser alloc ] initWithName: name ];
+    
+    return [ user autorelease ];}
+
++ ( EOSFTPServerUser * )userWithName: ( NSString * )name password: ( NSString * )password
+{
+    EOSFTPServerUser * user;
+    
+    user = [ [ EOSFTPServerUser alloc ] initWithName: name md5Password: password ];
+    
+    return [ user autorelease ];}
+
++ ( EOSFTPServerUser * )userWithName: ( NSString * )name md5Password: ( NSString * )md5Password
+{
+    EOSFTPServerUser * user;
+    
+    user = [ [ EOSFTPServerUser alloc ] initWithName: name md5Password: md5Password ];
+    
+    return [ user autorelease ];
+}
+
 - ( id )initWithName: ( NSString * )name
 {
     if( ( self = [ self init ] ) )

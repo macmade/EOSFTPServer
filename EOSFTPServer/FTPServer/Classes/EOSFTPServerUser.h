@@ -57,6 +57,9 @@ FOUNDATION_EXPORT NSString * const EOSFTPServerUserException;
 @property( atomic, readwrite, copy ) NSString * password;
 @property( atomic, readwrite, copy ) NSString * md5Password;
 
++ ( EOSFTPServerUser * )userWithName: ( NSString * )name;
++ ( EOSFTPServerUser * )userWithName: ( NSString * )name password: ( NSString * )password;
++ ( EOSFTPServerUser * )userWithName: ( NSString * )name md5Password: ( NSString * )md5Password;
 - ( id )initWithName: ( NSString * )name;
 - ( id )initWithName: ( NSString * )name password: ( NSString * )password;
 - ( id )initWithName: ( NSString * )name md5Password: ( NSString * )md5Password;
