@@ -38,6 +38,8 @@
 
 #import "EOSFTPServer+Private.h"
 #import "EOSFTPServerConnection.h"
+#import "NSFileManager+EOS.h"
+#import "EOSFile.h"
 
 @implementation EOSFTPServer( Private )
 
@@ -46,6 +48,71 @@
     ( void )command;
     
     [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 502 ] code: 502 ] ];
+}
+
+- ( NSString * )directoryListingForConnection: ( EOSFTPServerConnection * )connection path: ( NSString * )path
+{
+    NSDateFormatter         * dateFormatter;
+    NSLocale                * locale;
+    NSDirectoryEnumerator   * enumerator;
+    NSMutableArray          * listing;
+    NSString                * absolutePath;
+    NSString                * filePath;
+    NSError                 * error;
+    NSUInteger                subFilesCount;
+    EOSFile                 * file;
+    NSString                * fileInfos;
+    
+    absolutePath = [ self absolutePathForConnection: connection subPath: path ];
+    
+    if( absolutePath == nil )
+    {
+        return nil;
+    }
+    
+    dateFormatter = [ NSDateFormatter new ];
+    locale        = [ [ NSLocale alloc ] initWithLocaleIdentifier: @"en" ];
+    enumerator    = [ [ NSFileManager defaultManager ]  enumeratorAtPath: absolutePath ];
+    listing       = [ NSMutableArray arrayWithCapacity: 100 ];
+    
+    [ dateFormatter setDateFormat: @"MMM dd HH:mm" ]; 
+    [ dateFormatter setLocale: locale ]; 
+    [ locale release ];
+    
+    EOS_FTP_DEBUG( @"Listing directory: %@", absolutePath );
+    
+    while( ( filePath = [ enumerator nextObject ] ) )
+    {
+        [ enumerator skipDescendents ];
+        
+        error      = nil;
+        filePath   = [ absolutePath stringByAppendingPathComponent: filePath ];
+        file       = [ EOSFile fileWithPath: filePath ];
+        
+        if( file == nil )
+        {
+            continue;
+        }
+        
+        subFilesCount = [ [ NSFileManager defaultManager ] numberOfFilesInDirectory: filePath ];
+        subFilesCount = ( subFilesCount < 1 ) ? 1 : subFilesCount;
+        
+        fileInfos = [ NSString stringWithFormat:
+            @"%c%@ %5u %12@ %12@ %10qu %@ %@",
+            ( file.type == EOSFileTypeDirectory ) ? 'd' : '-',
+            file.humanReadablePermissions,
+            subFilesCount,
+            file.owner,
+            file.group,
+            file.bytes,
+            [ dateFormatter stringFromDate: file.modificationDate ],
+            [ self serverPathForConnection: connection subPath: filePath ]
+        ];
+        
+        [ listing addObject: fileInfos ];
+    }
+    
+    return ( listing.count > 0 ) ? [ listing componentsJoinedByString: @"\n" ] : nil;
 }
 
 @end
