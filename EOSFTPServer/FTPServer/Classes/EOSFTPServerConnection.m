@@ -47,6 +47,7 @@
 
 @synthesize username      = _username;
 @synthesize authenticated = _authenticated;
+@synthesize delegate      = _delegate;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
 {
@@ -109,6 +110,11 @@
     if( _connectionSocket != nil )
     {
         [ _connectionSocket disconnectAfterWriting ];
+    }
+    
+    if( _delegate != nil && [ _delegate respondsToSelector: @selector( ftpConnectionDidClose: ) ] )
+    {
+        [ _delegate ftpConnectionDidClose: self ];
     }
 }
 

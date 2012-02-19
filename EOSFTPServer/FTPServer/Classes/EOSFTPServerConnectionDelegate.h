@@ -37,37 +37,13 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "EOSFTPServerConnectionDelegate.h"
 
-@class AsyncSocket;
-@class EOSFTPServer;
-@class EOSFTPServerDataConnection;
+@class EOSFTPServerConnection;
 
-@interface EOSFTPServerConnection: NSObject
-{
-@protected
-    
-    AsyncSocket                         * _connectionSocket;
-    EOSFTPServer                        * _server;
-    EOSFTPServerTransferMode              _transferMode;
-    NSUInteger                            _dataPort;
-    EOSFTPServerDataConnection          * _dataConnection;
-    NSMutableArray                      * _queuedData;
-    NSString                            * _username;
-    BOOL                                  _authenticated;
-    id < EOSFTPServerConnectionDelegate > _delegate;
-    
-@private
-    
-    id _EOSFTPServerConnection_Reserved[ 5 ] __attribute__( ( unused ) );
-}
+@protocol EOSFTPServerConnectionDelegate < NSObject >
 
-@property( atomic, readwrite, copy   ) NSString                            * username;
-@property( atomic, readwrite, assign ) BOOL                                  authenticated;
-@property( atomic, readwrite, assign ) id < EOSFTPServerConnectionDelegate > delegate;
+@optional
 
-- ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
-- ( void )sendMessage: ( NSString * )message;
-- ( void )close;
+- ( void )ftpConnectionDidClose: ( EOSFTPServerConnection * )connection;
 
 @end
