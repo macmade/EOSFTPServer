@@ -887,9 +887,9 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     
     EOS_FTP_DEBUG( @"Processing command: %@ (%@)", name, arguments );
     
-    selector = NSSelectorFromString( [ NSString stringWithFormat: @"processCommand%@", [ name uppercaseString ] ] );
+    selector = NSSelectorFromString( [ NSString stringWithFormat: @"processCommand%@:", [ name uppercaseString ] ] );
     
-    if( selector != NULL )
+    if( selector != NULL && [ self respondsToSelector: selector ] )
     {
         [ self performSelector: selector withObject: arguments ];
     }
