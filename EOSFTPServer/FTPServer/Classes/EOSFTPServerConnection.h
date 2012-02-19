@@ -65,6 +65,7 @@
     id _EOSFTPServerConnection_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
+@property( atomic, readwrite, assign ) EOSFTPServerTransferMode              transferMode;
 @property( atomic, readwrite, copy   ) NSString                            * username;
 @property( atomic, readwrite, assign ) BOOL                                  authenticated;
 @property( atomic, readwrite, assign ) NSStringEncoding                      encoding;

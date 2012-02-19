@@ -46,6 +46,7 @@
 
 @implementation EOSFTPServerConnection
 
+@synthesize transferMode        = _transferMode;
 @synthesize username            = _username;
 @synthesize authenticated       = _authenticated;
 @synthesize encoding            = _encoding;
