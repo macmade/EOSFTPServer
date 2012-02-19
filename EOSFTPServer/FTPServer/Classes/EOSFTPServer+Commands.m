@@ -37,6 +37,8 @@
  */
 
 #import "EOSFTPServer+Commands.h"
+#import "EOSFTPServer+Private.h"
+#import "EOSFTPServerConnection.h"
 
 @implementation EOSFTPServer( Commands )
 
@@ -228,8 +230,23 @@
 
 - ( void )processCommandHELP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    ( void )connection;
-    ( void )args;
+    NSRange    range;
+    NSString * name;
+    
+    range = [ args rangeOfString: @" " ];
+    
+    if( range.location != NSNotFound )
+    {
+        name = [ args substringToIndex: range.location ];
+    }
+    else
+    {
+        name = args;
+    }
+    
+    EOS_FTP_DEBUG( @"Getting help for command %@", name );
+    
+    [ connection sendMessage: [ self formattedMessage: [ self helpForCommand: name ] code: 214 ] ];
 }
 
 - ( void )processCommandNOOP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args

@@ -354,7 +354,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     
     if( [ command isEqualToString: EOSFTPServerCommandUSER ] )
     {
-        help =  @"USER NAME (USER)"
+        help =  @"USER NAME (USER)\n"
                 @"\n"
                 @"The argument field is a Telnet string identifying the user.\n"
                 @"The user identification is that which is required by the\n"
@@ -370,7 +370,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"supplied and beginning the login sequence again. All\n"
                 @"transfer parameters are unchanged and any file transfer in\n"
                 @"progress is completed under the old access control\n"
-                @"parameters.";
+                @"parameters.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandPASS ] )
     {
@@ -384,7 +384,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"to \"mask\" it or suppress typeout. It appears that the\n"
                 @"server has no foolproof way to achieve this. It is\n"
                 @"therefore the responsibility of the user-FTP process to hide\n"
-                @"the sensitive password information.";
+                @"the sensitive password information.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandACT ] )
     {
@@ -405,7 +405,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"a command issued later in the dialogue, the server should\n"
                 @"return a 332 or 532 reply depending on whether it stores\n"
                 @"(pending receipt of the ACCounT command) or discards the\n"
-                @"command, respectively.";
+                @"command, respectively.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandCWD ] )
     {
@@ -416,7 +416,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"altering his login or accounting information. Transfer\n"
                 @"parameters are similarly unchanged. The argument is a\n"
                 @"pathname specifying a directory or other system dependent\n"
-                @"file group designator.";
+                @"file group designator.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandCDUP ] )
     {
@@ -426,7 +426,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"simplify the implementation of programs for transferring\n"
                 @"directory trees between operating systems having different\n"
                 @"syntaxes for naming the parent directory. The reply codes\n"
-                @"shall be identical to the reply codes of CWD.";
+                @"shall be identical to the reply codes of CWD.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandSMNT ] )
     {
@@ -436,7 +436,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"system data structure without altering his login or\n"
                 @"accounting information. Transfer parameters are similarly\n"
                 @"unchanged. The argument is a pathname specifying a\n"
-                @"directory or other system dependent file group designator.";
+                @"directory or other system dependent file group designator.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandREIN ] )
     {
@@ -448,7 +448,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"and the control connection is left open. This is identical\n"
                 @"to the state in which a user finds himself immediately after\n"
                 @"the control connection is opened. A USER command may be\n"
-                @"expected to follow.";
+                @"expected to follow.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandQUIT ] )
     {
@@ -464,7 +464,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"\n"
                 @"An unexpected close on the control connection will cause the\n"
                 @"server to take the effective action of an abort (ABOR) and a\n"
-                @"logout (QUIT).";
+                @"logout (QUIT).\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandPORT ] )
     {
@@ -484,7 +484,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"PORT h1,h2,h3,h4,p1,p2\n"
                 @"\n"
                 @"where h1 is the high order 8 bits of the internet host\n"
-                @"address.";
+                @"address.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandPASV ] )
     {
@@ -494,7 +494,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"port (which is not its default data port) and to wait for a\n"
                 @"connection rather than initiate one upon receipt of a\n"
                 @"transfer command. The response to this command includes the\n"
-                @"host and port address this server is listening on.";
+                @"host and port address this server is listening on.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandTYPE ] )
     {
@@ -523,7 +523,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"The default representation type is ASCII Non-print. If the\n"
                 @"Format parameter is changed, and later just the first\n"
                 @"argument is changed, Format then returns to the Non-print\n"
-                @"default.";
+                @"default.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandSTRU ] )
     {
@@ -539,7 +539,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"R - Record structure\n"
                 @"P - Page structure\n"
                 @"\n"
-                @"The default structure is File.";
+                @"The default structure is File.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandMODE ] )
     {
@@ -555,7 +555,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"B - Block\n"
                 @"C - Compressed\n"
                 @"\n"
-                @"The default transfer mode is Stream.";
+                @"The default transfer mode is Stream.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandRETR ] )
     {
@@ -564,7 +564,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"This command causes the server-DTP to transfer a copy of the\n"
                 @"file, specified in the pathname, to the server- or user-DTP\n"
                 @"at the other end of the data connection. The status and\n"
-                @"contents of the file at the server site shall be unaffected.";
+                @"contents of the file at the server site shall be unaffected.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandSTOR ] )
     {
@@ -576,7 +576,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"pathname exists at the server site, then its contents shall\n"
                 @"be replaced by the data being transferred. A new file is\n"
                 @"created at the server site if the file specified in the\n"
-                @"pathname does not already exist.";
+                @"pathname does not already exist.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandSTOU ] )
     {
@@ -585,7 +585,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"This command behaves like STOR except that the resultant\n"
                 @"file is to be created in the current directory under a name\n"
                 @"unique to that directory. The 250 Transfer Started response\n"
-                @"must include the name generated.";
+                @"must include the name generated.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandAPPE ] )
     {
@@ -596,7 +596,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"a file at the server site. If the file specified in the\n"
                 @"pathname exists at the server site, then the data shall be\n"
                 @"appended to that file; otherwise the file specified in the\n"
-                @"pathname shall be created at the server site.";
+                @"pathname shall be created at the server site.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandALLO ] )
     {
@@ -618,7 +618,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"which do not require that the maximum size of the file be\n"
                 @"declared beforehand, and those servers interested in only\n"
                 @"the maximum record or page size should accept a dummy value\n"
-                @"in the first argument and ignore it.";
+                @"in the first argument and ignore it.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandREST ] )
     {
@@ -629,7 +629,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"cause file transfer but skips over the file to the specified\n"
                 @"data checkpoint. This command shall be immediately followed\n"
                 @"by the appropriate FTP service command which shall cause\n"
-                @"file transfer to resume.";
+                @"file transfer to resume.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandRNFR ] )
     {
@@ -637,7 +637,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"\n"
                 @"This command specifies the old pathname of the file which is\n"
                 @"to be renamed. This command must be immediately followed by\n"
-                @"a \"rename to\" command specifying the new file pathname.";
+                @"a \"rename to\" command specifying the new file pathname.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandRNTO ] )
     {
@@ -646,7 +646,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"This command specifies the new pathname of the file\n"
                 @"specified in the immediately preceding \"rename from\"\n"
                 @"command. Together the two commands cause a file to be\n"
-                @"renamed.";
+                @"renamed.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandABOR ] )
     {
@@ -674,7 +674,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"reply to indicate that the service request terminated\n"
                 @"abnormally. The server then sends a 226 reply,\n"
                 @"indicating that the abort command was successfully\n"
-                @"processed.";
+                @"processed.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandDELE ] )
     {
@@ -683,7 +683,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"This command causes the file specified in the pathname to be\n"
                 @"deleted at the server site. If an extra level of protection\n"
                 @"is desired (such as the query, \"Do you really wish to\n"
-                @"delete?\"), it should be provided by the user-FTP process.";
+                @"delete?\"), it should be provided by the user-FTP process.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandRMD ] )
     {
@@ -692,7 +692,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"This command causes the directory specified in the pathname\n"
                 @"to be removed as a directory (if the pathname is absolute)\n"
                 @"or as a subdirectory of the current working directory (if\n"
-                @"the pathname is relative).";
+                @"the pathname is relative).\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandMKD ] )
     {
@@ -701,14 +701,14 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"This command causes the directory specified in the pathname\n"
                 @"to be created as a directory (if the pathname is absolute)\n"
                 @"or as a subdirectory of the current working directory (if\n"
-                @"the pathname is relative).";
+                @"the pathname is relative).\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandPWD ] )
     {
         help  = @"PRINT WORKING DIRECTORY (PWD)\n"
                 @"\n"
                 @"This command causes the name of the current working\n"
-                @"directory to be returned in the reply.";
+                @"directory to be returned in the reply.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandLIST ] )
     {
@@ -725,7 +725,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"ensure that the TYPE is appropriately ASCII or EBCDIC).\n"
                 @"Since the information on a file may vary widely from system\n"
                 @"to system, this information may be hard to use automatically\n"
-                @"in a program, but may be quite useful to a human user.";
+                @"in a program, but may be quite useful to a human user.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandNLST ] )
     {
@@ -742,7 +742,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"ensure that the TYPE is correct.) This command is intended\n"
                 @"to return information that can be used by a program to\n"
                 @"further process the files automatically. For example, in\n"
-                @"the implementation of a \"multiple get\" function.";
+                @"the implementation of a \"multiple get\" function.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandSITE ] )
     {
@@ -753,7 +753,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"but not sufficiently universal to be included as commands in\n"
                 @"the protocol. The nature of these services and the\n"
                 @"specification of their syntax can be stated in a reply to\n"
-                @"the HELP SITE command.";
+                @"the HELP SITE command.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandSYST ] )
     {
@@ -762,7 +762,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"This command is used to find out the type of operating\n"
                 @"system at the server. The reply shall have as its first\n"
                 @"word one of the system names listed in the current version\n"
-                @"of the Assigned Numbers document.";
+                @"of the Assigned Numbers document.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandSTAT ] )
     {
@@ -783,7 +783,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"If no argument is given, the server should return general\n"
                 @"status information about the server FTP process. This\n"
                 @"should include current values of all transfer parameters and\n"
-                @"the status of connections.";
+                @"the status of connections.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandHELP ] )
     {
@@ -796,7 +796,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"information as a response. The reply is type 211 or 214.\n"
                 @"It is suggested that HELP be allowed before entering a USER\n"
                 @"command. The server may use this reply to specify\n"
-                @"site-dependent parameters, e.g., in response to HELP SITE.";
+                @"site-dependent parameters, e.g., in response to HELP SITE.\n";
     }
     else if( [ command isEqualToString: EOSFTPServerCommandNOOP ] )
     {
@@ -804,13 +804,13 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
                 @"\n"
                 @"This command does not affect any parameters or previously\n"
                 @"entered commands. It specifies no action other than that the\n"
-                @"server send an OK reply.";
+                @"server send an OK reply.\n";
     }
     else
     {
         help = [ NSString stringWithFormat: @"%@\n"
                                             @"\n"
-                                            @"No help available for this command.",
+                                            @"No help available for this command.\n",
                                             command
                ];
     }
