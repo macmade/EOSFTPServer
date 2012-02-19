@@ -315,8 +315,9 @@
 
 - ( void )processCommandSYST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    ( void )connection;
     ( void )args;
+    
+    [ connection sendMessage: [ self formattedMessage: [ NSString stringWithFormat: [ self messageForReplyCode: 215 ], @"Unix" ] code: 215 ] ];
 }
 
 - ( void )processCommandSTAT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
