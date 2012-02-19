@@ -184,7 +184,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
             return NO;
         }
         
-        FTP_DEBUG( @"EOSFPTServer - Listening on %lu", _port );
+        EOS_FTP_DEBUG( @"Server now listening on port %lu", _port );
         
         return YES;
     }
@@ -216,6 +216,8 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         
         _startDate = nil;
         _running   = NO;
+        
+        EOS_FTP_DEBUG( @"Server stopped" );
         
         return YES;
     }

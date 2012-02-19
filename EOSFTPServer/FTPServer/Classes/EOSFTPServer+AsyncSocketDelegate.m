@@ -51,15 +51,15 @@
     [ _connections addObject: connection ];
     [ connection release ];
     
-    FTP_DEBUG( @"EOSFTPServer - didAcceptNewSocket: port: %u", [ socket localPort ] );
+    EOS_FTP_DEBUG( @"New socket accepted on port %u", [ socket localPort ] );
     
     if( [ socket localPort ] == _port )
     {
-        FTP_DEBUG( @"EOSFTPServer - Connection on server port (%lu)", _port );
+        EOS_FTP_DEBUG( @"Connection on server port (%lu)", _port );
     }
     else
     {
-        FTP_DEBUG( @"EOSFTPServer - Connection error- port %u (should be %lu)", [ socket localPort ], _port );
+        EOS_FTP_DEBUG( @"Connection error: port %u (should be %lu)", [ socket localPort ], _port );
     }
 }
 
@@ -69,7 +69,7 @@
     ( void )host;
     ( void )port;
     
-    FTP_DEBUG( @"EOSFTPServer - didConnectToHost: %@ port: %u", host, [ socket localPort ] );
+    EOS_FTP_DEBUG( @"Connection to host: %@ port: %u", host, [ socket localPort ] );
 }
 
 @end

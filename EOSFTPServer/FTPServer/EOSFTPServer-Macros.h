@@ -48,11 +48,11 @@ extern "C" {
 
 #if defined( DEBUG ) && DEBUG == 1
 
-#define FTP_DEBUG( ... )    NSLog( __VA_ARGS__ )
+#define EOS_FTP_DEBUG( ... )    NSLog( @"%@ - %@", NSStringFromClass( [ self class ] ), [ NSString stringWithFormat: __VA_ARGS__ ] )
 
 #else
 
-#define FTP_DEBUG( ... )
+#define EOS_FTP_DEBUG( ... )
 
 #endif
 
