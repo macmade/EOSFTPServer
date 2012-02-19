@@ -188,6 +188,8 @@
             
         default:
             
+            EOS_FTP_DEBUG( @"Unknown connection transfer mode: %u", _transferMode );
+            
             [ self sendMessage: [ _server formattedMessage: [ _server messageForReplyCode: 421 ] code: 421 ] ];
             [ self close ];
             
