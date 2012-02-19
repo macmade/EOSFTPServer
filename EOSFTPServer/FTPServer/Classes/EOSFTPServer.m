@@ -179,7 +179,14 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         [ _listenSocket acceptOnPort: ( UInt16 )_port error: &e ];
         [ _netService publish ];
         
-        return e == nil;
+        if( e != nil )
+        {
+            return NO;
+        }
+        
+        FTP_DEBUG( @"EOSFPTServer - Listening on %lu", _port );
+        
+        return YES;
     }
 }
 
