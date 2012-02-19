@@ -104,4 +104,12 @@
     [ data release ];
 }
 
+- ( void )close
+{
+    if( _connectionSocket != nil )
+    {
+        [ _connectionSocket disconnectAfterWriting ];
+    }
+}
+
 @end
