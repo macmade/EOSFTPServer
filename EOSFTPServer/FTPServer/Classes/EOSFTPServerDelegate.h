@@ -40,16 +40,17 @@
 #import "EOSFTPServer.h"
 
 @class AsyncSocket;
+@class EOSFTPServer;
 @class EOSFTPServerConnection;
 
 @protocol EOSFTPServerDelegate < NSObject >
 
 @optional
 
-- ( BOOL )shouldAcceptNewSocket: ( AsyncSocket * )socket;
-- ( BOOL )shouldAcceptUser: ( NSString * )name;
-- ( void )userDidLoggedIn: ( NSString * )name;
-- ( void )connectionDidEstablish: ( EOSFTPServerConnection * )connection;
-- ( void )connectionDidClose: ( EOSFTPServerConnection * )connection;
+- ( BOOL )ftpServer: ( EOSFTPServer * )server shouldAcceptNewSocket: ( AsyncSocket * )socket;
+- ( BOOL )ftpServer: ( EOSFTPServer * )server shouldAcceptUser: ( NSString * )name;
+- ( void )ftpServer: ( EOSFTPServer * )server userDidLoggedIn: ( NSString * )name;
+- ( void )ftpServer: ( EOSFTPServer * )server connectionDidEstablish: ( EOSFTPServerConnection * )connection;
+- ( void )ftpServer: ( EOSFTPServer * )server connectionDidClose: ( EOSFTPServerConnection * )connection;
 
 @end
