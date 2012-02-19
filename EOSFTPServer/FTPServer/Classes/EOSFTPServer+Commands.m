@@ -343,11 +343,25 @@
 
 - ( void )processCommandPWD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    NSString * dir;
+    
     __CHECK_AUTH( connection );
     
     ( void )args;
     
-    [ connection sendMessage: [ self formattedMessage: [ NSString stringWithFormat: [ self messageForReplyCode: 257 ], connection.currentDirectory ] code: 257 ] ];
+    dir = [ self serverPath: connection.currentDirectory ];
+    
+    if( dir == nil )
+    {
+        EOS_FTP_DEBUG( @"Invalid current directory: %@", connection.currentDirectory );
+        
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 421 ] code: 421 ] ];
+        [ connection close ];
+        
+        return;
+    }
+    
+    [ connection sendMessage: [ self formattedMessage: [ NSString stringWithFormat: [ self messageForReplyCode: 257 ], dir ] code: 257 ] ];
 }
 
 - ( void )processCommandLIST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args

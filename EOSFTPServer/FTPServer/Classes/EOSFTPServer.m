@@ -945,4 +945,31 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     return formattedMessage;
 }
 
+- ( NSString * )serverPath: ( NSString * )path
+{
+    NSString * root;
+    NSString * serverPath;
+    
+    if( _chroot == NO )
+    {
+        return path;
+    }
+    
+    root = ( [ _rootDirectory hasSuffix: @"/" ] == YES ) ? [ _rootDirectory substringToIndex: _rootDirectory.length - 2 ] : _rootDirectory;
+    
+    if( [ path hasPrefix: _rootDirectory ] == NO )
+    {
+        return nil;
+    }
+    
+    serverPath = [ path substringFromIndex: root.length ];
+    
+    if( serverPath.length == 0 )
+    {
+        return @"/";
+    }
+    
+    return serverPath;
+}
+
 @end
