@@ -958,6 +958,11 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     
     root = ( [ _rootDirectory hasSuffix: @"/" ] == YES ) ? [ _rootDirectory substringToIndex: _rootDirectory.length - 2 ] : _rootDirectory;
     
+    if( [ path hasPrefix: @"/" ] == NO )
+    {
+        return [ root stringByAppendingPathComponent: path ];
+    }
+    
     if( [ path hasPrefix: _rootDirectory ] == NO )
     {
         return nil;
