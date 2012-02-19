@@ -65,15 +65,14 @@
         
         if( _server.welcomeMessage.length > 0 )
         {
-            message = [ NSString stringWithFormat: @"220 %@ %@\r\n", [ _server messageForReplyCode: 220 ], _server.welcomeMessage ];
+            message = [ _server formattedMessage: [ NSString stringWithFormat: @"%@\n%@", [ _server messageForReplyCode: 220 ], _server.quitMessage ] code: 221 ];
         }
         else
         {
-            message = [ NSString stringWithFormat: @"220 %@\r\n", [ _server messageForReplyCode: 220 ] ];
+            message = [ _server formattedMessage: [ _server messageForReplyCode: 220 ] code: 221 ];
         }
         
-        [ _connectionSocket writeData: [ message dataUsingEncoding: NSUTF8StringEncoding ] withTimeout: -1 tag: 0 ];
-        [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+        [ self sendMessage: message ];
         
         EOS_FTP_DEBUG( @"Establishing new connection" );
     }
