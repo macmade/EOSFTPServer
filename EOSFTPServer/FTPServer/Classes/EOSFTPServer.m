@@ -40,6 +40,7 @@
 #import "EOSFTPServer+Private.h"
 #import "EOSFTPServer+AsyncSocketDelegate.h"
 #import "EOSFTPServerUser.h"
+#import "EOSFTPServerConnection.h"
 #import "NSString+EOS.h"
 #import "AsyncSocket.h"
 
@@ -92,6 +93,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 @synthesize chroot              = _chroot;
 @synthesize rootDirectory       = _rootDirectory;
 @synthesize allowAnonymousUsers = _allowAnonymousUsers;
+@synthesize encoding            = _encoding;
 @synthesize delegate            = _delegate;
 
 - ( id )init
@@ -121,6 +123,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         _connections        = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
         _connectedSockets   = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
         _listenSocket       = [ [ AsyncSocket alloc ] initWithDelegate: self ];
+        _encoding           = NSUTF8StringEncoding;
     }
     
     return self;
@@ -859,6 +862,13 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     }
     
     return nil;
+}
+
+- ( void )processCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection
+{
+    EOS_FTP_DEBUG( @"Processing command: %@", command );
+    
+    ( void )connection;
 }
 
 @end

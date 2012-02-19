@@ -37,12 +37,30 @@
  */
 
 #import "EOSFTPServerConnection+Private.h"
+#import "EOSFTPServer.h"
+#import "AsyncSocket.h"
+#import "NSData+EOS.h"
 
 @implementation EOSFTPServerConnection( Private )
 
 - ( void )processData: ( NSData * )data
 {
-    ( void )data;
+    NSString * crlfMessage;
+    NSString * message;
+    NSArray  * commands;
+    NSString * command;
+    
+    crlfMessage = [ [ NSString alloc ] initWithData: [ data subdataWithRange: NSMakeRange( 0, [ data length ] - 2 ) ] encoding: _server.encoding ];
+    message     = [ crlfMessage stringByTrimmingCharactersInSet: [ NSCharacterSet newlineCharacterSet ] ];
+    commands    = [ message componentsSeparatedByString: @"\n" ];
+    
+    [ crlfMessage release ];
+    
+    for( command in commands )
+    {
+        [ _server processCommand: command connection: self ];
+        [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: -1 tag: 0 ];
+    }
 }
 
 @end

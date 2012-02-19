@@ -82,6 +82,7 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandHELP;
 FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 
 @class EOSFTPServerUser;
+@class EOSFTPServerConnection;
 @class AsyncSocket;
 
 @interface EOSFTPServer: NSObject
@@ -104,6 +105,7 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
     NSMutableArray            * _connectedSockets;
     AsyncSocket               * _listenSocket;
     NSNetService              * _netService;
+    NSStringEncoding            _encoding;
     id < EOSFTPServerDelegate > _delegate;
     
 @private
@@ -111,19 +113,20 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
     id _EOSFTPServer_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
-@property( atomic, readonly          ) NSUInteger port;
-@property( atomic, readwrite, assign ) NSUInteger maxConnections;
-@property( atomic, readonly          ) BOOL       running;
-@property( atomic, readwrite, copy   ) NSDate   * startDate;
-@property( atomic, readwrite, copy   ) NSString * name;
-@property( atomic, readwrite, copy   ) NSString * versionString;
-@property( atomic, readwrite, copy   ) NSString * welcomeMessage;
-@property( atomic, readwrite, copy   ) NSString * quitMessage;
-@property( atomic, readonly          ) NSArray  * connectedUsers;
-@property( atomic, readwrite, assign ) BOOL       chroot;
-@property( atomic, readwrite, copy   ) NSString * rootDirectory;
-@property( atomic, readwrite, assign ) BOOL       allowAnonymousUsers;
-@property( atomic, readwrite, assign ) id < EOSFTPServerDelegate > delegate;
+@property( atomic, readonly          ) NSUInteger                   port;
+@property( atomic, readwrite, assign ) NSUInteger                   maxConnections;
+@property( atomic, readonly          ) BOOL                         running;
+@property( atomic, readwrite, copy   ) NSDate                     * startDate;
+@property( atomic, readwrite, copy   ) NSString                   * name;
+@property( atomic, readwrite, copy   ) NSString                   * versionString;
+@property( atomic, readwrite, copy   ) NSString                   * welcomeMessage;
+@property( atomic, readwrite, copy   ) NSString                   * quitMessage;
+@property( atomic, readonly          ) NSArray                    * connectedUsers;
+@property( atomic, readwrite, assign ) BOOL                         chroot;
+@property( atomic, readwrite, copy   ) NSString                   * rootDirectory;
+@property( atomic, readwrite, assign ) BOOL                         allowAnonymousUsers;
+@property( atomic, readonly          ) NSStringEncoding             encoding;
+@property( atomic, readwrite, assign ) id < EOSFTPServerDelegate >  delegate;
 
 - ( id )initWithPort: ( NSUInteger )port;
 - ( BOOL )start;
@@ -135,5 +138,6 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 - ( BOOL )authenticateUser: ( EOSFTPServerUser * )user;
 - ( NSString * )helpForCommand: ( NSString * )command;
 - ( NSString * )messageForReplyCode: ( EOSFTPServerReplyCode )code;
+- ( void )processCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection;
 
 @end
