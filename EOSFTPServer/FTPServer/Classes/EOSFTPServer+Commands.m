@@ -176,8 +176,33 @@
 
 - ( void )processCommandTYPE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    ( void )connection;
-    ( void )args;
+    NSString                 * typeString;
+    EOSFTPServerConnectionType type;
+    
+    typeString = [ args uppercaseString ];
+    
+    if( [ typeString isEqualToString: @"A" ] )
+    {
+        EOS_FTP_DEBUG( @"Switching to ASCII connection type" );
+        
+        type = EOSFTPServerConnectionTypeASCII;
+    }
+    if( [ typeString isEqualToString: @"E" ] )
+    {
+        EOS_FTP_DEBUG( @"Switching to EBDIC connection type" );
+        
+        type = EOSFTPServerConnectionTypeEBCDIC;
+    }
+    else
+    {
+        EOS_FTP_DEBUG( @"Unknown type %@. Switching to ASCII connection type", typeString );
+        
+        type = EOSFTPServerConnectionTypeASCII;
+    }
+    
+    connection.type = type;
+    
+    [ connection sendMessage: [ self formattedMessage: [ NSString stringWithFormat: @"%@\nType set to %@", [ self messageForReplyCode: 200 ], typeString ] code: 200 ] ];
 }
 
 - ( void )processCommandSTRU: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
