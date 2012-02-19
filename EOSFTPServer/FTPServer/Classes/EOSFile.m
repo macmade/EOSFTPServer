@@ -95,7 +95,7 @@
     return [ file autorelease ];
 }
 
-+ ( EOSFile * )newFileWithPath: ( NSString * )path data: ( NSData * )data
++ ( EOSFile * )addNewFileWithPath: ( NSString * )path data: ( NSData * )data
 {
     if( [ [ NSFileManager defaultManager ] createFileAtPath: path contents: data attributes: nil ] )
     {
@@ -105,7 +105,7 @@
     return nil;
 }
 
-+ ( EOSFile * )newFileWithURL: ( NSURL * )url data: ( NSData * )data
++ ( EOSFile * )addNewFileWithURL: ( NSURL * )url data: ( NSData * )data
 {
     if( [ [ NSFileManager defaultManager ] createFileAtPath: [ url path ] contents: data attributes: nil ] )
     {
@@ -224,7 +224,7 @@
     return [ [ NSFileManager defaultManager ] createFileAtPath: _path contents: data attributes: nil ];
 }
 
-- ( void )delete: ( NSError ** )error
+- ( BOOL )delete: ( NSError ** )error
 {
     if( error != NULL )
     {
@@ -232,6 +232,8 @@
     }
     
     [ [ NSFileManager defaultManager ] removeItemAtURL: _url error: error ];
+    
+    return error == nil;
 }
 
 @end

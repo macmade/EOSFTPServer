@@ -147,8 +147,8 @@ EOSFileFlags;
 
 + ( EOSFile * )fileWithPath: ( NSString * )path;
 + ( EOSFile * )fileWithURL: ( NSURL * )url;
-+ ( EOSFile * )newFileWithPath: ( NSString * )path data: ( NSData * )data;
-+ ( EOSFile * )newFileWithURL: ( NSURL * )url data: ( NSData * )data;
++ ( EOSFile * )addNewFileWithPath: ( NSString * )path data: ( NSData * )data;
++ ( EOSFile * )addNewFileWithURL: ( NSURL * )url data: ( NSData * )data;
 - ( id )initWithPath: ( NSString * )path;
 - ( id )initWithURL: ( NSURL * )url;
 - ( NSFileHandle * )fileHandleForReading;
@@ -157,6 +157,6 @@ EOSFileFlags;
 - ( NSString * )creationDateWithFormat: ( NSString * )format;
 - ( NSString * )modificationDateWithFormat: ( NSString * )format;
 - ( BOOL )writeData: ( NSData * )data;
-- ( void )delete: ( NSError ** )error;
+- ( BOOL )delete: ( NSError ** )error;
 
 @end
