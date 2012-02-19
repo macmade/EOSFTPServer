@@ -412,10 +412,9 @@
 
 - ( void )processCommandNOOP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    __CHECK_AUTH( connection );
-    
-    ( void )connection;
     ( void )args;
+    
+    [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 200 ] code: 200 ] ];
 }
 
 @end
