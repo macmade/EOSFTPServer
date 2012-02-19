@@ -37,6 +37,7 @@
  */
 
 #import "EOSFTPServer+AsyncSocketDelegate.h"
+#import "EOSFTPServer+EOSFTPServerConnectionDelegate.h"
 #import "EOSFTPServerConnection.h"
 #import "AsyncSocket.h"
 
@@ -46,7 +47,13 @@
 {
     EOSFTPServerConnection * connection;
     
-    connection = [ [ EOSFTPServerConnection alloc ] initWithSocket: newSocket server: self ];
+    connection          = [ [ EOSFTPServerConnection alloc ] initWithSocket: newSocket server: self ];
+    connection.delegate = self;
+    
+    if( _delegate != nil && [ _delegate respondsToSelector: @selector( ftpServer:connectionDidEstablish: ) ] )
+    {
+        [ _delegate ftpServer: self connectionDidEstablish: connection ];
+    }
     
     [ _connections addObject: connection ];
     [ connection release ];
