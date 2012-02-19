@@ -40,6 +40,202 @@
 
 @implementation EOSFTPServer( Commands )
 
+- ( void )processCommandUSER: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
 
+- ( void )processCommandPASS: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandACT:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandCWD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandCDUP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandSMNT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandREIN: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandQUIT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandPORT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandPASV: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandTYPE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandSTRU: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandMODE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandRETR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandSTOR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandSTOU: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandAPPE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandALLO: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandREST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandRNFR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandRNTO: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandABOR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandDELE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandRMD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandMKD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandPWD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandLIST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandNLST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandSITE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandSYST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandSTAT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandHELP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
+
+- ( void )processCommandNOOP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
+{
+    ( void )connection;
+    ( void )args;
+}
 
 @end
