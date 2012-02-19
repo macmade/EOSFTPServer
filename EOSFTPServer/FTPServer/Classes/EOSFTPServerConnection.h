@@ -55,6 +55,7 @@
     NSMutableArray                      * _queuedData;
     NSString                            * _username;
     BOOL                                  _authenticated;
+    NSStringEncoding                      _encoding;
     id < EOSFTPServerConnectionDelegate > _delegate;
     
 @private
@@ -64,6 +65,7 @@
 
 @property( atomic, readwrite, copy   ) NSString                            * username;
 @property( atomic, readwrite, assign ) BOOL                                  authenticated;
+@property( atomic, readwrite, assign ) NSStringEncoding                      encoding;
 @property( atomic, readwrite, assign ) id < EOSFTPServerConnectionDelegate > delegate;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;

@@ -94,7 +94,6 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 @synthesize chroot              = _chroot;
 @synthesize rootDirectory       = _rootDirectory;
 @synthesize allowAnonymousUsers = _allowAnonymousUsers;
-@synthesize encoding            = _encoding;
 @synthesize delegate            = _delegate;
 
 - ( id )init
@@ -124,7 +123,6 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         _connections        = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
         _connectedSockets   = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
         _listenSocket       = [ [ AsyncSocket alloc ] initWithDelegate: self ];
-        _encoding           = NSUTF8StringEncoding;
     }
     
     return self;

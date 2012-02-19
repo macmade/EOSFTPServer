@@ -105,7 +105,6 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
     NSMutableArray            * _connectedSockets;
     AsyncSocket               * _listenSocket;
     NSNetService              * _netService;
-    NSStringEncoding            _encoding;
     id < EOSFTPServerDelegate > _delegate;
     
 @private
@@ -125,7 +124,6 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 @property( atomic, readwrite, assign ) BOOL                         chroot;
 @property( atomic, readwrite, copy   ) NSString                   * rootDirectory;
 @property( atomic, readwrite, assign ) BOOL                         allowAnonymousUsers;
-@property( atomic, readonly          ) NSStringEncoding             encoding;
 @property( atomic, readwrite, assign ) id < EOSFTPServerDelegate >  delegate;
 
 - ( id )initWithPort: ( NSUInteger )port;

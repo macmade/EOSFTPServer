@@ -48,6 +48,7 @@
 
 @synthesize username      = _username;
 @synthesize authenticated = _authenticated;
+@synthesize encoding      = _encoding;
 @synthesize delegate      = _delegate;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server

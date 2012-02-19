@@ -50,7 +50,7 @@
     NSArray  * commands;
     NSString * command;
     
-    crlfMessage = [ [ NSString alloc ] initWithData: [ data subdataWithRange: NSMakeRange( 0, [ data length ] - 2 ) ] encoding: _server.encoding ];
+    crlfMessage = [ [ NSString alloc ] initWithData: [ data subdataWithRange: NSMakeRange( 0, [ data length ] - 2 ) ] encoding: _encoding ];
     message     = [ crlfMessage stringByTrimmingCharactersInSet: [ NSCharacterSet newlineCharacterSet ] ];
     commands    = [ message componentsSeparatedByString: @"\n" ];
     
