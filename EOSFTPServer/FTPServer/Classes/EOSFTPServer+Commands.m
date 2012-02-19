@@ -41,6 +41,16 @@
 #import "EOSFTPServerConnection.h"
 #import "EOSFTPServerUser.h"
 
+#define __CHECK_AUTH( __c__ )   if( __c__.authenticated == NO )                                                                         \
+                                {                                                                                                       \
+                                    EOS_FTP_DEBUG( @"Command needs authentication" );                                                   \
+                                                                                                                                        \
+                                    [ __c__ sendMessage: [ self formattedMessage: [ self messageForReplyCode: 421 ] code: 421 ] ];      \
+                                    [ __c__ close ];                                                                                    \
+                                                                                                                                        \
+                                    return;                                                                                             \
+                                }
+
 @implementation EOSFTPServer( Commands )
 
 - ( void )processCommandUSER: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
@@ -116,30 +126,40 @@
 
 - ( void )processCommandACT:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandCWD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandCDUP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandSMNT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandREIN: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
@@ -164,12 +184,16 @@
 
 - ( void )processCommandPORT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandPASV: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
@@ -207,108 +231,145 @@
 
 - ( void )processCommandSTRU: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandMODE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandRETR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandSTOR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandSTOU: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandAPPE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandALLO: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandREST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandRNFR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandRNTO: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandABOR: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandDELE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandRMD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandMKD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandPWD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    ( void )connection;
+    __CHECK_AUTH( connection );
+    
     ( void )args;
+    
+    [ connection sendMessage: [ self formattedMessage: [ NSString stringWithFormat: [ self messageForReplyCode: 257 ], connection.currentDirectory ] code: 257 ] ];
 }
 
 - ( void )processCommandLIST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandNLST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
 
 - ( void )processCommandSITE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
@@ -322,6 +383,8 @@
 
 - ( void )processCommandSTAT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
@@ -349,6 +412,8 @@
 
 - ( void )processCommandNOOP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    __CHECK_AUTH( connection );
+    
     ( void )connection;
     ( void )args;
 }
