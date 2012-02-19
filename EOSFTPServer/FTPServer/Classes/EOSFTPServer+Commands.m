@@ -205,8 +205,10 @@
 {
     __CHECK_AUTH( connection );
     
-    ( void )connection;
     ( void )args;
+    
+    [ connection setTransferMode: EOSFTPServerTransferModePASV ];
+    [ connection openDataSocket: 0 ];
 }
 
 - ( void )processCommandTYPE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args

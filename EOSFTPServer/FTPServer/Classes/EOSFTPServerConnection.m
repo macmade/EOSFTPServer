@@ -181,9 +181,10 @@
             _dataPort = [ _server getPASVDataPort ];
             address   = [ [ _connectionSocket localHost ] stringByReplacingOccurrencesOfString: @"." withString: @"," ];
             
-            [ _dataSocket acceptOnPort: ( UInt16 )_dataPort error: &e ];
+            NSLog( @"Address: %@", address );
             
-            [ self sendMessage: [ _server formattedMessage: [ NSString stringWithFormat: [ _server messageForReplyCode: 227 ], 0, 0, 0, 0, 0, 0 ]  code: 227 ] ];
+            [ _dataSocket acceptOnPort: ( UInt16 )_dataPort error: &e ];
+            [ self sendMessage: [ _server formattedMessage: [ NSString stringWithFormat: [ _server messageForReplyCode: 227 ], address, _dataPort >> 8, _dataPort & 0x00FF ]  code: 227 ] ];
             
             break;
             

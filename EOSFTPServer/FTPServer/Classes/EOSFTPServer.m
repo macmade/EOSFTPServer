@@ -847,7 +847,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         case 221: return @"Service closing control connection.";
         case 225: return @"Data connection open; no transfer in progress.";
         case 226: return @"Closing data connection. Requested file action successful (for example, file transfer or file abort).";
-        case 227: return @"Entering Passive Mode (%u,%u,%u,%u,%u,%u).";
+        case 227: return @"Entering Passive Mode (%@,%u,%u).";
         case 230: return @"User logged in, proceed.";
         case 250: return @"Requested file action okay, completed.";
         case 257: return @"%@ created.";
