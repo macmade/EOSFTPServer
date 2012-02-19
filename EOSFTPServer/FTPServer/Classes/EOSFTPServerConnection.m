@@ -45,6 +45,7 @@
 
 @implementation EOSFTPServerConnection
 
+@synthesize username      = _username;
 @synthesize authenticated = _authenticated;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
