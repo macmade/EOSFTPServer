@@ -39,6 +39,7 @@
 #import "EOSFTPServer.h"
 #import "EOSFTPServer+Private.h"
 #import "EOSFTPServer+AsyncSocketDelegate.h"
+#import "EOSFTPServer+Commands.h"
 #import "EOSFTPServerUser.h"
 #import "EOSFTPServerConnection.h"
 #import "NSString+EOS.h"
@@ -866,9 +867,13 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 
 - ( void )processCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection
 {
+    NSString * name;
+    
     EOS_FTP_DEBUG( @"Processing command: %@", command );
     
-    ( void )connection;
+    name = command;
+    
+    [ self unrecognizedCommand: name connection: connection ];
 }
 
 @end
