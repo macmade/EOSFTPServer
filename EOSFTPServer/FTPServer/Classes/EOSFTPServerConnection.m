@@ -47,6 +47,8 @@
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
 {
+    NSString * message;
+    
     if( ( self = [ super init ] ) )
     {
         _connectionSocket   = [ socket retain ];
@@ -55,7 +57,17 @@
         _dataPort           = 2001;
         
         [ _connectionSocket setDelegate: self ];
-        [ _connectionSocket writeData: [ [ NSString stringWithFormat: @"%@% @", [ _server messageForReplyCode: 220 ], _server.welcomeMessage ] dataUsingEncoding: NSUTF8StringEncoding ] withTimeout: -1 tag: 0 ];
+        
+        if( _server.welcomeMessage.length > 0 )
+        {
+            message = [ NSString stringWithFormat: @"%@% @", [ _server messageForReplyCode: 220 ], _server.welcomeMessage ];
+        }
+        else
+        {
+            message = [ _server messageForReplyCode: 220 ];
+        }
+        
+        [ _connectionSocket writeData: [ message dataUsingEncoding: NSUTF8StringEncoding ] withTimeout: -1 tag: 0 ];
         [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
     }
     

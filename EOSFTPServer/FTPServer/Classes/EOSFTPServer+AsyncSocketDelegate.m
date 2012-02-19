@@ -72,4 +72,18 @@
     EOS_FTP_DEBUG( @"Connection to host: %@ port: %u", host, [ socket localPort ] );
 }
 
+- ( void )onSocket: ( AsyncSocket * )socket willDisconnectWithError: ( NSError * )error
+{
+    ( void )socket;
+    
+    EOS_FTP_DEBUG( @"Socket will disconnect with error: %@", error );
+}
+
+- ( void )onSocketDidDisconnect: ( AsyncSocket * )socket
+{
+    ( void )socket;
+    
+    EOS_FTP_DEBUG( @"Socket did disconnect" );
+}
+
 @end

@@ -121,7 +121,6 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         _connections        = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
         _connectedSockets   = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
         _listenSocket       = [ [ AsyncSocket alloc ] initWithDelegate: self ];
-        _netService         = [ [ NSNetService alloc ] initWithDomain: @"" type: @"_ftp._tcp." name: _name port: ( int )_port ];
     }
     
     return self;
@@ -177,6 +176,9 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         e          = nil;
         
         [ _listenSocket acceptOnPort: ( UInt16 )_port error: &e ];
+        
+        _netService = [ [ NSNetService alloc ] initWithDomain: @"" type: @"_ftp._tcp." name: _name port: ( int )_port ];
+        
         [ _netService publish ];
         
         if( e != nil )
@@ -207,6 +209,9 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         if( _netService != nil )
         {
             [ _netService stop ];
+            [ _netService release ];
+            
+            _netService = nil;
         }
         
         [ _connectedSockets removeAllObjects ];
