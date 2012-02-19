@@ -63,6 +63,7 @@
         _transferMode       = EOSFTPServerTransferModePASV;
         _dataPort           = 2001;
         _queuedData         = [ [ NSMutableArray alloc ] initWithCapacity: 100 ];
+        _encoding           = NSUTF8StringEncoding;
         
         [ _connectionSocket setDelegate: self ];
         
