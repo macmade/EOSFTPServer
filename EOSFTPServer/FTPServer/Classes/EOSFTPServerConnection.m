@@ -89,7 +89,16 @@
 
 - ( void )sendMessage: ( NSString * )message
 {
-    ( void )message;
+    NSMutableData * data;
+    
+    data = [ [ message dataUsingEncoding: NSUTF8StringEncoding ] mutableCopy ];
+    
+    [ data appendData: [ NSData CRLFData ] ];												
+    
+    [ _connectionSocket writeData: data withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+    [ _connectionSocket readDataToData: [ AsyncSocket CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
+    
+    [ data release ];
 }
 
 @end

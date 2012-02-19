@@ -30,22 +30,16 @@
 /* $Id$ */
 
 /*!
- * @file            ...
+ * @header          ...
  * @author          Jean-David Gadina <macmade@eosgarden>
  * @copyright       (c) 2012, eosgarden
  * @abstract        ...
  */
 
-#import "EOSFTPServer+Private.h"
-#import "EOSFTPServerConnection.h"
+#import "EOSFTPServer.h"
 
-@implementation EOSFTPServer( Private )
+@interface EOSFTPServer( Commands )
 
-- ( void )unrecognizedCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection
-{
-    ( void )command;
-    
-    [ connection sendMessage: [ NSString stringWithFormat: @"502 %@", [ self messageForReplyCode: 502 ] ] ];
-}
+
 
 @end

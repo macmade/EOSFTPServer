@@ -36,16 +36,10 @@
  * @abstract        ...
  */
 
-#import "EOSFTPServer+Private.h"
-#import "EOSFTPServerConnection.h"
+#import "EOSFTPServer+Commands.h"
 
-@implementation EOSFTPServer( Private )
+@implementation EOSFTPServer( Commands )
 
-- ( void )unrecognizedCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection
-{
-    ( void )command;
-    
-    [ connection sendMessage: [ NSString stringWithFormat: @"502 %@", [ self messageForReplyCode: 502 ] ] ];
-}
+
 
 @end

@@ -38,8 +38,10 @@
 
 #import "EOSFTPServer.h"
 
+@class EOSFTPServerConnection;
+
 @interface EOSFTPServer( Private )
 
-
+- ( void )unrecognizedCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection;
 
 @end
