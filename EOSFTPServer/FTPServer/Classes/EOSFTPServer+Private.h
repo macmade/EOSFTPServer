@@ -43,6 +43,5 @@
 @interface EOSFTPServer( Private )
 
 - ( void )unrecognizedCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection;
-- ( NSString * )formattedMessage: ( NSString * )message code: ( EOSFTPServerReplyCode )code;
 
 @end

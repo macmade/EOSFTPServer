@@ -139,5 +139,6 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 - ( NSString * )helpForCommand: ( NSString * )command;
 - ( NSString * )messageForReplyCode: ( EOSFTPServerReplyCode )code;
 - ( void )processCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection;
+- ( NSString * )formattedMessage: ( NSString * )message code: ( EOSFTPServerReplyCode )code;
 
 @end

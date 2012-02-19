@@ -48,40 +48,4 @@
     [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 502 ] code: 502 ] ];
 }
 
-- ( NSString * )formattedMessage: ( NSString * )message code: ( EOSFTPServerReplyCode )code
-{
-    NSMutableArray * lines;
-    NSString       * firstLine;
-    NSString       * lastLine;
-    NSString       * formattedMessage;
-    
-    lines = [ [ message componentsSeparatedByString: @"\n" ] mutableCopy ];
-    
-    if( lines.count > 1 )
-    {
-        firstLine = [ [ [ lines objectAtIndex: 0 ] retain ] autorelease ];
-        lastLine  = [ [ [ lines lastObject ] retain ] autorelease ];
-        
-        [ lines removeObjectAtIndex: lines.count - 1 ];
-        [ lines removeObjectAtIndex: 0 ];
-        
-        if( lines.count > 0 )
-        {
-            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n%@\n%u %@", code, firstLine, [ lines componentsJoinedByString: @"\n" ], code, lastLine ];
-        }
-        else
-        {
-            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n%u %@", code, firstLine, code, lastLine ];
-        }
-    }
-    else
-    {
-        formattedMessage = [ NSString stringWithFormat: @"%u %@", code, message ];
-    }
-    
-    [ lines release ];
-    
-    return formattedMessage;
-}
-
 @end
