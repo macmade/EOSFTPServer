@@ -36,6 +36,7 @@
  * @abstract        ...
  */
 
+#import <sys/time.h>
 #import "EOSFTPServer.h"
 #import "EOSFTPServer+Private.h"
 #import "EOSFTPServer+AsyncSocketDelegate.h"
@@ -970,6 +971,25 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     }
     
     return serverPath;
+}
+
+- ( NSUInteger )getPASVDataPort
+{
+    struct timeval     tv;
+    unsigned short int seed[ 3 ] = { 0, 0, 0 };
+    NSUInteger         port;
+    
+    gettimeofday( &tv, NULL );
+    
+    seed[ 0 ] = ( tv.tv_sec >> 16 ) & 0xFFFF;
+    seed[ 1 ] =   tv.tv_sec         & 0xFFFF;
+    seed[ 2 ] =   tv.tv_usec        & 0xFFFF;
+    
+    seed48( seed );
+    
+    port = ( NSUInteger )( ( lrand48() % 64512 ) + 1024 );
+    
+    return port;
 }
 
 @end

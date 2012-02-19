@@ -184,10 +184,21 @@
 
 - ( void )processCommandPORT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    NSArray   * parts;
+    NSUInteger  port;
+    NSInteger   high;
+    NSInteger   low;
+    
     __CHECK_AUTH( connection );
     
-    ( void )connection;
-    ( void )args;
+    parts   = [ args componentsSeparatedByString: @"," ];
+    high    = [ [ parts objectAtIndex: 4 ] integerValue ];
+    low     = [ [ parts objectAtIndex: 5 ] integerValue ];
+    port    = ( NSUInteger )( ( ( NSUInteger )high << 8 ) + ( NSUInteger )low );
+    
+    connection.transferMode = EOSFTPServerTransferModePORT;
+    
+    [ connection openDataSocket: port ];
 }
 
 - ( void )processCommandPASV: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args

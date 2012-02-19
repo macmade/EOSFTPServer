@@ -45,11 +45,8 @@ extern "C" {
 
 typedef enum
 {
-	EOSFTPServerTransferModePASV = 0x00,
-    EOSFTPServerTransferModeEPSV = 0x01,
-    EOSFTPServerTransferModePORT = 0x02,
-    EOSFTPServerTransferModeLPRT = 0x03,
-    EOSFTPServerTransferModeEPRT = 0x04
+    EOSFTPServerTransferModePORT = 0x00,
+	EOSFTPServerTransferModePASV = 0x01
 }
 EOSFTPServerTransferMode;
 

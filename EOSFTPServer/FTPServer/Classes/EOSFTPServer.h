@@ -139,5 +139,6 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 - ( void )processCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection;
 - ( NSString * )formattedMessage: ( NSString * )message code: ( EOSFTPServerReplyCode )code;
 - ( NSString * )serverPath: ( NSString * )path;
+- ( NSUInteger )getPASVDataPort;
 
 @end

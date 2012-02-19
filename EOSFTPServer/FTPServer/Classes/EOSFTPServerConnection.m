@@ -39,6 +39,7 @@
 #import "EOSFTPServerConnection.h"
 #import "EOSFTPServerConnection+Private.h"
 #import "EOSFTPServerConnection+AsyncSocketDelegate.h"
+#import "EOSFTPServerConnection+EOSFTPServerDataConnectionDelegate.h"
 #import "EOSFTPServerDataConnection.h"
 #import "AsyncSocket.h"
 #import "EOSFTPServer.h"
@@ -89,14 +90,33 @@
 
 - ( void )dealloc
 {
-    _dataConnection.delegate   = nil;
-    _connectionSocket.delegate = nil;
+    if( _connectionSocket != nil )
+    {
+        [ _connectionSocket disconnect ];
+    }
     
-    [ _connectionSocket release ];
-    [ _dataConnection   release ];
-    [ _server           release ];
-    [ _queuedData       release ];
-    [ _currentDirectory release ];
+    if( _dataListeningSocket != nil )
+    {
+        [ _dataListeningSocket disconnect ];
+    }
+    
+    if( _dataSocket != nil )
+    {
+        [ _dataSocket disconnect ];
+    }
+    
+    _connectionSocket.delegate      = nil;
+    _dataConnection.delegate        = nil;
+    _dataSocket.delegate            = nil;
+    _dataListeningSocket.delegate   = nil;
+    
+    [ _connectionSocket     release ];
+    [ _dataListeningSocket  release ];
+    [ _dataSocket           release ];
+    [ _dataConnection       release ];
+    [ _server               release ];
+    [ _queuedData           release ];
+    [ _currentDirectory     release ];
     
     [ super dealloc ];
 }
@@ -126,6 +146,58 @@
     {
         [ _delegate ftpConnectionDidClose: self ];
     }
+}
+
+- ( BOOL )openDataSocket: ( NSUInteger )port
+{
+    NSError  * e;
+    NSString * address;
+    
+    [ _dataSocket     release ];
+    [ _dataConnection release ];
+    
+    e           = nil;
+    _dataSocket = [ [ AsyncSocket alloc ] initWithDelegate: self ];
+    
+    switch( _transferMode )
+    {
+        case EOSFTPServerTransferModePORT:
+            
+            EOS_FTP_DEBUG( @"Opening data socket (PORT)" );
+            
+            [ _dataSocket connectToHost: [ _connectionSocket connectedHost ] onPort: ( UInt16 )port error: &e ];
+            
+            _dataPort       = port;
+            _dataConnection = [ [ EOSFTPServerDataConnection alloc ] initWithSocket: _dataSocket connection: self queuedData: _queuedData delegate: self ];	
+            
+            [ self sendMessage: [ _server formattedMessage: [ _server messageForReplyCode: 200 ] code: 200 ] ];
+            
+            break;
+            
+        case EOSFTPServerTransferModePASV:
+            
+            EOS_FTP_DEBUG( @"Opening data socket (PASV)" );
+            
+            _dataPort = [ _server getPASVDataPort ];
+            address   = [ [ _connectionSocket localHost ] stringByReplacingOccurrencesOfString: @"." withString: @"," ];
+            
+            [ _dataSocket acceptOnPort: ( UInt16 )_dataPort error: &e ];
+            
+            [ self sendMessage: [ _server formattedMessage: [ NSString stringWithFormat: [ _server messageForReplyCode: 227 ], 0, 0, 0, 0, 0, 0 ]  code: 227 ] ];
+            
+            break;
+            
+        default:
+            
+            [ self sendMessage: [ _server formattedMessage: [ _server messageForReplyCode: 421 ] code: 421 ] ];
+            [ self close ];
+            
+            break;
+    }
+    
+    EOS_FTP_DEBUG( @"Data socket opened - error: %@", e );
+    
+    return YES;
 }
 
 @end

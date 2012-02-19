@@ -48,6 +48,8 @@
 @protected
     
     AsyncSocket                         * _connectionSocket;
+    AsyncSocket                         * _dataSocket;
+    AsyncSocket                         * _dataListeningSocket;
     EOSFTPServer                        * _server;
     EOSFTPServerTransferMode              _transferMode;
     NSUInteger                            _dataPort;
@@ -76,5 +78,6 @@
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
 - ( void )sendMessage: ( NSString * )message;
 - ( void )close;
+- ( BOOL )openDataSocket: ( NSUInteger )port;
 
 @end
