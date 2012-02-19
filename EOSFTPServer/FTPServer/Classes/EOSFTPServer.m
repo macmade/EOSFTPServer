@@ -867,13 +867,36 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 
 - ( void )processCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection
 {
+    NSRange    range;
     NSString * name;
+    NSString * arguments;
+    SEL        selector;
     
-    EOS_FTP_DEBUG( @"Processing command: %@", command );
+    range = [ command rangeOfString: @" " ];
     
-    name = command;
+    if( range.location != NSNotFound )
+    {
+        name      = [ command substringToIndex: range.location ];
+        arguments = [ command substringFromIndex: range.location + 1 ];
+    }
+    else
+    {
+        name      = command;
+        arguments = nil;
+    }
     
-    [ self unrecognizedCommand: name connection: connection ];
+    EOS_FTP_DEBUG( @"Processing command: %@ (%@)", name, arguments );
+    
+    selector = NSSelectorFromString( [ NSString stringWithFormat: @"processCommand%@", [ name uppercaseString ] ] );
+    
+    if( selector != NULL )
+    {
+        [ self performSelector: selector withObject: arguments ];
+    }
+    else
+    {
+        [ self unrecognizedCommand: name connection: connection ];
+    }
 }
 
 @end
