@@ -46,11 +46,12 @@
 
 @implementation EOSFTPServerConnection
 
-@synthesize username      = _username;
-@synthesize authenticated = _authenticated;
-@synthesize encoding      = _encoding;
-@synthesize type          = _type;
-@synthesize delegate      = _delegate;
+@synthesize username            = _username;
+@synthesize authenticated       = _authenticated;
+@synthesize encoding            = _encoding;
+@synthesize type                = _type;
+@synthesize currentDirectory    = _currentDirectory;
+@synthesize delegate            = _delegate;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
 {
@@ -64,6 +65,7 @@
         _dataPort           = 2001;
         _queuedData         = [ [ NSMutableArray alloc ] initWithCapacity: 100 ];
         _encoding           = NSUTF8StringEncoding;
+        _currentDirectory   = [ _server.rootDirectory copy ];
         
         [ _connectionSocket setDelegate: self ];
         
@@ -93,6 +95,7 @@
     [ _dataConnection   release ];
     [ _server           release ];
     [ _queuedData       release ];
+    [ _currentDirectory release ];
     
     [ super dealloc ];
 }
