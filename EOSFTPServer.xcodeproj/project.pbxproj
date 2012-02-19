@@ -712,6 +712,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Prefix.pch";
 				INFOPLIST_FILE = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -723,6 +727,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Prefix.pch";
 				INFOPLIST_FILE = "EOSFTPServer/Mac Demo/EOSFTPServerDesktop-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
