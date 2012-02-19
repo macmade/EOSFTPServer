@@ -142,6 +142,8 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         [ _netService stop ];
     }
     
+    _listenSocket.delegate = nil;
+    
     [ _startDate        release ];
     [ _name             release ];
     [ _versionString    release ];

@@ -76,6 +76,16 @@
     return self;
 }
 
+- ( void )dealloc
+{
+    _dataSocket.delegate = nil;
+    
+    [ _dataSocket           release ];
+    [ _dataListeningSocket  release ];
+    
+    [ super dealloc ];
+}
+
 - ( void )writeString: ( NSString * )str
 {
     NSMutableData * data;

@@ -39,6 +39,7 @@
 #import "EOSFTPServerConnection.h"
 #import "EOSFTPServerConnection+Private.h"
 #import "EOSFTPServerConnection+AsyncSocketDelegate.h"
+#import "EOSFTPServerDataConnection.h"
 #import "AsyncSocket.h"
 #import "EOSFTPServer.h"
 #import "NSData+EOS.h"
@@ -82,6 +83,9 @@
 
 - ( void )dealloc
 {
+    _dataConnection.delegate   = nil;
+    _connectionSocket.delegate = nil;
+    
     [ _connectionSocket release ];
     [ _dataConnection   release ];
     [ _server           release ];

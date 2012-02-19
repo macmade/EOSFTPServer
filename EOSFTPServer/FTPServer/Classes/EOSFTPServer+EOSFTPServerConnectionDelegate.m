@@ -37,6 +37,7 @@
  */
 
 #import "EOSFTPServer+EOSFTPServerConnectionDelegate.h"
+#import "EOSFTPServerConnection.h"
 
 @implementation EOSFTPServer( EOSFTPServerConnectionDelegate )
 
@@ -46,6 +47,8 @@
     {
         [ _delegate ftpServer: self connectionDidClose: connection ];
     }
+    
+    connection.delegate = nil;
     
     [ _connections removeObject: connection ];
 }
