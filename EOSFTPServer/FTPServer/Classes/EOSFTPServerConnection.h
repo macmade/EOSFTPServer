@@ -60,7 +60,7 @@
     id _EOSFTPServerConnection_Reserved[ 5 ] __attribute__( ( unused ) );
 }
 
-@property( atomic, readwrite, assign ) NSString * username;
+@property( atomic, readwrite, copy   ) NSString * username;
 @property( atomic, readwrite, assign ) BOOL       authenticated;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server;
