@@ -65,7 +65,7 @@
         
         if( _server.welcomeMessage.length > 0 )
         {
-            message = [ _server formattedMessage: [ NSString stringWithFormat: @"%@\n%@", [ _server messageForReplyCode: 220 ], _server.quitMessage ] code: 221 ];
+            message = [ _server formattedMessage: [ NSString stringWithFormat: @"%@\n%@", [ _server messageForReplyCode: 220 ], _server.welcomeMessage ] code: 221 ];
         }
         else
         {
