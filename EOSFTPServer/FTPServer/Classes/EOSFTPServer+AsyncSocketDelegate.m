@@ -36,38 +36,29 @@
  * @abstract        ...
  */
 
+#import "EOSFTPServer+AsyncSocketDelegate.h"
 #import "EOSFTPServerConnection.h"
-#import "EOSFTPServerConnection+Private.h"
-#import "EOSFTPServerConnection+AsyncSocketDelegate.h"
 #import "AsyncSocket.h"
-#import "EOSFTPServer.h"
-#import "NSData+EOS.h"
 
-@implementation EOSFTPServerConnection
+@implementation EOSFTPServer( AsyncSocketDelegate )
 
-- ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
+- ( void )onSocket: ( AsyncSocket * )socket didAcceptNewSocket: ( AsyncSocket * )newSocket
 {
-    if( ( self = [ super init ] ) )
-    {
-        _connectionSocket   = [ socket retain ];
-        _server             = [ server retain ];
-        _transferMode       = EOSFTPServerTransferModePASV;
-        _dataPort           = 2001;
-        
-        [ _connectionSocket setDelegate: self ];
-        [ _connectionSocket writeData: [ [ NSString stringWithFormat: @"%@% @", [ _server messageForReplyCode: 220 ], _server.welcomeMessage ] dataUsingEncoding: NSUTF8StringEncoding ] withTimeout: -1 tag: 0 ];
-        [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
-    }
+    EOSFTPServerConnection * connection;
     
-    return self;
+    ( void )socket;
+    
+    connection = [ [ EOSFTPServerConnection alloc ] initWithSocket: newSocket server: self ];
+    
+    [ _connections addObject: connection ];
+    [ connection release ];
 }
 
-- ( void )dealloc
+- ( void )onSocket: ( AsyncSocket * )socket didConnectToHost: ( NSString * )host port: ( UInt16 )port
 {
-    [ _connectionSocket release ];
-    [ _server           release ];
-    
-    [ super dealloc ];
+    ( void )socket;
+    ( void )host;
+    ( void )port;
 }
 
 @end

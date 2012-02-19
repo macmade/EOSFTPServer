@@ -30,44 +30,23 @@
 /* $Id$ */
 
 /*!
- * @file            ...
+ * @header          ...
  * @author          Jean-David Gadina <macmade@eosgarden>
  * @copyright       (c) 2012, eosgarden
  * @abstract        ...
  */
 
-#import "EOSFTPServerConnection.h"
-#import "EOSFTPServerConnection+Private.h"
-#import "EOSFTPServerConnection+AsyncSocketDelegate.h"
-#import "AsyncSocket.h"
-#import "EOSFTPServer.h"
-#import "NSData+EOS.h"
+#ifndef _EOS_FTP_SERVER_FUNCTIONS_H_
+#define _EOS_FTP_SERVER_FUNCTIONS_H_
 
-@implementation EOSFTPServerConnection
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-- ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
-{
-    if( ( self = [ super init ] ) )
-    {
-        _connectionSocket   = [ socket retain ];
-        _server             = [ server retain ];
-        _transferMode       = EOSFTPServerTransferModePASV;
-        _dataPort           = 2001;
-        
-        [ _connectionSocket setDelegate: self ];
-        [ _connectionSocket writeData: [ [ NSString stringWithFormat: @"%@% @", [ _server messageForReplyCode: 220 ], _server.welcomeMessage ] dataUsingEncoding: NSUTF8StringEncoding ] withTimeout: -1 tag: 0 ];
-        [ _connectionSocket readDataToData: [ NSData CRLFData ] withTimeout: EOS_FTP_SERVER_READ_TIMEOUT tag: EOS_FTP_SERVER_CLIENT_REQUEST ];
-    }
-    
-    return self;
+int get_ip_address( const int domain, const char * iface, char * buf );
+
+#ifdef __cplusplus
 }
+#endif
 
-- ( void )dealloc
-{
-    [ _connectionSocket release ];
-    [ _server           release ];
-    
-    [ super dealloc ];
-}
-
-@end
+#endif /* _EOS_FTP_SERVER_FUNCTIONS_H_ */

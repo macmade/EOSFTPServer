@@ -37,8 +37,11 @@
  */
 
 #import "EOSFTPServer.h"
+#import "EOSFTPServer+Private.h"
+#import "EOSFTPServer+AsyncSocketDelegate.h"
 #import "EOSFTPServerUser.h"
 #import "NSString+EOS.h"
+#import "AsyncSocket.h"
 
 NSString * const EOSFTPServerException = @"EOSFTPServerException";
 
@@ -108,13 +111,17 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
             @throw [ NSException exceptionWithName: EOSFTPServerException reason: [ NSString stringWithFormat: @"Port number %u requires root privileges", port ] userInfo: nil ];
         }
         
-        _port           = port;
-        _name           = @"EOSFTPServer";
-        _versionString  = @"0.1.0-alpha";
-        _welcomeMessage = @"Welcome to the EOSFTPServer.";
-        _quitMessage    = @"Thank you for using the EOSFTPServer. Good bye!";
-        _users          = [ [ NSMutableArray arrayWithCapacity: 100 ] retain ];
-        _rootDirectory  = @"/";
+        _port               = port;
+        _name               = @"EOSFTPServer";
+        _versionString      = @"0.1.0-alpha";
+        _welcomeMessage     = @"Welcome to the EOSFTPServer.";
+        _quitMessage        = @"Thank you for using the EOSFTPServer. Good bye!";
+        _users              = [ [ NSMutableArray arrayWithCapacity: 100 ] retain ];
+        _rootDirectory      = @"/";
+        _connections        = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
+        _connectedSockets   = [ [ NSMutableArray alloc ] initWithCapacity: 10 ];
+        _listenSocket       = [ [ AsyncSocket alloc ] initWithDelegate: self ];
+        _netService         = [ [ NSNetService alloc ] initWithDomain: @"" type: @"_ftp._tcp." name: _name port: ( int )_port ];
     }
     
     return self;
@@ -122,6 +129,16 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 
 - ( void )dealloc
 {
+    if( _listenSocket != nil )
+    {
+        [ _listenSocket disconnect ];
+    }
+    
+    if( _netService != nil )
+    {
+        [ _netService stop ];
+    }
+    
     [ _startDate        release ];
     [ _name             release ];
     [ _versionString    release ];
@@ -129,12 +146,18 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     [ _quitMessage      release ];
     [ _users            release ];
     [ _rootDirectory    release ];
+    [ _connections      release ];
+    [ _connectedSockets release ];
+    [ _listenSocket     release ];
+    [ _netService       release ];
     
     [ super dealloc ];
 }
 
 - ( BOOL )start
 {
+    NSError * e;
+    
     @synchronized( self )
     {
         if( _running == YES )
@@ -142,12 +165,21 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
             return YES;
         }
         
+        if( _rootDirectory.length == 0 )
+        {
+            @throw [ NSException exceptionWithName: EOSFTPServerException reason: [ NSString stringWithFormat: @"No root directory set" ] userInfo: nil ];
+        }
+        
         [ _startDate release ];
         
         _startDate = [ [ NSDate date ] retain ];
         _running   = YES;
+        e          = nil;
         
-        return YES;
+        [ _listenSocket acceptOnPort: ( UInt16 )_port error: &e ];
+        [ _netService publish ];
+        
+        return e == nil;
     }
 }
 
@@ -159,6 +191,19 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         {
             return YES;
         }
+        
+        if( _listenSocket != nil )
+        {
+            [ _listenSocket disconnect ];
+        }
+        
+        if( _netService != nil )
+        {
+            [ _netService stop ];
+        }
+        
+        [ _connectedSockets removeAllObjects ];
+        [ _connections      removeAllObjects ];
         
         [ _startDate release ];
         

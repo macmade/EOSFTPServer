@@ -49,6 +49,7 @@
     NSTextField         * _serverPort;
     EOSFTPServer        * _server;
     NSMutableArray      * _users;
+    NSWindow            * _addUserWindow;
     
 @private
     
@@ -60,6 +61,7 @@
 @property( nonatomic, readwrite, retain ) IBOutlet NSButton    * stopButton;
 @property( nonatomic, readwrite, retain ) IBOutlet NSButton    * allowAnonymous;
 @property( nonatomic, readwrite, retain ) IBOutlet NSTextField * serverPort;
+@property( nonatomic, readwrite, retain ) IBOutlet NSWindow    * addUserWindow;
 
 - ( IBAction )addUser: ( id )sender;
 - ( IBAction )deleteUser: ( id )sender;

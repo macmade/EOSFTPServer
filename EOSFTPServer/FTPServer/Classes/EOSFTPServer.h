@@ -82,6 +82,7 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandHELP;
 FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 
 @class EOSFTPServerUser;
+@class AsyncSocket;
 
 @interface EOSFTPServer: NSObject
 {
@@ -99,6 +100,10 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
     BOOL                        _chroot;
     NSString                  * _rootDirectory;
     BOOL                        _allowAnonymousUsers;
+    NSMutableArray            * _connections;
+    NSMutableArray            * _connectedSockets;
+    AsyncSocket               * _listenSocket;
+    NSNetService              * _netService;
     id < EOSFTPServerDelegate > _delegate;
     
 @private
@@ -118,7 +123,6 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 @property( atomic, readwrite, assign ) BOOL       chroot;
 @property( atomic, readwrite, copy   ) NSString * rootDirectory;
 @property( atomic, readwrite, assign ) BOOL       allowAnonymousUsers;
-
 @property( atomic, readwrite, assign ) id < EOSFTPServerDelegate > delegate;
 
 - ( id )initWithPort: ( NSUInteger )port;

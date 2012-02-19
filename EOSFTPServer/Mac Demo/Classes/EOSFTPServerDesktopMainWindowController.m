@@ -48,6 +48,7 @@
 @synthesize stopButton      = _stopButton;
 @synthesize allowAnonymous  = _allowAnonymous;
 @synthesize serverPort      = _serverPort;
+@synthesize addUserWindow   = _addUserWindow;
 
 - ( id )init
 {
@@ -70,6 +71,7 @@
     [ _serverPort       release ];
     [ _server           release ];
     [ _users            release ];
+    [ _addUserWindow    release ];
     
     [ super dealloc ];
 }
@@ -101,6 +103,8 @@
 - ( IBAction )addUser: ( id )sender
 {
     ( void )sender;
+    
+    [ NSApp beginSheetModalForWindow: self.window modalDelegate: nil didEndSelector: NULL contextInfo: nil ];
 }
 
 - ( IBAction )deleteUser: ( id )sender
