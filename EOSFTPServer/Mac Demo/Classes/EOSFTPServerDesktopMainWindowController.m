@@ -40,6 +40,7 @@
 #import "EOSFTPServerDesktopMainWindowController+NSTableViewDataSource.h"
 #import "EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h"
 #import "EOSFTPServer.h"
+#import "EOSFTPServerUser.h"
 
 @implementation EOSFTPServerDesktopMainWindowController
 
@@ -78,9 +79,19 @@
 
 - ( void )windowDidLoad
 {
+    NSDictionary     * userInfos;
+    EOSFTPServerUser * user;
+    
     [ super windowDidLoad ];
     
     _users = [ [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"Users" ] mutableCopy ];
+    
+    for( userInfos in _users )
+    {
+        user = [ EOSFTPServerUser userWithName: [ userInfos objectForKey: @"Name" ] md5Password: [ userInfos objectForKey: @"Password" ] ];
+        
+        [ _server addUser: user ];
+    }
     
     [ _serverPort     setStringValue:  [ NSString stringWithFormat: NSLocalizedString( @"ServerPort", nil ), _server.port ] ];
     [ _allowAnonymous setIntegerValue: [ [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"AllowAnonymous" ] integerValue ] ];
