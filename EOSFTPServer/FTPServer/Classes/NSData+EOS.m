@@ -38,11 +38,11 @@
 
 #import "NSData+EOS.h"
 
-static uint8_t  __LF     = 0x10;
-static uint8_t  __CR     = 0x13;
+static uint8_t  __LF     = 0x0A;
+static uint8_t  __CR     = 0x0D;
 static uint8_t  __NULL   = 0x00;
-static uint16_t __LFCR   = 0x1013;
-static uint16_t __CRLF   = 0x1310;
+static uint16_t __LFCR   = 0x0A0D;
+static uint16_t __CRLF   = 0x0D0A;
 
 @implementation NSData( EOS )
 
