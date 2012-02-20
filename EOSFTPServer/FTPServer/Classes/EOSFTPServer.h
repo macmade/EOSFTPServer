@@ -84,6 +84,7 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 @class EOSFTPServerUser;
 @class EOSFTPServerConnection;
 @class AsyncSocket;
+@class EOSFile;
 
 @interface EOSFTPServer: NSObject
 {
@@ -138,8 +139,8 @@ FOUNDATION_EXPORT EOSFTPServerCommand EOSFTPServerCommandNOOP;
 - ( NSString * )messageForReplyCode: ( EOSFTPServerReplyCode )code;
 - ( void )processCommand: ( NSString * )command connection: ( EOSFTPServerConnection * )connection;
 - ( NSString * )formattedMessage: ( NSString * )message code: ( EOSFTPServerReplyCode )code;
-- ( NSString * )absolutePathForConnection: ( EOSFTPServerConnection * )connection subPath: ( NSString * )path;
-- ( NSString * )serverPathForConnection: ( EOSFTPServerConnection * )connection subPath: ( NSString * )path;
+- ( EOSFile * )fileAtPath: ( NSString * )path connection: ( EOSFTPServerConnection * )connection;
+- ( NSString * )serverPathForFile: ( EOSFile * )file;
 - ( NSUInteger )getPASVDataPort;
 
 @end

@@ -45,6 +45,7 @@
 #import "EOSFTPServerConnection.h"
 #import "NSString+EOS.h"
 #import "AsyncSocket.h"
+#import "EOSFile.h"
 
 NSString * const EOSFTPServerException = @"EOSFTPServerException";
 
@@ -93,7 +94,6 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
 @synthesize welcomeMessage      = _welcomeMessage;
 @synthesize quitMessage         = _quitMessage;
 @synthesize chroot              = _chroot;
-@synthesize rootDirectory       = _rootDirectory;
 @synthesize allowAnonymousUsers = _allowAnonymousUsers;
 @synthesize delegate            = _delegate;
 
@@ -946,50 +946,56 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     return formattedMessage;
 }
 
-- ( NSString * )absolutePathForConnection: ( EOSFTPServerConnection * )connection subPath: ( NSString * )path
+- ( EOSFile * )fileAtPath: ( NSString * )path connection: ( EOSFTPServerConnection * )connection
 {
-    NSString * root;
-    
-    root = ( [ _rootDirectory hasSuffix: @"/" ] ) ? [ _rootDirectory substringToIndex: _rootDirectory.length - 2 ] : _rootDirectory;
-    
-    if( [ path hasPrefix: @"/" ] == NO )
+    if( path.length == 0 )
+    {
+        path = connection.currentDirectory;
+    }
+    else if( [ path hasPrefix: @"/" ] == NO )
     {
         path = [ connection.currentDirectory stringByAppendingPathComponent: path ];
     }
-    
-    if( _chroot == YES )
+    else if( _chroot == YES && [ path isEqualToString: @"/" ] == YES )
     {
-        if( [ path hasPrefix: root ] == NO )
-        {
-            return nil;
-        }
+        path = _rootDirectory;
+    }
+    else if( _chroot == YES && [ path hasPrefix: @"/" ] == YES )
+    {
+        path = [ _rootDirectory stringByAppendingPathComponent: path ];
     }
     
-    return ( [ [ NSFileManager defaultManager ] fileExistsAtPath: path ] ) ? path : nil;
-}
-
-- ( NSString * )serverPathForConnection: ( EOSFTPServerConnection * )connection subPath: ( NSString * )path
-{
-    NSString * root;
-    NSString * absolutePath;
-    
-    
-    root         = ( [ _rootDirectory hasSuffix: @"/" ] ) ? [ _rootDirectory substringToIndex: _rootDirectory.length - 2 ] : _rootDirectory;
-    absolutePath = [ self absolutePathForConnection: connection subPath: path ];
-    
-    if( absolutePath == nil )
+    if( _chroot == YES && [ path hasPrefix: _rootDirectory ] == NO )
     {
         return nil;
     }
     
-    if( _chroot == YES )
+    if( [ [ NSFileManager defaultManager ] fileExistsAtPath: path ] == NO )
     {
-        absolutePath = [ absolutePath substringFromIndex: root.length ];
-        
-        return ( [ absolutePath hasPrefix: @"/" ] == YES ) ? [ absolutePath substringFromIndex: 1 ] : absolutePath;
+        return nil;
     }
     
-    return absolutePath;
+    return [ EOSFile fileWithPath: path ];
+}
+
+- ( NSString * )serverPathForFile: ( EOSFile * )file
+{
+    if( file == nil )
+    {
+        return nil;
+    }
+    
+    if( _chroot == NO )
+    {
+        return file.path;
+    }
+    
+    if( [ file.path hasPrefix: _rootDirectory ] == YES )
+    {
+        return [ file.path substringFromIndex: _rootDirectory.length - 1 ];
+    }
+    
+    return nil;
 }
 
 - ( NSUInteger )getPASVDataPort
@@ -1009,6 +1015,44 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     port = ( NSUInteger )( ( lrand48() % 64512 ) + 1024 );
     
     return port;
+}
+
+- ( NSString * )rootDirectory
+{
+    @synchronized( self )
+    {
+        return _rootDirectory;
+    }
+}
+
+- ( void )setRootDirectory: ( NSString * )path
+{
+    BOOL isDir;
+    
+    @synchronized( self )
+    {
+        [ _rootDirectory release ];
+        
+        isDir          = NO;
+        _rootDirectory = nil;
+        
+        if( [ path hasSuffix: @"/" ] == NO )
+        {
+            path = [ path stringByAppendingString: @"/" ];
+        }
+        
+        if( [ [ NSFileManager defaultManager ] fileExistsAtPath: path isDirectory: &isDir ] == NO )
+        {
+            @throw [ NSException exceptionWithName: EOSFTPServerException reason: [ NSString stringWithFormat: @"Path %@ does not exist", path ] userInfo: nil ];
+        }
+        
+        if( isDir == NO )
+        {
+            @throw [ NSException exceptionWithName: EOSFTPServerException reason: [ NSString stringWithFormat: @"Path %@ is not a directory", path ] userInfo: nil ];
+        }
+        
+        _rootDirectory = [ path copy ];
+    }
 }
 
 @end
