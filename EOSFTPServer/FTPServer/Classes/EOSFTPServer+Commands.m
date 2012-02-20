@@ -135,10 +135,21 @@
 
 - ( void )processCommandCWD:  ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    EOSFile * file;
+    
     __CHECK_AUTH( connection );
     
-    ( void )connection;
-    ( void )args;
+    file = [ self fileAtPath: args connection: connection ];
+    
+    if( file == nil || file.type != EOSFileTypeDirectory )
+    {
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 550 ] code: 550 ] ];
+    }
+    else
+    {
+        [ connection setCurrentDirectory: file.path ];
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 250 ] code: 250 ] ];
+    }
 }
 
 - ( void )processCommandCDUP: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
@@ -361,7 +372,9 @@
     
     __CHECK_AUTH( connection );
     
-    dir = [ self serverPathForConnection: connection subPath: args ];
+    ( void )args;
+    
+    dir = [ self serverPathForFile: [ EOSFile fileWithPath: connection.currentDirectory ] ];
     
     if( dir == nil )
     {
@@ -402,32 +415,32 @@
 
 - ( void )processCommandNLST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
+    EOSFile                 * directory;
     NSDirectoryEnumerator   * enumerator;
     NSMutableArray          * listing;
-    NSString                * absolutePath;
     NSString                * filePath;
     EOSFile                 * file;
     
     __CHECK_AUTH( connection );
     
-    absolutePath = [ self absolutePathForConnection: connection subPath: args ];
+    directory = [ self fileAtPath: args connection: connection ];
     
-    if( absolutePath == nil )
+    if( directory == nil )
     {
         [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 450 ] code: 450 ] ];
     }
     else
     {
-        enumerator    = [ [ NSFileManager defaultManager ]  enumeratorAtPath: absolutePath ];
+        enumerator    = [ [ NSFileManager defaultManager ]  enumeratorAtPath: directory.path ];
         listing       = [ NSMutableArray arrayWithCapacity: 100 ];
         
-        EOS_FTP_DEBUG( @"Listing directory: %@", absolutePath );
+        EOS_FTP_DEBUG( @"Listing directory: %@", directory.path );
         
         while( ( filePath = [ enumerator nextObject ] ) )
         {
             [ enumerator skipDescendents ];
             
-            filePath   = [ absolutePath stringByAppendingPathComponent: filePath ];
+            filePath   = [ directory.path stringByAppendingPathComponent: filePath ];
             file       = [ EOSFile fileWithPath: filePath ];
             
             if( file == nil )
@@ -435,7 +448,7 @@
                 continue;
             }
             
-            [ listing addObject: [ self serverPathForConnection: connection subPath: filePath ] ];
+            [ listing addObject: [ self serverPathForFile: file ] ];
         }
         
         if( listing.count > 0 )
