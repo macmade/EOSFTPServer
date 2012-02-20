@@ -58,7 +58,6 @@
     NSMutableArray          * listing;
     NSString                * absolutePath;
     NSString                * filePath;
-    NSError                 * error;
     NSUInteger                subFilesCount;
     EOSFile                 * file;
     NSString                * fileInfos;
@@ -85,7 +84,6 @@
     {
         [ enumerator skipDescendents ];
         
-        error      = nil;
         filePath   = [ absolutePath stringByAppendingPathComponent: filePath ];
         file       = [ EOSFile fileWithPath: filePath ];
         

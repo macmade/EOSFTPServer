@@ -40,6 +40,8 @@
 #import "EOSFTPServer+Private.h"
 #import "EOSFTPServerConnection.h"
 #import "EOSFTPServerUser.h"
+#import "EOSFile.h"
+#import "EOSFile.h"
 
 #define __CHECK_AUTH( __c__ )   if( __c__.authenticated == NO )                                                                         \
                                 {                                                                                                       \
@@ -400,7 +402,52 @@
 
 - ( void )processCommandNLST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
 {
-    [ self processCommandLIST: connection arguments: args ];
+    NSDirectoryEnumerator   * enumerator;
+    NSMutableArray          * listing;
+    NSString                * absolutePath;
+    NSString                * filePath;
+    EOSFile                 * file;
+    
+    __CHECK_AUTH( connection );
+    
+    absolutePath = [ self absolutePathForConnection: connection subPath: args ];
+    
+    if( absolutePath == nil )
+    {
+        [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 450 ] code: 450 ] ];
+    }
+    else
+    {
+        enumerator    = [ [ NSFileManager defaultManager ]  enumeratorAtPath: absolutePath ];
+        listing       = [ NSMutableArray arrayWithCapacity: 100 ];
+        
+        EOS_FTP_DEBUG( @"Listing directory: %@", absolutePath );
+        
+        while( ( filePath = [ enumerator nextObject ] ) )
+        {
+            [ enumerator skipDescendents ];
+            
+            filePath   = [ absolutePath stringByAppendingPathComponent: filePath ];
+            file       = [ EOSFile fileWithPath: filePath ];
+            
+            if( file == nil )
+            {
+                continue;
+            }
+            
+            [ listing addObject: [ self serverPathForConnection: connection subPath: filePath ] ];
+        }
+        
+        if( listing.count > 0 )
+        {
+            [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 150 ] code: 150 ] ];	
+            [ connection sendDataString: [ listing componentsJoinedByString: @"\x0D\x0A" ] ];
+        }
+        else
+        {
+            [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 450 ] code: 450 ] ];
+        }
+    }
 }
 
 - ( void )processCommandSITE: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
