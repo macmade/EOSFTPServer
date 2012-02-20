@@ -180,7 +180,7 @@
         [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 221 ] code: 221 ] ];
     }
     
-    [ connection close ];
+    [ connection performSelector: @selector( close ) withObject: nil afterDelay: 1 ];
 }
 
 - ( void )processCommandPORT: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
