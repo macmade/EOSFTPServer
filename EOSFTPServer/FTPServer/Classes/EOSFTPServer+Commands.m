@@ -454,8 +454,9 @@
 {
     __CHECK_AUTH( connection );
     
-    ( void )connection;
     ( void )args;
+    
+    [ connection sendMessage: [ self formattedMessage: [ self messageForReplyCode: 500 ] code: 500 ] ];
 }
 
 - ( void )processCommandSYST: ( EOSFTPServerConnection * )connection arguments: ( NSString * )args
