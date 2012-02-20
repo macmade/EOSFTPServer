@@ -143,6 +143,13 @@
             
             return nil;
         }
+        
+        if( _type == EOSFileTypeDirectory && [ _path hasSuffix: @"/" ] == NO )
+        {
+            [ _path autorelease ];
+            
+            _path = [ [ _path stringByAppendingString: @"/" ] copy ];
+        }
     }
     
     return self;
