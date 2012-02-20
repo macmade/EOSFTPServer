@@ -52,39 +52,39 @@
 
 - ( NSString * )directoryListingForConnection: ( EOSFTPServerConnection * )connection path: ( NSString * )path
 {
+    EOSFile                 * directory;
     NSDateFormatter         * dateFormatter;
     NSLocale                * locale;
     NSDirectoryEnumerator   * enumerator;
     NSMutableArray          * listing;
-    NSString                * absolutePath;
     NSString                * filePath;
     NSUInteger                subFilesCount;
     EOSFile                 * file;
     NSString                * fileInfos;
     
-    absolutePath = [ self absolutePathForConnection: connection subPath: path ];
+    directory = [ self fileAtPath: path connection: connection ];
     
-    if( absolutePath == nil )
+    if( directory == nil )
     {
         return nil;
     }
     
     dateFormatter = [ NSDateFormatter new ];
     locale        = [ [ NSLocale alloc ] initWithLocaleIdentifier: @"en" ];
-    enumerator    = [ [ NSFileManager defaultManager ]  enumeratorAtPath: absolutePath ];
+    enumerator    = [ [ NSFileManager defaultManager ]  enumeratorAtPath: directory.path ];
     listing       = [ NSMutableArray arrayWithCapacity: 100 ];
     
     [ dateFormatter setDateFormat: @"MMM dd HH:mm" ]; 
     [ dateFormatter setLocale: locale ]; 
     [ locale release ];
     
-    EOS_FTP_DEBUG( @"Listing directory: %@", absolutePath );
+    EOS_FTP_DEBUG( @"Listing directory: %@", directory.path );
     
     while( ( filePath = [ enumerator nextObject ] ) )
     {
         [ enumerator skipDescendents ];
         
-        filePath   = [ absolutePath stringByAppendingPathComponent: filePath ];
+        filePath   = [ directory.path stringByAppendingPathComponent: filePath ];
         file       = [ EOSFile fileWithPath: filePath ];
         
         if( file == nil )
@@ -104,7 +104,7 @@
             file.group,
             file.bytes,
             [ dateFormatter stringFromDate: file.modificationDate ],
-            [ self serverPathForConnection: connection subPath: filePath ]
+            [ [ self serverPathForFile: file ] lastPathComponent ]
         ];
         
         [ listing addObject: fileInfos ];
