@@ -383,11 +383,6 @@
     
     __CHECK_AUTH( connection );
     
-    if( [ args hasPrefix: @"-al" ] )
-    {
-        args = [ args substringFromIndex: 3 ];
-    }
-    
     list = [ self directoryListingForConnection: connection path: args ];
     
     if( list.length > 0 )
