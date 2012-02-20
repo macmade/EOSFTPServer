@@ -52,7 +52,6 @@
 @synthesize authenticated       = _authenticated;
 @synthesize encoding            = _encoding;
 @synthesize type                = _type;
-@synthesize currentDirectory    = _currentDirectory;
 @synthesize delegate            = _delegate;
 
 - ( id )initWithSocket: ( AsyncSocket * )socket server: ( EOSFTPServer * )server
@@ -226,6 +225,45 @@
     EOS_FTP_DEBUG( @"Data socket opened - error: %@", e );
     
     return YES;
+}
+
+- ( NSString * )currentDirectory
+{
+    @synchronized( self )
+    {
+        return _currentDirectory;
+    }
+}
+
+- ( void )setCurrentDirectory: ( NSString * )path
+{
+    BOOL isDir;
+    
+    @synchronized( self )
+    {
+        [ _currentDirectory release ];
+        
+        isDir             = NO;
+        _currentDirectory = nil;
+        
+        if( [ path hasSuffix: @"/" ] == NO )
+        {
+            path = [ path stringByAppendingString: @"/" ];
+        }
+        
+        if( [ [ NSFileManager defaultManager ] fileExistsAtPath: path isDirectory: &isDir ] == NO )
+        {
+            _currentDirectory = _server.rootDirectory;
+        }
+        else if( isDir == NO )
+        {
+            _currentDirectory = _server.rootDirectory;
+        }
+        else
+        {
+            _currentDirectory = [ path copy ];
+        }
+    }
 }
 
 @end
