@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012, Jean-David Gadina <macmade@eosgarden.com>
+ * Copyright (c) 2012, Jean-David Gadina - www.xs-labs.com
  * Distributed under the Boost Software License, Version 1.0.
  * 
  * Boost Software License - Version 1.0 - August 17th, 2003
@@ -31,8 +31,8 @@
 
 /*!
  * @file            ...
- * @author          Jean-David Gadina <macmade@eosgarden>
- * @copyright       (c) 2012, eosgarden
+ * @author          Jean-David Gadina - www.xs-labs.com
+ * @copyright       (c) 2012, XS-Labs
  * @abstract        ...
  */
 
@@ -111,7 +111,7 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
     {
         if( getuid() != 0 && port <= 1024 )
         {
-            @throw [ NSException exceptionWithName: EOSFTPServerException reason: [ NSString stringWithFormat: @"Port number %u requires root privileges", port ] userInfo: nil ];
+            @throw [ NSException exceptionWithName: EOSFTPServerException reason: [ NSString stringWithFormat: @"Port number %lu requires root privileges", ( unsigned long )port ] userInfo: nil ];
         }
         
         _port               = port;
@@ -929,16 +929,16 @@ EOSFTPServerCommand EOSFTPServerCommandNOOP = @"NOOP";
         
         if( lines.count > 0 )
         {
-            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n%@\n%u %@", code, firstLine, [ lines componentsJoinedByString: @"\n" ], code, lastLine ];
+            formattedMessage = [ NSString stringWithFormat: @"%lu-%@\n%@\n%lu %@", ( unsigned long )code, firstLine, [ lines componentsJoinedByString: @"\n" ], ( unsigned long )code, lastLine ];
         }
         else
         {
-            formattedMessage = [ NSString stringWithFormat: @"%u-%@\n%u %@", code, firstLine, code, lastLine ];
+            formattedMessage = [ NSString stringWithFormat: @"%lu-%@\n%lu %@", ( unsigned long )code, firstLine, ( unsigned long )code, lastLine ];
         }
     }
     else
     {
-        formattedMessage = [ NSString stringWithFormat: @"%u %@", code, message ];
+        formattedMessage = [ NSString stringWithFormat: @"%lu %@", ( unsigned long )code, message ];
     }
     
     [ lines release ];

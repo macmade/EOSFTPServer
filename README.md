@@ -1,18 +1,23 @@
 EOSFTPServer
 ============
 
-FTP Server Library for Mac OS X and iOS
----------------------------------------
+About
+-----
 
-Copyright (c) 2012, Jean-David Gadina <macmade@eosgarden.com>  
-Distributed under the Boost Software License, Version 1.0.
+A project to create a complete, standard compliant, multi-user, Objective-C (Mac OS X / iOS) FTP server.
 
-### About:
+License
+-------
 
-...
+EOSFTPServer is released under the terms of the Boost Software License - Version 1.0.
 
-### License:
+Repository Infos
+----------------
 
-EOSFTPServer is released under the terms of the [Boost][1] Software License - Version 1.0.
-
-[1]: http://www.boost.org/LICENSE_1_0.txt   "BOOST"
+    Owner:			Jean-David Gadina - XS-Labs
+    Web:			www.xs-labs.com
+    Blog:			www.noxeos.com
+    Twitter:		@macmade
+    GitHub:			github.com/macmade
+    LinkedIn:		ch.linkedin.com/in/macmade/
+    StackOverflow:	stackoverflow.com/users/182676/macmade

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012, Jean-David Gadina <macmade@eosgarden.com>
+ * Copyright (c) 2012, Jean-David Gadina - www.xs-labs.com
  * Distributed under the Boost Software License, Version 1.0.
  * 
  * Boost Software License - Version 1.0 - August 17th, 2003
@@ -31,8 +31,8 @@
 
 /*!
  * @file            ...
- * @author          Jean-David Gadina <macmade@eosgarden>
- * @copyright       (c) 2012, eosgarden
+ * @author          Jean-David Gadina - www.xs-labs.com
+ * @copyright       (c) 2012, XS-Labs
  * @abstract        ...
  */
 
@@ -44,6 +44,10 @@
 #import "AsyncSocket.h"
 #import "EOSFTPServer.h"
 #import "NSData+EOS.h"
+
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wformat-nonliteral"
+#endif
 
 @implementation EOSFTPServerConnection
 

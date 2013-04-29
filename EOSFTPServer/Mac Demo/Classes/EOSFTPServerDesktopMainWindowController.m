@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012, Jean-David Gadina <macmade@eosgarden.com>
+ * Copyright (c) 2012, Jean-David Gadina - www.xs-labs.com
  * Distributed under the Boost Software License, Version 1.0.
  * 
  * Boost Software License - Version 1.0 - August 17th, 2003
@@ -31,8 +31,8 @@
 
 /*!
  * @file            ...
- * @author          Jean-David Gadina <macmade@eosgarden>
- * @copyright       (c) 2012, eosgarden
+ * @author          Jean-David Gadina - www.xs-labs.com
+ * @copyright       (c) 2012, XS-Labs
  * @abstract        ...
  */
 
@@ -41,6 +41,74 @@
 #import "EOSFTPServerDesktopMainWindowController+NSTableViewDelegate.h"
 #import "EOSFTPServer.h"
 #import "EOSFTPServerUser.h"
+
+@interface NSScrollView( DDNAToolKit )
+
+- ( void )scrollToBottom;
+
+@end
+
+@interface NSTableView( DDNAToolKit )
+
+- ( void )scrollToBottom;
+
+@end
+
+@implementation NSScrollView( DDNAToolKit )
+
+- ( void )scrollToBottom
+{
+    NSPoint newScrollOrigin;
+    NSRect  contentRect;
+    NSRect  documentRect;
+    float   scrollXPos;
+    CGFloat xPos;
+    
+    contentRect  = [ ( NSView * )[ self contentView ] bounds ];
+    documentRect = [ ( NSView * )[ self documentView ] bounds ];
+    scrollXPos   = [ [ self horizontalScroller ] floatValue  ];
+    xPos         = ( documentRect.size.width - contentRect.size.width ) * scrollXPos;
+    
+    if( [ [ self documentView ] isFlipped ] )
+    {
+        newScrollOrigin = NSMakePoint( xPos, NSMaxY( documentRect ) - NSHeight( contentRect  ) );
+    }
+    else
+    {
+        newScrollOrigin = NSMakePoint( xPos, ( float )0.0 );
+    }
+    
+    [ [ self documentView ] scrollPoint: newScrollOrigin ];
+}
+
+@end
+
+@implementation NSTableView( DDNAToolKit )
+
+- ( void )scrollToBottom
+{
+    NSView * view;
+    
+    view = self.superview;
+    
+    while( 1 )
+    {
+        if( view == nil )
+        {
+            break;
+        }
+        
+        if( [ view isKindOfClass: [ NSScrollView class ] ] )
+        {
+            [ ( NSScrollView * )view scrollToBottom ];
+            break;
+        }
+        
+        view = view.superview;
+    }
+}
+
+@end
 
 @implementation EOSFTPServerDesktopMainWindowController
 
@@ -111,6 +179,8 @@
         [ _startButton setEnabled: YES ];
         [ _stopButton  setEnabled: NO ];
     }
+    
+    [ _tableView performSelector: @selector( scrollToBottom ) withObject: nil afterDelay: 1 ];
 }
 
 - ( IBAction )addUser: ( id )sender

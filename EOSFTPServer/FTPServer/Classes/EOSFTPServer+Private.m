@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012, Jean-David Gadina <macmade@eosgarden.com>
+ * Copyright (c) 2012, Jean-David Gadina - www.xs-labs.com
  * Distributed under the Boost Software License, Version 1.0.
  * 
  * Boost Software License - Version 1.0 - August 17th, 2003
@@ -31,8 +31,8 @@
 
 /*!
  * @file            ...
- * @author          Jean-David Gadina <macmade@eosgarden>
- * @copyright       (c) 2012, eosgarden
+ * @author          Jean-David Gadina - www.xs-labs.com
+ * @copyright       (c) 2012, XS-Labs
  * @abstract        ...
  */
 
@@ -96,10 +96,10 @@
         subFilesCount = ( subFilesCount < 1 ) ? 1 : subFilesCount;
         
         fileInfos = [ NSString stringWithFormat:
-            @"%c%@ %5u %12@ %12@ %10qu %@ %@",
+            @"%c%@ %5lu %12@ %12@ %10lu %@ %@",
             ( file.type == EOSFileTypeDirectory ) ? 'd' : '-',
             file.humanReadablePermissions,
-            subFilesCount,
+            ( unsigned long )subFilesCount,
             file.owner,
             file.group,
             file.bytes,

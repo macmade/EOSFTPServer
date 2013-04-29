@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'EOSFTPServerDesktop' target in the 'EOSFTPServerDesktop' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
