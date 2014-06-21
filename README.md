@@ -1,6 +1,8 @@
 EOSFTPServer
 ============
 
+[![Build Status](https://travis-ci.org/macmade/EOSFTPServer.svg?branch=master)](https://travis-ci.org/macmade/EOSFTPServer)
+
 About
 -----
 

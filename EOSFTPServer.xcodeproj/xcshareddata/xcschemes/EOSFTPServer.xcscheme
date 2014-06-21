@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "05E4459A14F03343005A9A73"
-               BuildableName = "libAsyncSocket.a"
-               BlueprintName = "AsyncSocket"
+               BlueprintIdentifier = "05779EB514EC655E006C5D55"
+               BuildableName = "libEOSFTPServer.a"
+               BlueprintName = "EOSFTPServer"
                ReferencedContainer = "container:EOSFTPServer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
