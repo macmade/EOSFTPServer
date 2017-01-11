@@ -68,7 +68,7 @@
     
     /* File flags */
     
-    status = stat( ( char * )[ _path cStringUsingEncoding: NSUTF8StringEncoding ], &stats );
+    status = stat( [ _path cStringUsingEncoding: NSUTF8StringEncoding ], &stats );
     
     if( status != 0 )
     {

@@ -180,7 +180,7 @@ static const unsigned int __crc_table[ 256 ] =
     NSMutableString * output;
     
     source       = [ self cStringUsingEncoding: NSUTF8StringEncoding ];
-    sourceLength = strlen( ( char * )source );
+    sourceLength = strlen( source );
     output       = [ NSMutableString string ];
     
     for( i = 0; i < sourceLength; ++i )
@@ -306,7 +306,7 @@ static void md5_update( md5_context * context, const void * input, unsigned int 
         memcpy
         (
             ( unsigned char * )&context->buffer[ ndx ],
-            ( unsigned char * )_input,
+            ( const unsigned char * )_input,
             partLen
         );
         __md5_transform( context->state, context->buffer );
@@ -326,7 +326,7 @@ static void md5_update( md5_context * context, const void * input, unsigned int 
     memcpy
     (
         ( unsigned char * )&context->buffer[ ndx ],
-        ( unsigned char * )&_input[ i ],
+        ( const unsigned char * )&_input[ i ],
         length-i
     );
 }

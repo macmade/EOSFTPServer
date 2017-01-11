@@ -186,8 +186,6 @@
 - ( IBAction )addUser: ( id )sender
 {
     ( void )sender;
-    
-    [ NSApp beginSheetModalForWindow: self.window modalDelegate: nil didEndSelector: NULL contextInfo: nil ];
 }
 
 - ( IBAction )deleteUser: ( id )sender
